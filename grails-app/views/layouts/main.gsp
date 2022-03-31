@@ -15,7 +15,7 @@
 	<header>
 		<div class="header">
 			<h1 class="title-header">Asinha</h1>
-            <asset:image src="simbolo-asinha.png" class="img-header" />
+            <asset:image src="simbolo-asinha.png" class="img-header"/>
 		</div>
 	</header>
 <g:layoutBody/>
@@ -25,8 +25,7 @@
 <asset:javascript src="application.js"/>
 <asset:javascript src="js/models/Cliente.js"/>
 <asset:javascript src="js/models/ListaClientes.js"/>
-<asset:javascript src="js/helpers/DateHelper.js"/>
-<asset:javascript src="js/helper/CepHelper.js"/>
+<asset:javascript src="js/helpers/DataHelper.js"/>
 <asset:javascript src="js/controllers/CadastroController.js"/>
 </body>
 </html>

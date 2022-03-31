@@ -24,9 +24,10 @@ function CadastroController() {
     }
 
     var bindCepInput = function() {
-        _this._inputCep.addEventListener("blur", function() {
-            var cepValue = _this._inputCep.value
-            procuraCep(cepValue);
+        _this._inputCep.addEventListener("input", function() {
+            if(_this._inputCep.value.length == 8){
+                procuraCep(_this._inputCep.value);
+            }
         });
     }
 
