@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
 <head>
-    <meta name="layout" content="main"/>
+    <meta name="layout" content="main-asinha"/>
     <title>Asinha - Cadastro</title>
+	    <asset:stylesheet src="style.css"/>
 </head>
 <body>
 	<main class="container">
@@ -18,8 +19,6 @@
 					<input type="text" id="cpf-cnpj" minlength="11" maxlength="14" autocomplete="off" required>
 					<label for="cpf-cnpj">CPF/CNPJ</label>
 				</div>
-			</div>
-			<div class="row">
 				<div class="inputbox">
 					<input type="email" id="email" autocomplete="off" required>
 					<label for="email">Email</label>
@@ -28,39 +27,34 @@
 					<input type="text" id="telefone" minlength="11" maxlength="11" autocomplete="off" required>
 					<label for="telefone">Telefone</label>
 				</div>
-			</div>
-			<div class="row">
                 <div class="inputbox">
 					<input type="text" id="cep" minlength="8" maxlength="8" autocomplete="off" required>
 					<label for="cep">CEP</label>
 				</div>
-                <div class="inputbox">
-					<input type="text" id="cidade" autocomplete="off" required>
-					<label for="cidade">Cidade</label>
-				</div>
-			</div>
-			<div class="row">
 				<div class="inputbox">
 					<input type="text" id="estado" maxlength="2" autocomplete="off" required>
 					<label for="estado">Estado</label>
 				</div>
                 <div class="inputbox">
+					<input type="text" id="cidade" autocomplete="off" required>
+					<label for="cidade">Cidade</label>
+				</div>
+                <div class="inputbox">
 					<input type="text" id="bairro" autocomplete="off" required>
 					<label for="bairro">Bairro</label>
 				</div>
-			</div>
-			<div class="row">
                 <div class="inputbox">
-                        <input type="text" id="endereco" autocomplete="off" required>
-                        <label for="endereco">Endereço</label>
-                    </div>
-                    <div class="inputbox">
-                        <input type="text" id="numero" autocomplete="off" required>
-                        <label for="numero">Número</label>
-                    </div>
+                    <input type="text" id="endereco" autocomplete="off" required>
+                    <label for="endereco">Endereço</label>
                 </div>
-			</div>
-			<div class="row">
+                <div class="inputbox">
+                    <input type="text" id="numero" autocomplete="off" required>
+                    <label for="numero">Número</label>
+                </div>
+				<div class="inputbox">
+                    <input type="text" id="complemento" autocomplete="off">
+                    <label for="complemento">Complemento</label>
+                </div>
 				<div class="inputbox">
 					<input type="password" id="senha" autocomplete="off" required>
 					<label for="senha">Senha</label>

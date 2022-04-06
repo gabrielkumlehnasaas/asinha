@@ -1,4 +1,6 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
+
 
 * {
     margin: 0;
@@ -47,6 +49,7 @@ header {
     float: left;
 }
 
+
 .container {
     flex-grow: 3;
     display: flex;
@@ -71,13 +74,17 @@ header {
     gap: 40px;
     margin: 25px;
 }
-
 .inputbox {
     position: relative;
     display: flex;
     flex-direction: column-reverse;
     height: 40px;
 }
+
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+} */
 
 .inputbox label {
     position: relative;
@@ -141,14 +148,27 @@ footer {
     color: var(--branco);
 }
 
+.invisivel {
+    display: none;
+}
+
 #error {
     text-align: center;
     color: lightcoral;
+
 }
 
 @media (max-width: 950px) {
     .row {
         grid-template-columns: repeat(auto-fit, minmax(200px,100%));
         
+    }
+
+    .termo {
+        justify-self: center;
+    }
+
+    .container button {
+        justify-self: center;
     }
 }
