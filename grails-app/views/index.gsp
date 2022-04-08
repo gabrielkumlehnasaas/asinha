@@ -66,8 +66,8 @@
 					<label for="senha">Senha</label>
 				</div>
 				<div class="inputbox">
-					<input type="password" id="conf-senha" autocomplete="off" required>
-					<label for="conf-senha">Confirmar senha</label>
+					<input type="password" id="confirmacao-senha" autocomplete="off" required>
+					<label for="confirmacao-senha">Confirmar senha</label>
 				</div>
 			</div>
 			<br>
@@ -81,5 +81,10 @@
 			</div>
 		</form>
 	</main>
+
+	<asset:javascript src="js/models/Cliente.js"/>
+	<asset:javascript src="js/models/ListaClientes.js"/>
+	<asset:javascript src="js/helpers/DataHelper.js"/>
+	<asset:javascript src="js/controllers/CadastroController.js"/>
 </body>
 </html>

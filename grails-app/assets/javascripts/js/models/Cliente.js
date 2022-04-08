@@ -11,6 +11,6 @@ class Cliente {
         this._email = email;
         this._bairro = bairro;
         this._telefone = telefone;
-        this._data_criacao = DateHelper.dataParaTexto(new Date())
+        this._data_criacao = DateHelper.dataParaTexto(new Date());
     }
 }

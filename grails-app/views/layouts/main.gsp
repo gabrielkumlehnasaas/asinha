@@ -23,9 +23,6 @@
 		Asinha © 2022
 	</footer>
 <asset:javascript src="application.js"/>
-<asset:javascript src="js/models/Cliente.js"/>
-<asset:javascript src="js/models/ListaClientes.js"/>
-<asset:javascript src="js/helpers/DataHelper.js"/>
-<asset:javascript src="js/controllers/CadastroController.js"/>
+
 </body>
 </html>
