@@ -1,9 +1,12 @@
 package com.asinha.domain
 
 import grails.gorm.services.Service
+import com.asinha.domain.Customer.*
+
+Customer
 
 @Service(Customer)
-interface CustomerService {
+class CustomerService {
 
     Customer get(Serializable id)
 
@@ -11,8 +14,8 @@ interface CustomerService {
 
     Long count()
 
-    void delete(Serializable id)
-
-    Customer save(Customer customer)
+    def save(Customer customer) {
+        curstomer.save(failOnError: true)
+    }
 
 }
