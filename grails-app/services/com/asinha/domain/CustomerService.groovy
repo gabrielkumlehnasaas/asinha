@@ -15,7 +15,7 @@ class CustomerService {
     Long count()
 
     def save(Customer customer) {
-        curstomer.save(failOnError: true)
+        customer.save(failOnError: true)
     }
 
 }

@@ -5,9 +5,9 @@ import static org.springframework.http.HttpStatus.*
 
 class CustomerController {
 
-    CustomerService customerService
+    def customerService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -67,23 +67,6 @@ class CustomerController {
                 redirect customer
             }
             '*'{ respond customer, [status: OK] }
-        }
-    }
-
-    def delete(Long id) {
-        if (id == null) {
-            notFound()
-            return
-        }
-
-        customerService.delete(id)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'customer.label', default: 'Customer'), id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
         }
     }
 
