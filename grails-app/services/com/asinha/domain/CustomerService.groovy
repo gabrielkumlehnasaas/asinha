@@ -1,21 +1,31 @@
 package com.asinha.domain
 
-import grails.gorm.services.Service
-import com.asinha.domain.Customer.*
+import com.asinha.domain.Customer
 
-Customer
-
-@Service(Customer)
 class CustomerService {
 
-    Customer get(Serializable id)
-
-    List<Customer> list(Map args)
-
-    Long count()
-
-    def save(Customer customer) {
-        customer.save(failOnError: true)
+    def list() {
+        return Customer.list()
     }
 
+    def save(Map params) {
+        Customer customer = new Customer()
+        customer.address = params.address
+        customer.addressNumber = params.addressNumber
+        customer.city = params.city
+        customer.complement = params.complement
+        customer.cpfCnpj = params.cpfCnpj
+        customer.deleted = 0
+        customer.email = params.email
+        customer.phone = params.phone
+        customer.name = params.name
+        customer.postalCode = params.postalCode
+        customer.province = params.province
+        customer.state = params.state
+        if(params.cpfCnpj.length() == 11) {
+            customer.birthDate = params.birthDate
+        }
+        customer.save(failOnError: true)
+        return customer
+    }
 }

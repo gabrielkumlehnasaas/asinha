@@ -6,31 +6,37 @@
         <title><g:message code="default.list.label" args="[entityName]" /></title>
     </head>
     <body>
-        <a href="#list-customer" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-customer" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-
-
-            <<g:each var="customer" in="${ customerList }">
+            <table>
                 <tr>
-                    <th>
-                    <%-- preecher --%>
-                    </th>
+                    <th>Name</th>
+                    <th>CPF CNPJ</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Postal Code</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Province</th>
+                    <th>Address</th>
+                    <th>Address Number</th>
+                    <th>Birth Date</th>
                 </tr>
-            </g:each>
+                <g:each var="customer" in="${ customerList }">
+                    <tr>
+                        <td>${ customer.name }</td>
+                        <td>${ customer.cpfCnpj }</td>
+                        <td>${ customer.email }</td>
+                        <td>${ customer.phone }</td>
+                        <td>${ customer.postalCode }</td>
+                        <td>${ customer.state }</td>
+                        <td>${ customer.city } </td>
+                        <td>${ customer.province }</td>
+                        <td>${ customer.address }</td>
+                        <td>${ customer.addressNumber }</td>
+                        <td>${ customer.birthDate }</td>
+                    </tr>
+                   
+                </g:each>
 
-            <div class="pagination">
-                <g:paginate total="${customerCount ?: 0}" />
-            </div>
-        </div>
+            </table>
     </body>
 </html>
