@@ -22,9 +22,6 @@ class CustomerService {
         customer.postalCode = params.postalCode
         customer.province = params.province
         customer.state = params.state
-        if(params.cpfCnpj.length() == 11) {
-            customer.birthDate = params.birthDate
-        }
         customer.save(failOnError: true)
         return customer
     }
