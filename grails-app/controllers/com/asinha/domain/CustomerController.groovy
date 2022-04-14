@@ -9,7 +9,7 @@ class CustomerController {
 
     def customerService
 
-    def index() {
+    def list() {
         return [customerList: customerService.list()]
     }
 
@@ -18,8 +18,8 @@ class CustomerController {
 
     def show() {
         return [customer: customerService.getCustomer(params.int(id))]
-
     }
+
     def save() {
         try {
             Customer customer = customerService.save(params)
