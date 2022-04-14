@@ -24,7 +24,7 @@ class CustomerController {
         try {
             Customer customer = customerService.save(params)
             if(customer) {
-                redirect(action: "index")
+                redirect(action: "list")
             }
         } catch(Exception exception) {
             println(exception)

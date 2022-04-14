@@ -34,10 +34,10 @@
                             <input type="text" class="form-control border border-1 border-dark" placeholder="000.000.000-00" name="cpfCnpj" required>
                         </div>
                         
-                        <div class="col-md-6 p-3 border bg-light legal-person hidden" id="mostraCnpj">
+                        <%-- <div class="col-md-6 p-3 border bg-light legal-person hidden" id="mostraCnpj">
                             <label for="cpfCnpj"></label>CNPJ</label>
                             <input type="text" class="form-control border border-1 border-dark" placeholder="00.000.000/0000-00" name="cpfCnpj" required>
-                        </div>
+                        </div> --%>
                                   
                      
                         <div class="col-md-6 p-3 border bg-light">
@@ -55,8 +55,8 @@
                             <input type="text" class="form-control border border-1 border-dark" placeholder="CEP" name="postalCode" required>
                         </div>
                         <div class="col-md-6 p-3 border bg-light">
-                            <label for="adress"></label>Endereço</label>
-                            <input type="text" class="form-control border border-1 border-dark" id="adress" placeholder="Endereço" name="adress" required>
+                            <label for="address"></label>Endereço</label>
+                            <input type="text" class="form-control border border-1 border-dark" id="address" placeholder="Endereço" name="address" required>
                         </div>
                 
                      
@@ -89,7 +89,7 @@
                 </form>
             </div>
        
-       <script>
+       <%-- <script>
             var cpfReference = document.getElementById("cpf")
             var cnpjReference = document.getElementById("cnpj")
 
@@ -102,6 +102,6 @@
                 $(document.getElementById("mostraCpf")).hide()
                 $(document.getElementById("mostraCnpj")).show()
             })
-        </script>
+        </script> --%>
     </body>
 </html>
