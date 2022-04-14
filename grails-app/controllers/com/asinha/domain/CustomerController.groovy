@@ -2,12 +2,23 @@ package com.asinha.domain
 import com.asinha.domain.Customer
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.converters.JSON
+
+
 class CustomerController {
+
     def customerService
+
     def index() {
         return [customerList: customerService.list()]
     }
+
     def create() {
+    }
+
+    def show() {
+        return [customer: customerService.getCustomer(params.int(id))]
+
     }
     def save() {
         try {

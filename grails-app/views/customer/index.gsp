@@ -28,4 +28,29 @@
                 </g:each>
             </table>
     </body>
+
+    <script>
+        $(document).ready( function() {
+            $("form").on("submit", function(e) {
+                e.preventDefault();
+
+                if (!$("input[name='name']").val()) return alet("adicione nome")
+
+                let infosCustomer = {};
+                let data = new FormData(document.querySelector("form"));
+                data.forEach(function (value, key) {
+                    infosCustomer[key] = value
+                });
+
+                $.post("/customer/save", infosCustomer, function(response)) {
+                    if (response.success) {
+                        window.location.href = "/customer/list";
+                        return;
+                    }
+                }
+            })
+        })
+
+
+    </script>
 </html>

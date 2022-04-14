@@ -4,8 +4,12 @@ import com.asinha.domain.Customer
 
 class CustomerService {
 
+    def getCustomer(Integer id) {
+        return Customer.get(id)
+    }
+
     def list() {
-        return Customer.list()
+        return Customer.getAll()
     }
 
     def save(Map params) {

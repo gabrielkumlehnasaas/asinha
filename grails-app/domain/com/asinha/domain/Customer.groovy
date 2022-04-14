@@ -9,15 +9,11 @@ class Customer {
     String cpfCnpj
     int deleted
     String email
-    Date dateCreated
-    Date lastUpdate
-    float creditCardLimit
     String phone
     String name
     String postalCode
     String province
     String state
-    Date birthDate
 
     static constraints = {
         address size: 1..255, nullable: false
@@ -32,12 +28,5 @@ class Customer {
         postalCode size: 1..255, nullable: false
         province size: 1..255, nullable: false
         state size: 1..255, nullable: false
-        lastUpdate nullable: true
-        birthDate nullable: true
-
     }
-    
-
-
-    
 }
