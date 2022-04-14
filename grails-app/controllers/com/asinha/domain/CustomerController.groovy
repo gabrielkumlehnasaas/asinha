@@ -4,7 +4,6 @@ import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
 
-
 class CustomerController {
 
     def customerService
@@ -24,7 +23,7 @@ class CustomerController {
         try {
             Customer customer = customerService.save(params)
             if(customer) {
-                redirect(action: "index")
+                redirect(action: "list")
             }
         } catch(Exception exception) {
             println(exception)
