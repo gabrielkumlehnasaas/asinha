@@ -8,7 +8,7 @@ class CustomerService {
         return Customer.get(id)
     }
 
-    def index() {
+    def list() {
         return Customer.getAll()
     }
 

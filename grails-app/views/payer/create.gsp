@@ -6,6 +6,7 @@
         <g:set var="entityName" value="${message(code: 'payer.label', default: 'Payer')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
         <asset:javascript src="application.js"/>
+        <asset:javascript src="asinha/masks.js"/>
     </head>
         <body>
             <div class="container-fluid">
@@ -29,9 +30,9 @@
                             <input type="text" class="form-control border border-1 border-dark" placeholder="Nome" name="name" required>
                         </div>
                        
-                        <div class="col-md-6 p-3 border bg-light natural-person hidden" id="mostraCpf">
-                            <label for="cpfCnpj"></label>CPF</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="000.000.000-00" name="cpfCnpj" required>
+                        <div class="col-md-6 p-3 border bg-light natural-person hidden" id="mostraCpf" maxlength="14">
+                            <label for="cpfReference"></label>CPF</label>
+                            <input type="text" autocomplete="off" maxLength="14" class="form-control border border-1 border-dark" placeholder="000.000.000-00" name="cpfCnpj" required>
                         </div>
                         
                         <div class="col-md-6 p-3 border bg-light legal-person hidden" id="mostraCnpj">
@@ -103,5 +104,6 @@
                 $(document.getElementById("mostraCnpj")).show()
             })
         </script>
+        <asset:javascript src="asinha/masks.js"/>
     </body>
 </html>

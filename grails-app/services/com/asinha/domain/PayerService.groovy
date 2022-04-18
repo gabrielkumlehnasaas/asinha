@@ -2,14 +2,14 @@ package com.asinha.domain
 
 import com.asinha.domain.Payer
 
-class CustomerService {
+class PayerService {
 
     def getPayer(Integer id) {
         return Payer.get(id)
     }
 
-    // def index() {
-        // return Payer.getAll()
+    def index() {
+        return Payer.getAll()
     }
 
     def save(Map params) {
