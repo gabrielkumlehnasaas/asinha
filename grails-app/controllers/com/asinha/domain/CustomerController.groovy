@@ -8,6 +8,10 @@ class CustomerController {
 
     def customerService
 
+    def list() {
+        return [customerList: customerService.list()]
+    }
+
     def create() {
     }
 
