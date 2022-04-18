@@ -2,10 +2,39 @@
 <html>
     <head>
         <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'customer.label', default: 'Customer')}" />
         <title>Cliente</title>
     </head>
     <body>
-        
+        <div class="container-fluid">
+            <table>
+                <thead>
+                    <th>Nome</th>
+                    <th>CPF/CNPJ</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>CEP</th>
+                    <th>Estado</th>
+                    <th>Cidade</th>
+                    <th>Bairro</th>
+                    <th>Endereço</th>
+                    <th>Número</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>customer.address</td>
+                        <td>customer.addressNumber</td>
+                        <td>customer.city</td>
+                        <td>customer.complement</td>
+                        <td>customer.cpfCnpj</td>
+                        <td>customer.email</td>
+                        <td>customer.phone</td>
+                        <td>customer.name</td>
+                        <td>customer.postalCode</td>
+                        <td>customer.province</td>
+                        <td>customer.state</td>
+                    </tr>
+                 </tbody>
+            </table>
+        </div>
     </body>
 </html>

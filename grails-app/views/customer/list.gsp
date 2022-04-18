@@ -8,6 +8,7 @@
     <body>
             <table>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
                     <th>CPF/CNPJ</th>
                     <th>Email</th>
