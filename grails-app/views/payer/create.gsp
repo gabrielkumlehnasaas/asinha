@@ -6,7 +6,6 @@
         <g:set var="entityName" value="${message(code: 'payer.label', default: 'Payer')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
         <asset:javascript src="application.js"/>
-        <asset:javascript src="asinha/masks.js"/>
     </head>
         <body>
             <div class="container-fluid">
@@ -14,7 +13,7 @@
                         
                         <div class="col-md-6 p-3 border bg-light">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="cpfCnpj" id="cpf" value="cpf" checked>
+                                <input class="form-check-input" type="radio" name="cpfCnpj" id="cpf" value="cpf"  checked>
                                 <label class="form-check-label" for="cpfCnpj">CPF</label>
                             </div>
                         </div>
@@ -32,12 +31,12 @@
                        
                         <div class="col-md-6 p-3 border bg-light natural-person hidden" id="mostraCpf" maxlength="14">
                             <label for="cpfReference"></label>CPF</label>
-                            <input type="text" autocomplete="off" maxLength="14" class="form-control border border-1 border-dark" placeholder="000.000.000-00" name="cpfCnpj" required>
+                            <input type="text" data-js="cpfMask" maxlength="14" class="form-control border border-1 border-dark" placeholder="000.000.000-00" name="cpfCnpj" required>
                         </div>
                         
                         <div class="col-md-6 p-3 border bg-light legal-person hidden" id="mostraCnpj">
                             <label for="cpfCnpj"></label>CNPJ</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="00.000.000/0000-00" name="cpfCnpj" required>
+                            <input type="text" data-js="cnpjMask" maxlength="18" class="form-control border border-1 border-dark" placeholder="00.000.000/0000-00" name="cpfCnpj" required>
                         </div>
                                   
                      
@@ -47,13 +46,13 @@
                         </div>
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="phone"></label>Telefone</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="Telefone" name="phone" required>
+                            <input type="text" data-js="telefoneMask" maxlength="15" class="form-control border border-1 border-dark" placeholder="Telefone" name="phone" required>
                         </div>
                 
                      
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="postalCode"></label>CEP</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="CEP" name="postalCode" required>
+                            <input type="text" data-js="cepMask" maxlength="9" class="form-control border border-1 border-dark" placeholder="CEP" id="cep" name="postalCode" required>
                         </div>
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="adress"></label>Endereço</label>
@@ -67,7 +66,7 @@
                         </div>
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="province"></label>Bairro</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="Bairro" name="province" required>
+                            <input type="text" class="form-control border border-1 border-dark" placeholder="Bairro" id="province" name="province" required>
                         </div>
        
                      
@@ -77,13 +76,13 @@
                         </div>
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="city"></label>Cidade</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="Cidade" name="city" required>
+                            <input type="text" class="form-control border border-1 border-dark" placeholder="Cidade" id="city" name="city" required>
                         </div>
                     
                      
                         <div class="col-md-6 p-3 border bg-light">
                             <label for="state"></label>Estado</label>
-                            <input type="text" class="form-control border border-1 border-dark" placeholder="Estado" name="state" required>
+                            <input type="text" class="form-control border border-1 border-dark" placeholder="Estado" id="estado" name="state" required>
                         </div>
                                           
                     <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" value="Criar" id="create">
@@ -105,5 +104,6 @@
             })
         </script>
         <asset:javascript src="asinha/masks.js"/>
+        <asset:javascript src="asinha/postalCode.js"/>
     </body>
 </html>
