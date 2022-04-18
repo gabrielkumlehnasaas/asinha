@@ -15,6 +15,10 @@ class CustomerController {
     def create() {
     }
 
+    def show() {
+        return [customer: customerService.getCustomer(params.int(id))]
+    }
+
     def save() {
         try {
             Customer customer = customerService.save(params)
