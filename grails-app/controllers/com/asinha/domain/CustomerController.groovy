@@ -16,7 +16,8 @@ class CustomerController {
     }
 
     def show() {
-        return [customer: customerService.getCustomer(params.int(id))]
+        Integer id = params.int("id")
+        return [customer: customerService.getCustomer(id)]
     }
 
     def save() {

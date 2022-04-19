@@ -8,6 +8,10 @@ class CustomerService {
         return Customer.getAll()
     }
 
+    def getCustomer(Integer id) {
+        return Customer.get(id)
+    } 
+
     def save(Map params) {
         Customer customer = new Customer()
         customer.address = params.address
