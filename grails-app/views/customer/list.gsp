@@ -4,6 +4,7 @@
         <%-- <meta name="layout" content="main"/> --%>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
         <title>Clientes</title>
+        <asset:javascript src="application.js"/>
     </head>
     <body>
             <table class="table">
@@ -20,7 +21,7 @@
                 </thead>
                 <tbody>
                     <g:each var="customer" in="${ customerList }">
-                        <tr>
+                        <tr data-url="${ g.createLink([controller:'customer', action:'show', params:[id: customer.id]])}">
                             <th scope="row">${ customer.id }</th>
                             <td>${ customer.name }</td>
                             <td>${ customer.cpfCnpj }</td>
@@ -32,5 +33,8 @@
                     </g:each>
                 </tbody>
             </table>
+    <asset:javascript src="asinha/customer-list.js"/>
     </body>
+
+
 </html>
