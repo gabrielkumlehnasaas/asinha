@@ -20,6 +20,11 @@ class CustomerController {
         return [customer: customerService.getCustomer(id)]
     }
 
+    def edit() {
+        Integer id = params.int("id")
+        return [customer: customerService.getCustomer(id)]
+    }
+
     def save() {
         try {
             Customer customer = customerService.save(params)
