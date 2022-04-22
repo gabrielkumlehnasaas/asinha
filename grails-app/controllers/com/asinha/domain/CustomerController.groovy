@@ -25,6 +25,18 @@ class CustomerController {
         return [customer: customerService.getCustomer(id)]
     }
 
+    def update() {
+        println(params.id)
+        try {
+            Customer customer = customerService.update(params
+            if (customer){
+                redirect([action: "show", id: customer.id])
+            }
+        } catch(Exception exception) {
+            println(exception)
+        }
+    }
+
     def save() {
         try {
             Customer customer = customerService.save(params)

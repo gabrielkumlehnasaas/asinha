@@ -1,7 +1,9 @@
 package com.asinha.domain
 
+import grails.gorm.transactions.Transactional
 import com.asinha.domain.Customer
 
+@Transactional
 class CustomerService {
 
     def list() {
@@ -10,6 +12,24 @@ class CustomerService {
 
     def getCustomer(Integer id) {
         return Customer.get(id)
+    }
+
+    def update(Map params) {
+        Customer customer = Customer.get(params.int("id"))
+        customer.address = params.address
+        customer.addressNumber = params.addressNumber
+        customer.city = params.city
+        customer.complement = params.complement
+        customer.cpfCnpj = params.cpfCnpj
+        customer.email = params.email
+        customer.phone = params.phone
+        customer.name = params.name
+        println(customer.name)
+        customer.postalCode = params.postalCode
+        customer.province = params.province
+        customer.state = params.state
+        customer.save(flush: true, failOnError:true)
+        return customer
     } 
 
     def save(Map params) {
