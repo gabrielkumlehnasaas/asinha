@@ -27,5 +27,21 @@
                     </tr>
                 </g:each>
             </table>
+            <div class="row d-flex justify-content-between">
+                <div class='col d-flex justify-content-center'>
+                    <g:if test="${ page > 1 }">
+                        <a href="${ g.createLink([controller:'customer', action:'list', params:[id: page-1]]) }"><button class="btn btn-primary btn-padding-y">Anterior</button></a>
+                    </g:if>
+                </div>
+                <div class='col d-flex justify-content-center'>
+                    <p>${ page }</p>
+                </div>
+                <div class='col d-flex justify-content-center'>
+                    <g:if test="${ totalPages - page > 0 }">
+                        <a href="${ g.createLink([controller:'customer', action:'list', params:[id: page+1]]) }"><button class="btn btn-primary btn-padding-y">Próxima</button></a>
+                    </g:if>
+                </div>
+            </div>
+
     </body>
 </html>

@@ -9,7 +9,8 @@ class CustomerController {
     def customerService
 
     def list() {
-        return [customerList: customerService.list()]
+        Integer page = params.int("id")
+        return [page: page, customerList: customerService.list(page), totalPages: customerService.countPages()]
     }
 
     def create() {
@@ -18,8 +19,9 @@ class CustomerController {
     def save() {
         try {
             Customer customer = customerService.save(params)
+            Integer listPage = Math.round(Math.ceil(customer.id/20))
             if(customer) {
-                redirect(action: "list")
+                redirect(action: "list", id:listPage)
             }
         } catch(Exception exception) {
             println(exception)

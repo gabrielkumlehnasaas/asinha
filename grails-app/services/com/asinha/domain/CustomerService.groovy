@@ -4,8 +4,16 @@ import com.asinha.domain.Customer
 
 class CustomerService {
 
-    def list() {
-        return Customer.getAll()
+    Integer totalListed = 10
+
+    def list(page) {
+        Integer offset = (page-1)*(totalListed)
+        return Customer.list(max:totalListed, offset:offset)
+    }
+
+    def countPages() {
+        Integer customerCount = Customer.getAll().size()
+        return Math.round(Math.ceil(customerCount/totalListed))
     }
 
     def save(Map params) {
