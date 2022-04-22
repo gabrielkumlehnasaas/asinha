@@ -1,0 +1,28 @@
+header{
+    overflow: hidden;
+    width: 100%;
+    background-color: var(--azul);
+    color: var(--branco);
+    vertical-align: middle;
+    font-size: large;
+    font-weight: bold;
+}
+
+.img-header {
+    padding-left: 20px;
+    height: 40px;
+    float: right;
+    margin-right: 15px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    padding-top: 7px;
+    min-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    background-color: var(--azul);
+    color: var(--branco);
+}
