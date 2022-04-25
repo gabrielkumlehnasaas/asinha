@@ -9,7 +9,7 @@
     <body>
         <div class="container-fluid">
             <p id="error"></p>
-            <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'save']) }">
+            <form class="form row" id="form" action="${ g.createLink([controller:'customer', action:'save']) }">
                 <div class="col-md-6 p-3 bg-light">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="cpfCnpjRadio" id="cpfRadio" checked>
@@ -103,5 +103,6 @@
                 <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" value="Criar conta" id="create">
             </form>
         </div>
+    <asset:javascript src="asinha/create-post.js"/>
     </body>
 </html>
