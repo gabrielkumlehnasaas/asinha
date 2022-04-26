@@ -24,10 +24,10 @@ class CustomerService {
         customer.email = params.email
         customer.phone = params.phone
         customer.name = params.name
-        println(customer.name)
         customer.postalCode = params.postalCode
         customer.province = params.province
         customer.state = params.state
+        customer.lastUpdate = new Date()
         customer.save(flush: true, failOnError:true)
         return customer
     } 

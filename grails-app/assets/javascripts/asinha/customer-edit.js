@@ -25,3 +25,23 @@ $(document).ready( function() {
     cepInputReference.value = cepInputReference.dataset.customer;
     complementInputReference.value = complementInputReference.dataset.customer;
 })
+
+$(document).ready(function () {
+    $("form").on("submit", function(event) {
+        event.preventDefault();
+        let infosCustomer = {};
+        let data = new FormData(document.querySelector("form"));
+        data.forEach(function (value,key) {
+            infosCustomer[key] = value;
+        });
+        delete infosCustomer.create;
+
+        $.post("/customer/update", infosCustomer, function(response) {
+            console.log(response);
+            window.location.href = `/customer/show/${ infosCustomer.id }`
+        });
+
+    });
+});
+
+

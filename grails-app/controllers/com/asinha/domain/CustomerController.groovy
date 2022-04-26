@@ -26,9 +26,8 @@ class CustomerController {
     }
 
     def update() {
-        println(params.id)
         try {
-            Customer customer = customerService.update(params
+            Customer customer = customerService.update(params)
             if (customer){
                 redirect([action: "show", id: customer.id])
             }
