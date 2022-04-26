@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="state">Estado</label>
-                    <input list="states" class="form-control border border-1 border-dark" placeholder="" name="state" required>
+                    <input list="states" class="form-control border border-1 border-dark" placeholder="" name="state" maxlength="2" required>
                     <datalist id="states">
                         <option value="AC"></option> 
                         <option value="AL"></option> 

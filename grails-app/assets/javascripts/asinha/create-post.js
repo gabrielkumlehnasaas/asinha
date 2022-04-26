@@ -10,7 +10,8 @@ $(document).ready(function () {
         delete infosCustomer.create;
 
         $.post("/customer/save", infosCustomer, function(response) {
-            console.log(response)
+            console.log(response);
+            window.location.href = "/customer/index"
         });
 
     });

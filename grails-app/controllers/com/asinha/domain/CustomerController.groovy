@@ -22,7 +22,6 @@ class CustomerController {
             Customer customer = customerService.save(params)
             if(customer) {
                 render([success: true])
-                redirect(action:"index")
             }
         } catch(Exception exception) {
             println(exception)
