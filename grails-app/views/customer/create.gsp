@@ -63,37 +63,7 @@
                     <input type="text" class="form-control border border-1 border-dark" placeholder="" name="city" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
-                    <label for="state">Estado</label>
-                    <input list="states" class="form-control border border-1 border-dark" placeholder="" name="state" maxlength="2" required>
-                    <datalist id="states">
-                        <option value="AC"></option> 
-                        <option value="AL"></option> 
-                        <option value="AM"></option> 
-                        <option value="AP"></option> 
-                        <option value="BA"></option> 
-                        <option value="CE"></option> 
-                        <option value="DF"></option> 
-                        <option value="ES"></option> 
-                        <option value="GO"></option> 
-                        <option value="MA"></option> 
-                        <option value="MT"></option> 
-                        <option value="MS"></option> 
-                        <option value="MG"></option> 
-                        <option value="PA"></option> 
-                        <option value="PB"></option> 
-                        <option value="PR"></option> 
-                        <option value="PE"></option> 
-                        <option value="PI"></option> 
-                        <option value="RJ"></option> 
-                        <option value="RN"></option> 
-                        <option value="RO"></option> 
-                        <option value="RS"></option> 
-                        <option value="RR"></option> 
-                        <option value="SC"></option> 
-                        <option value="SE"></option> 
-                        <option value="SP"></option> 
-                        <option value="TO"></option> 
-                    </datalist>
+                    <g:render template="/utils/selectStates"/>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <input type="checkbox" id="termos" required>
@@ -103,6 +73,6 @@
                 <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" value="Criar conta" id="create">
             </form>
         </div>
-    <asset:javascript src="asinha/create-post.js"/>
+    <asset:javascript src="asinha/customer-create.js"/>
     </body>
 </html>
