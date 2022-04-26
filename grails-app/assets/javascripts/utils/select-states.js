@@ -10,7 +10,6 @@ function SelectStates() {
                 let option = document.createElement("option");
                 option.setAttribute("value", state.sigla);
                 option.textContent = state.sigla;
-                console.log(selectStates);
                 selectStates.appendChild(option);
             });
         });
