@@ -77,5 +77,7 @@
         </div> 
         <asset:javascript src="asinha/masks.js"/>
         <asset:javascript src="asinha/customer-create.js"/>
+        <asset:javascript src="asinha/customer-create-httpPOST.js"/>
+
     </body>
 </html>

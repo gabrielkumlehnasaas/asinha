@@ -1,5 +1,5 @@
 // Labels
-var cpfCnpjLabelReference = $("#cpfCnpjLabel")[0];
+var cpfCnpjLabelReference = $("#cpfCnpjLabel");
 
 // Inputs
 var addressInputReference = $("#address")[0];
@@ -21,8 +21,8 @@ new Inputmask({mask: ["(99) 9999-9999", "(99) 99999-9999"], showMaskOnHover: fal
 new Inputmask({mask: "99999-999", showMaskOnHover: false, keepStatic: true}).mask(cepInputReference);
 
 // Radio Buttons
-var cpfRadioReference = $("#cpfRadio")[0];
-var cnpjRadioReference = $("#cnpjRadio")[0];
+var cpfRadioReference = $("#cpfRadio");
+var cnpjRadioReference = $("#cnpjRadio");
 
 cpfRadioReference.click( function() {
     cpfCnpjLabelReference.html("CPF");
@@ -85,22 +85,3 @@ emailInputReference.addEventListener("focusout", function() {
         document.getElementById("error").innerHTML = "";
     }
 })
-
-
-$(document).ready(function () {
-    $("form").on("submit", function(event) {
-        event.preventDefault();
-        let infosCustomer = {};
-        let data = new FormData(document.querySelector("form"));
-        data.forEach(function (value,key) {
-            infosCustomer[key] = value;
-        });
-        delete infosCustomer.cpfCnpjRadio;
-        $.post("/customer/save", infosCustomer, function(response) {
-            console.log(response);
-            window.location.href = "/customer/index"
-        });
-
-    });
-
-});
