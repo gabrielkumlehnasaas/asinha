@@ -4,17 +4,21 @@ import com.asinha.domain.Customer
 
 class CustomerService {
 
-    Integer totalListed = 10
-
-    def list(page) {
-        Integer offset = (page-1)*(totalListed)
-        return Customer.list(max:totalListed, offset:offset)
+    def list() {
+        [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
     }
 
-    def countPages() {
-        Integer customerCount = Customer.getAll().size()
-        return Math.round(Math.ceil(customerCount/totalListed))
-    }
+    // Integer totalListed = 10
+
+    // def list(page) {
+    //     Integer offset = (page-1)*(totalListed)
+    //     return Customer.list(max:totalListed, offset:offset)
+    // }
+
+    // def countPages() {
+    //     Integer customerCount = Customer.getAll().size()
+    //     return Math.round(Math.ceil(customerCount/totalListed))
+    // }
 
     def save(Map params) {
         Customer customer = new Customer()

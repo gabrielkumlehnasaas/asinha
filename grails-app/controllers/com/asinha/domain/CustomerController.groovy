@@ -8,13 +8,18 @@ class CustomerController {
 
     def customerService
 
-    def list() {
-        Integer page = params.int("id")
-        return [page: page, customerList: customerService.list(page), totalPages: customerService.countPages()]
+   def list() {
+        [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
     }
 
-    def create() {
+    private Integer getCurrentPage() {
+        if(!params.offset) params.offset = 0
+        return Integer.valueOf(params.offset)
     }
+
+    def create() {}
+
+    def index() {}
 
     def save() {
         try {
