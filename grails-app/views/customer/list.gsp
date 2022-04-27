@@ -33,6 +33,8 @@
                     </g:each>
                 </tbody>
             </table>
+            <a href="${ g.createLink([controller:'customer', action:'index']) }"><button class="btn btn-primary btn-padding-y">Home</button></a>
+
     <asset:javascript src="asinha/customer-list.js"/>
     </body>
 

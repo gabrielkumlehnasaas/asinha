@@ -8,6 +8,9 @@ class CustomerController {
 
     def customerService
 
+    def index() {
+    }
+
     def list() {
         return [customerList: customerService.list()]
     }

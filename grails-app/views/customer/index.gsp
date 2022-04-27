@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'customer.label', default: 'Customer')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
+        <%-- <meta name="layout" content="main" /> --%>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
+        <title>Asinha</title>
     </head>
     <body>
-        <a href="#list-customer" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-customer" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${customerList}" />
-
-            <div class="pagination">
-                <g:paginate total="${customerCount ?: 0}" />
-            </div>
+        <div class="container-fluid">
+            <a href="${ g.createLink([controller:'customer', action:'create']) }"><button class="btn btn-primary btn-padding-y">Criar conta</button></a>
+            <a href="${ g.createLink([controller:'customer', action:'list']) }"><button class="btn btn-primary btn-padding-y">Listar clientes</button></a>
         </div>
     </body>
 </html>
