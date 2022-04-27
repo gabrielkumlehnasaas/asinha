@@ -7,7 +7,7 @@ $(document).ready(function () {
             infosCustomer[key] = value;
         });
         delete infosCustomer.cpfCnpjRadio;
-        $.post("/customer/save", infosCustomer, function(response) {
+        $.post(document.querySelector("form").getAttribute("action"), infosCustomer, function(response) {
             console.log(response);
             window.location.href = "/customer/index"
         });
