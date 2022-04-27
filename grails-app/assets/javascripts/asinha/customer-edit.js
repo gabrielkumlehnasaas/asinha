@@ -36,7 +36,7 @@ $(document).ready(function () {
         });
         delete infosCustomer.create;
 
-        $.post("/customer/update", infosCustomer, function(response) {
+        $.post(document.querySelector("form").getAttribute("action"), infosCustomer, function(response) {
             console.log(response);
             window.location.href = `/customer/show/${ infosCustomer.id }`
         });
