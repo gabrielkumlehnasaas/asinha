@@ -9,7 +9,7 @@ $(document).ready(function () {
         var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             console.log(response);
-            window.location.href = "/customer/index"
+            window.location.href = document.querySelector("form").getAttribute("data-redirect")
         });
 
     });

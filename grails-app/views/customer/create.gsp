@@ -10,7 +10,7 @@
     <body>
         <div class="container-fluid">
             <p id="error"></p>
-            <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'save']) }">
+            <form class="form row" id="create-form" data-redirect="/customer/index" action="${ g.createLink([controller:'customer', action:'save']) }">
                 <div class="col-md-6 p-3 bg-light">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="cpfCnpjRadio" id="cpfRadio" checked>
