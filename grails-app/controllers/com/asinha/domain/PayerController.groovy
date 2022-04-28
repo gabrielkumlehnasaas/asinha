@@ -6,5 +6,6 @@ import grails.converters.JSON
 
 class PayerController {
 
-    
+    def index() {
+    }
 }
