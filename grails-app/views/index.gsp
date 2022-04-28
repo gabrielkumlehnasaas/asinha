@@ -77,7 +77,7 @@
 					<label for="termos"></label>Li e concordo com os 
 					<a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.</label>
 				</div>
-				<button id="button">Cadastrar</button>
+				<button class="btn"id="button">Cadastrar</button>
 			</div>
 		</form>
 	</main>
