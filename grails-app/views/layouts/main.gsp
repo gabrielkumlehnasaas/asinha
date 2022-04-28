@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico"/>
     <asset:stylesheet src="application.css"/>
-    <asset:stylesheet src="base-style.css"/>
     <asset:stylesheet src="layout-main.css"/>
+    <asset:javascript src="application.js"/>
     <g:layoutHead/>
 </head>
 <body>
@@ -26,6 +26,5 @@
     <footer>
         <h5>Asinha© 2022</h5>
     </footer>
-    <asset:javascript src="application.js"/>
 </body>
 </html>
