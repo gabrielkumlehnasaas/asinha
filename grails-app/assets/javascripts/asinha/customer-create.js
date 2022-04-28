@@ -55,11 +55,11 @@ var pesquisarCep = async() => {
         .then(function (dados) { 
             let error = ("erro" in dados);
             if (!error) {
-                document.getElementById("error").innerHTML = "";
+                errorMessageReference.innerHTML = "";
                 preeencherFormulario(dados);
             }else{
                 limpaFormulario();
-                document.getElementById("error").innerHTML = "CEP inválido";
+                errorMessageReference.innerHTML = "CEP inválido";
             }})
         }
     }
@@ -67,10 +67,10 @@ var pesquisarCep = async() => {
 cepInputReference.addEventListener("input", pesquisarCep)
 
 emailInputReference.addEventListener("focusout", function() {
-    var email = document.getElementById("email").value;
+    var email = emailInputReference.value;
     if (email.indexOf(".com") == -1) {
-        document.getElementById("error").innerHTML = "E-mail Inválido";
+        errorMessageReferenceinnerHTML = "E-mail Inválido";
     } else {
-        document.getElementById("error").innerHTML = "";
+        errorMessageReference.innerHTML = "";
     }
 })
