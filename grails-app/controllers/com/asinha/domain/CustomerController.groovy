@@ -24,7 +24,6 @@ class CustomerController {
                 render([success: true])
             }
         } catch(Exception exception) {
-            println(exception)
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
