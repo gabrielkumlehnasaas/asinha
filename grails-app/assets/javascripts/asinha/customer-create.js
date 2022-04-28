@@ -14,17 +14,17 @@ new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}
 new Inputmask({mask: ["(99) 9999-9999", "(99) 99999-9999"], showMaskOnHover: false, keepStatic: true}).mask(phoneInputReference);
 new Inputmask({mask: "99999-999", showMaskOnHover: false, keepStatic: true}).mask(cepInputReference);
 
-var cpfRadioReference = $("#cpfRadio").get(0);
-var cnpjRadioReference = $("#cnpjRadio").get(0);
+var cpfRadioReference = $("#cpfRadio");
+var cnpjRadioReference = $("#cnpjRadio");
 
-cpfRadioReference.click( function() {
-    cpfCnpjLabelReference.html("CPF");
+cpfRadioReference.on("click", function() {
+    cpfCnpjLabelReference.innerHTML = "CPF";
     Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
-})
-cnpjRadioReference.click( function() {
-    cpfCnpjLabelReference.html("CNPJ");
+});
+cnpjRadioReference.on("click", function() {
+    cpfCnpjLabelReference.innerHTML = "CNPJ";
     new Inputmask({mask: "99.999.999/9999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
-})
+});
 
 var preeencherFormulario = (endereco) => {
     addressInputReference.value = endereco.logradouro;
@@ -32,18 +32,18 @@ var preeencherFormulario = (endereco) => {
     cityInputReference.value = endereco.localidade;
     stateInputReference.value = endereco.uf;
     addressNumberInputReference.focus();
-}
+};
 
 var cepCleaner = (cep) => {
     return cep.replace(/\D/g, '')    
-}
+};
 
 var limpaFormulario = () => {
     addressInputReference.value = "";
     provinceInputReference.value = "";
     cityInputReference.value = "";
     stateInputReference.value = "";
-}
+};
     
 var pesquisarCep = async() => {
     const cep = cepInputReference.value;
@@ -63,7 +63,7 @@ var pesquisarCep = async() => {
             }
         })
     }
-}
+};
 
 cepInputReference.addEventListener("input", pesquisarCep)
 
@@ -74,7 +74,7 @@ emailInputReference.addEventListener("focusout", function() {
     } else {
         errorMessageReference.innerHTML = "";
     }
-})
+});
 
 $(document).ready(function () {
     $("form").on("submit", function(event) {
