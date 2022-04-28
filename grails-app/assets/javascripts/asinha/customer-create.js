@@ -1,21 +1,21 @@
-var cpfCnpjLabelReference = $("#cpfCnpjLabel");
-var addressInputReference = $("#address")[0];
-var addressNumberInputReference = $("#addressNumber")[0];
-var emailInputReference = $("#email")[0];
-var provinceInputReference = $("#province")[0];
-var cityInputReference = $("#city")[0];
-var stateInputReference = $("#state")[0];
-var cpfCnpjInputReference = $("#cpfCnpj")[0];
-var phoneInputReference = $("#phone")[0];
-var cepInputReference = $("#cep")[0];
-var errorMessageReference = $("#error")[0]
+var cpfCnpjLabelReference = $("#cpfCnpjLabel").get(0);
+var addressInputReference = $("#address").get(0);
+var addressNumberInputReference = $("#addressNumber").get(0);
+var emailInputReference = $("#email").get(0);
+var provinceInputReference = $("#province").get(0);
+var cityInputReference = $("#city").get(0);
+var stateInputReference = $("#state").get(0);
+var cpfCnpjInputReference = $("#cpfCnpj").get(0);
+var phoneInputReference = $("#phone").get(0);
+var cepInputReference = $("#cep").get(0);
+var errorMessageReference = $("#error").get(0)
 
 new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
 new Inputmask({mask: ["(99) 9999-9999", "(99) 99999-9999"], showMaskOnHover: false, keepStatic: true}).mask(phoneInputReference);
 new Inputmask({mask: "99999-999", showMaskOnHover: false, keepStatic: true}).mask(cepInputReference);
 
-var cpfRadioReference = $("#cpfRadio");
-var cnpjRadioReference = $("#cnpjRadio");
+var cpfRadioReference = $("#cpfRadio").get(0);
+var cnpjRadioReference = $("#cnpjRadio").get(0);
 
 cpfRadioReference.click( function() {
     cpfCnpjLabelReference.html("CPF");
@@ -60,9 +60,10 @@ var pesquisarCep = async() => {
             }else{
                 limpaFormulario();
                 errorMessageReference.innerHTML = "CEP inválido";
-            }})
-        }
+            }
+        })
     }
+}
 
 cepInputReference.addEventListener("input", pesquisarCep)
 
