@@ -35,8 +35,7 @@ var preeencherFormulario = (endereco) => {
 }
 
 var cepCleaner = (cep) => {
-    var cleanCep = cep.replace(/\D/g, '')
-    return cleanCep    
+    return cep.replace(/\D/g, '')    
 }
 
 var limpaFormulario = () => {
