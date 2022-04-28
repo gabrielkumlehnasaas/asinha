@@ -6,7 +6,8 @@ $(document).ready(function () {
         data.forEach(function (value,key) {
             if (key != "cpfCnpjRadio") infosCustomer[key] = value;
         });
-        $.post(document.querySelector("form").getAttribute("action"), infosCustomer, function(response) {
+        var url = document.querySelector("form").getAttribute("action");
+        $.post(url, infosCustomer, function(response) {
             console.log(response);
             window.location.href = "/customer/index"
         });
