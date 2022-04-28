@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,4 +76,4 @@
         </div> 
         <asset:javascript src="customer-create-import.js"/>
     </body>
-</html>
+</html> 
