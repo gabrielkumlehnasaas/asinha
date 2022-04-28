@@ -13,29 +13,3 @@
 *= require mobile
 *= require_self
 */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-}
-
-:root {
-    --azul-claro:#0198ff;
-    --branco: #FFFF;
-    --azul: #0030b9;
-    --azul-escuro: #001074;
-    --cinza-claro: #F6F9FC;
-    --verde: #8ebf30;
-    --preto: rgba(0, 0, 0, 0.87)
-}
-
-.btn {
-    background-color: var(--verde);
-    color: var(--branco);
-    border-radius: 5px;
-    font-family: "Open Sans", Helvetica, Arial, sans-serif;
-
-}

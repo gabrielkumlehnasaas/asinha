@@ -15,6 +15,12 @@ header{
     margin-right: 15px;
 }
 
+.title {
+    font-weight: bold;
+    font-size: 2rem;
+    vertical-align: center;
+}
+
 footer {
     position: absolute;
     bottom: 0;
