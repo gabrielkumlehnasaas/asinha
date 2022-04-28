@@ -19,7 +19,7 @@ var cnpjRadioReference = $("#cnpjRadio");
 
 cpfRadioReference.click( function() {
     cpfCnpjLabelReference.html("CPF");
-    new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
+    Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
 })
 cnpjRadioReference.click( function() {
     cpfCnpjLabelReference.html("CNPJ");
@@ -34,7 +34,7 @@ var preeencherFormulario = (endereco) => {
     addressNumberInputReference.focus();
 }
 
-var cepCleaner = function(cep) {
+var cepCleaner = (cep) => {
     var cleanCep = cep.replace(/\D/g, '')
     return cleanCep    
 }
