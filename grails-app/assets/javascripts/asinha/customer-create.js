@@ -1,7 +1,4 @@
-// Labels
 var cpfCnpjLabelReference = $("#cpfCnpjLabel");
-
-// Inputs
 var addressInputReference = $("#address")[0];
 var addressNumberInputReference = $("#addressNumber")[0];
 var emailInputReference = $("#email")[0];
@@ -11,16 +8,12 @@ var stateInputReference = $("#state")[0];
 var cpfCnpjInputReference = $("#cpfCnpj")[0];
 var phoneInputReference = $("#phone")[0];
 var cepInputReference = $("#cep")[0];
-
-// Error message
 var errorMessageReference = $("#error")[0]
 
-// Inputmasks
 new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
 new Inputmask({mask: ["(99) 9999-9999", "(99) 99999-9999"], showMaskOnHover: false, keepStatic: true}).mask(phoneInputReference);
 new Inputmask({mask: "99999-999", showMaskOnHover: false, keepStatic: true}).mask(cepInputReference);
 
-// Radio Buttons
 var cpfRadioReference = $("#cpfRadio");
 var cnpjRadioReference = $("#cnpjRadio");
 
@@ -28,13 +21,11 @@ cpfRadioReference.click( function() {
     cpfCnpjLabelReference.html("CPF");
     new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
 })
-
 cnpjRadioReference.click( function() {
     cpfCnpjLabelReference.html("CNPJ");
     new Inputmask({mask: "99.999.999/9999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
 })
 
-// Cep Handler
 var preeencherFormulario = (endereco) => {
     addressInputReference.value = endereco.logradouro;
     provinceInputReference.value = endereco.bairro;
@@ -76,7 +67,6 @@ var pesquisarCep = async() => {
 
 cepInputReference.addEventListener("input", pesquisarCep)
 
-// Email Validation
 emailInputReference.addEventListener("focusout", function() {
     var email = document.getElementById("email").value;
     if (email.indexOf(".com") == -1) {
