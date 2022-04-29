@@ -1,5 +1,4 @@
 function CustomerShow() {
-
     this.reference = $("#customer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -13,27 +12,28 @@ function CustomerShow() {
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
     var idInputReference = this.reference.find("#id").get(0);
-    var editButton = this.reference.find("#editbtn").get(0);
+    var editButton = this.reference.find("#editbtn");
+    var updateButton = this.reference.find("#updatebtn");
     var _this = this
 
     var bindForm = function() {
-        _this.reference.find("form").on("submit", function(event) {
-            event.preventDefault();
-            submitForm();
+        updateButton.on("click", function (e) {
+            e.preventDefault();
+            submitForm(); 
         });
     };
 
     var submitForm = function() {
-        disableInputs();
+        
         let infosCustomer = {};
         let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
             infosCustomer[key] = value;
         });
-
+        
         var url = document.querySelector("form").getAttribute("action");
-
+        disableInputs();
         $.post(url, infosCustomer, function(response) {
             console.log(response);
             window.location.href = `/customer/show/${ infosCustomer.id }`;
@@ -41,8 +41,10 @@ function CustomerShow() {
     };
 
     var bindEditCustomer = function() {
-        editButton.on("click", function() {
-            event.preventDefault();
+        editButton.on("click", function(e) {
+            e.preventDefault();
+            editButton.attr("hidden", true);
+            updateButton.attr("hidden", false);
             idInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
@@ -75,7 +77,7 @@ function CustomerShow() {
 
     this.init = function() {
         bindForm();
-        bindEditCustomer
+        bindEditCustomer();
     };
 };
 

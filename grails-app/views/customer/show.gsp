@@ -6,7 +6,7 @@
         <title>Cliente</title>
     </head>
     <body>
-        <div class="container-fluid customer-show-container mt-3 ml-4">
+        <div class="container-fluid mt-3 ml-4" id="customer-show-container">
             <h4>Detalhes do Cliente</h4>
             <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'update']) }">
                 <input type="hidden" name="id" id="id" value="${ customer.id }">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
-                    <button class="btn btn-primary btn-padding-y" hidden type="submit" name="update" id="update">Enviar</button>
+                    <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
                 </div>
             </form>
         </div>

@@ -22,13 +22,12 @@ class CustomerController {
 
     def update() {
         try {
+            println(params)
             Customer customer = customerService.update(params)
             if (customer){
                 redirect([action: "show", id: customer.id])
             }
-        } catch(Exception exception) {
-            println(exception)
-        }
+        } catch(Exception exception) {}
     }
 
     def save() {
