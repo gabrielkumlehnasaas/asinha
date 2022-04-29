@@ -12,13 +12,13 @@ class PayerController {
 
     def create(Map params) {
         println(params)
-        var customer = params.customer
-        return [customer: customer]
+        return [customer.id: params.id]
 
     }
 
     def save() {
-        try Payer payer = payerService.save(params)
+        try 
+        Payer payer = payerService.save(params)
             if(payer) {
                 render([success: true])
             }

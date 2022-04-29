@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <a href="${ g.createLink([controller:'customer', action:'edit', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a>
-                <a href="${ g.createLink([controller:'payer', action:'create', params:[customer: customer]]) }"><button class="btn btn-primary btn-padding-y">Criar pagador</button></a>
+                <a href="${ g.createLink([controller:'payer', action:'create', params:[id: customer.id]]) }"><button class="btn btn-primary btn-padding-y">Criar pagador</button></a>
             </div>
         </div>
         

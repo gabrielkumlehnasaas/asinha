@@ -66,12 +66,7 @@
                 <div class="col-md-6 p-3 bg-light">
                 <g:render template="/utils/selectStates"/>
                 </div>
-                <div class="col-md-6 p-3 bg-light">
-                    <input type="checkbox" id="termos" required>
-                        <label for="termos">Li e concordo com os 
-                        <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.</label>
-                </div>
-                <p>${customer}</p>
+                <p>${ id }</p>
                 <input hidden value="${customer.id}" name="customer" id="customer">
                 <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" id="create">
             </form>
