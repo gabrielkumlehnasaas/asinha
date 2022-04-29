@@ -8,4 +8,7 @@ class PayerController {
 
     def index() {
     }
+
+    def create() {
+    }
 }
