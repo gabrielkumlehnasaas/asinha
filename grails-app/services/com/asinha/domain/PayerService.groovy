@@ -4,4 +4,17 @@ import grails.gorm.transactions.Transactional
 import com.asinha.domain.Payer
 
 @Transactional
-class PayerService {}
+class PayerService {
+
+    def payerService
+
+    def list() {
+        return Payer.getAll()
+    }
+
+    def save(Map params) {
+        Payer payer = new Payer(params)
+        payer.save(failOnError: true)
+        return payer
+    }
+}

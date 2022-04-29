@@ -84,16 +84,16 @@ function PayerCreate() {
     };
 
     var submitForm = function() {
-        let infosCustomer = {};
+        let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
-            if (key != "cpfCnpjRadio") infosCustomer[key] = value;
+            if (key != "cpfCnpjRadio") infosPayer[key] = value;
         });
         
         var url = document.querySelector("form").getAttribute("action");
 
-        $.post(url, infosCustomer, function(response) {
+        $.post(url, infosPayer, function(response) {
             console.log(response);
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
@@ -109,9 +109,9 @@ function PayerCreate() {
     };
 };
 
-var customerCreate;
+var payerCreate;
 
 $(document).ready(function () {
-    customerCreate = new CustomerCreate();
-    customerCreate.init();   
+    payerCreate = new PayerCreate();
+    payerCreate.init();   
 });

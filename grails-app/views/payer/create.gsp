@@ -3,7 +3,7 @@
     <head>
         <%-- <meta name="layout" content="main" /> --%>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <title>Cadastro de clientes</title>
+        <title>Cadastro de pagadores</title>
         <asset:javascript src="application.js"/>
     </head>
     <body>
@@ -64,13 +64,15 @@
                     <input type="text" class="form-control border border-1 border-dark" id="city" placeholder="" name="city" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
-                    <g:render template="/utils/selectStates"/>
+                <g:render template="/utils/selectStates"/>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <input type="checkbox" id="termos" required>
                         <label for="termos">Li e concordo com os 
                         <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.</label>
                 </div>
+                <p>${customer}</p>
+                <input hidden value="${customer.id}" name="customer" id="customer">
                 <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" id="create">
             </form>
         </div> 
