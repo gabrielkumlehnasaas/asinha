@@ -28,7 +28,7 @@
                             <td>${ customer.email }</td>
                             <td>${ customer.phone }</td>
                             <td>${}</td>
-                            <td><a href="${ g.createLink([controller:'customer', action:'edit', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
+                            <td><a href="${ g.createLink([controller:'customer', action:'show', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                         </tr>
                     </g:each>
                 </tbody>
