@@ -66,9 +66,8 @@
                 <div class="col-md-6 p-3 bg-light">
                 <g:render template="/utils/selectStates"/>
                 </div>
-                <p>${ id }</p>
-                <input hidden value="${customer.id}" name="customer" id="customer">
-                <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" id="create">
+                <input hidden value="${ customerId }" name="customer" id="customer">
+                <input class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">
             </form>
         </div> 
         <asset:javascript src="payer-create-import.js"/>
