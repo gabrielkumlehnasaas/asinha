@@ -17,7 +17,7 @@ class PayerController {
         return [customerId: id]
     }
 
-    def save(Map params) {
+    def save() {
         try {Payer payer = payerService.save(params)
             if(payer) {
                 render([success: true])

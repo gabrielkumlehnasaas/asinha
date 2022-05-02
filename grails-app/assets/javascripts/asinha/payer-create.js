@@ -87,8 +87,6 @@ function PayerCreate() {
         let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
         
-        console.log(data)
-
         data.forEach(function (value,key) {
             if (key != "cpfCnpjRadio") infosPayer[key] = value;
         });

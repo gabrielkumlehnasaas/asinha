@@ -6,8 +6,6 @@ import com.asinha.domain.Payer
 @Transactional
 class PayerService {
 
-    def payerService
-
     def list() {
         return Payer.getAll()
     }
