@@ -18,7 +18,7 @@
                     <th></th>
                 </tr>
                 <g:each var="payer" in="${ payerList }">
-                    <tr>
+                    <tr data-url="${ g.createLink([controller:'payer', action:'show', params:[id: payer.id]])}">
                         <td>${ payer.id }</td>
                         <td>${ payer.name }</td>
                         <td>${ payer.cpfCnpj }</td>
@@ -33,6 +33,8 @@
             <div class="pagination">
             <g:paginate total="${ totalCount }" controller="payer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
             </div>
+
+            <asset:javascript src="utils/click-list.js"/>
 
 
     </body>

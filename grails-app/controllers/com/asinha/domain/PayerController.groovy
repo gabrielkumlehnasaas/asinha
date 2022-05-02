@@ -9,6 +9,20 @@ class PayerController {
 
     def payerService
 
+    def update() {
+        try {
+            Payer payer = payerService.update(params)
+            if (payer){
+                redirect([action: "show", id: payer.id])
+            }
+        } catch(Exception exception) {}
+    }
+
+    def show(){
+        Integer id = params.int("id")
+        return [payer: payerService.getPayer(id)]
+    }
+
     def index() {
     }
 
