@@ -20,15 +20,14 @@ class CustomerController {
         return [customer: customerService.getCustomer(id)]
     }
 
-    def update() {
-        try {
-            println(params)
-            Customer customer = customerService.update(params)
-            if (customer){
-                redirect([action: "show", id: customer.id])
-            }
-        } catch(Exception exception) {}
-    }
+        def update() {
+            try {
+                Customer customer = customerService.update(params)
+                if (customer){
+                    redirect([action: "show", id: customer.id])
+                }
+            } catch(Exception exception) {}
+        }
 
     def save() {
         try {
@@ -37,7 +36,6 @@ class CustomerController {
                 redirect(action: "list")
             }
         } catch(Exception exception) {
-            println(exception)
         }
     }
 }
