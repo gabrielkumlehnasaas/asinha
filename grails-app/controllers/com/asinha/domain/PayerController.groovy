@@ -1,5 +1,6 @@
 package com.asinha.domain
 import com.asinha.domain.Payer
+import com.asinha.domain.Customer
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 import grails.converters.JSON
@@ -9,7 +10,20 @@ class PayerController {
     def payerService
 
     def index() {
-        return [payerList: payerService.list()]
+    }
+
+    def list() {
+        Integer customerId = params.int("id")
+        def payerCriteria = Payer.createCriteria()
+        def payerList = payerCriteria.list(max: 10, offset: getCurrentPage()) {
+            like("customer", Customer.get(customerId))
+        }
+        [payerList: payerList, totalCount: Payer.count()]
+    }
+    
+    private Integer getCurrentPage() {
+        if(!params.offset) params.offset = 0
+        return Integer.valueOf(params.offset)
     }
 
     def create() {

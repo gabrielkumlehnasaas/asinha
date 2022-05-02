@@ -9,7 +9,7 @@
     <body>
         <div class="container-fluid" id="payer-create-container">
             <p id="error"></p>
-            <form class="form row" id="create-form" data-redirect="/payer/index" action="${ g.createLink([controller:'payer', action:'save']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payer', action:'list', params:[id: customerId]])}" action="${ g.createLink([controller:'payer', action:'save']) }">
                 <div class="col-md-6 p-3 bg-light">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="cpfCnpjRadio" id="cpfRadio" checked>
