@@ -32,7 +32,7 @@ class PayerController {
         def payerList = payerCriteria.list(max: 10, offset: getCurrentPage()) {
             like("customer", Customer.get(customerId))
         }
-        [payerList: payerList, totalCount: Payer.count()]
+        [payerList: payerList, totalCount: Payer.count(), customerId: customerId]
     }
     
     private Integer getCurrentPage() {
