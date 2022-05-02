@@ -33,7 +33,7 @@
                     </g:each>
                 </tbody>
             </table>
-    <asset:javascript src="asinha/customer-list.js"/>
+    <asset:javascript src="utils/click-list.js"/>
     </body>
 
 
