@@ -6,19 +6,6 @@ class CustomerService {
 
     def list() {
         [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
-    }
-
-    // Integer totalListed = 10
-
-    // def list(page) {
-    //     Integer offset = (page-1)*(totalListed)
-    //     return Customer.list(max:totalListed, offset:offset)
-    // }
-
-    // def countPages() {
-    //     Integer customerCount = Customer.getAll().size()
-    //     return Math.round(Math.ceil(customerCount/totalListed))
-    // }
 
     def save(Map params) {
         Customer customer = new Customer()
