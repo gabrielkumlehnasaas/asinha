@@ -14,7 +14,6 @@
                     <th>CPF/CNPJ</th>
                     <th>Email</th>
                     <th>Telefone</th>
-                    <th>Número de Cobranças</th>
                     <th></th>
                 </tr>
                 <g:each var="payer" in="${ payerList }">
@@ -24,7 +23,6 @@
                         <td>${ payer.cpfCnpj }</td>
                         <td>${ payer.email }</td>
                         <td>${ payer.phone }</td>
-                        <td>${}</td>
                         <td><button type="button" class="btn btn-sm">Editar</button></td>
                     </tr>
                 </g:each>
