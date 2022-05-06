@@ -1,16 +1,12 @@
 package com.asinha.domain
 
-class Customer {
+class Customer extends BaseEntity{
 
     String address
     String addressNumber
     String city
     String complement
     String cpfCnpj
-    Boolean deleted = false
-    Date dateCreated = new Date()
-    Date lastUpdate = dateCreated
-    Date dateDeleted
     String email
     String phone
     String name
@@ -24,10 +20,6 @@ class Customer {
         city size: 1..255, nullable: false
         complement size: 1..255
         cpfCnpj size: 11..14, nullable: false
-        deleted nullable: false
-        dateCreated nullable: false
-        lastUpdate nullable: false
-        dateDeleted nullable: true
         email email: true, size: 5..255, nullable: false
         phone size: 1..255, nullable: false
         name size: 1..255, nullable: false
