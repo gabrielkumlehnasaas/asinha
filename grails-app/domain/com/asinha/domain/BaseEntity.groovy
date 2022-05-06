@@ -7,6 +7,10 @@ class BaseEntity {
     Date lastUpdate = dateCreated
     Date dateDeleted
 
+    static mapping = {
+        tablePerHierarchy false
+    }
+
     static constraints = {
         deleted nullable: false
         dateCreated nullable: false
