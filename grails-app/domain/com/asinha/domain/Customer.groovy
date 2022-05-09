@@ -1,5 +1,7 @@
 package com.asinha.domain
 
+import com.asinha.base.BaseEntity
+
 class Customer extends BaseEntity {
 
     String address
