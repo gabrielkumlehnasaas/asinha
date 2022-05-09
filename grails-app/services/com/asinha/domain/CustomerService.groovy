@@ -4,10 +4,6 @@ import com.asinha.domain.Customer
 
 class CustomerService {
 
-    public Map list() {
-        return [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
-    }
-
     public Customer save(Map params) {
         Customer customer = new Customer()
         customer.address = params.address
