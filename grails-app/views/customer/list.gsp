@@ -15,7 +15,6 @@
                         <th scope="col">CPF/CNPJ</th>
                         <th scope="col">Email</th>
                         <th scope="col">Telefone</th>
-                        <th scope="col">Número de Cobranças</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -27,7 +26,6 @@
                             <td>${ customer.cpfCnpj }</td>
                             <td>${ customer.email }</td>
                             <td>${ customer.phone }</td>
-                            <td>${}</td>
                             <td><a href="${ g.createLink([controller:'customer', action:'edit', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                         </tr>
                     </g:each>
@@ -35,7 +33,7 @@
             </table>
             <a href="${ g.createLink([controller:'customer', action:'index']) }"><button class="btn btn-primary btn-padding-y">Home</button></a>
 
-    <asset:javascript src="asinha/customer-list.js"/>
+    <asset:javascript src="utils/click-list.js"/>
     </body>
 
 
