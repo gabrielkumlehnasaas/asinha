@@ -1,10 +1,11 @@
 package com.asinha.domain
+
 import com.asinha.domain.Customer
+
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 import static org.springframework.validation.Errors.*
-import grails.converters.JSON
 
 class CustomerController {
 
@@ -21,7 +22,7 @@ class CustomerController {
         try {
             Customer customer = customerService.save(params)
             if(customer) {
-                render([success: true])
+               render ([success: true] as JSON)
             }
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)

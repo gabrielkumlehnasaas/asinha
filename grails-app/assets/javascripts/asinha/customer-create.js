@@ -94,8 +94,11 @@ function CustomerCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosCustomer, function(response) {
-            console.log(response);
-            window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            if (response.success) {
+                window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            } else {
+                alert("Erro ao Criar Conta")
+            }
         });
     }
 
