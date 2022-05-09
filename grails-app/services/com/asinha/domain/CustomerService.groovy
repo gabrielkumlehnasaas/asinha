@@ -8,7 +8,7 @@ class CustomerService {
         return Customer.getAll()
     }
 
-    def save(Map params) {
+    public Customer save(Map params) {
         Customer customer = new Customer()
         customer.address = params.address
         customer.addressNumber = params.addressNumber
