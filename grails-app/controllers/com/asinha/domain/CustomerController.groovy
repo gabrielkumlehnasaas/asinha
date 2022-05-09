@@ -21,9 +21,7 @@ class CustomerController {
     def save() {
         try {
             Customer customer = customerService.save(params)
-            if(customer) {
-               render ([success: true] as JSON)
-            }
+            if(customer) render ([success: true] as JSON)
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
