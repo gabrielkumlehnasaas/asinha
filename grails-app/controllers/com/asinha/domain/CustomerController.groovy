@@ -14,7 +14,7 @@ class CustomerController extends BaseController {
     def index() {}
 
     def create() {}
-    
+
     def save() {
         try {
             Customer customer = customerService.save(params)
@@ -28,22 +28,16 @@ class CustomerController extends BaseController {
         return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
     }
 
-
-
     def show() {
-        Integer id = params.int("id")
-        return [customer: customerService.getCustomer(id)]
+        return [customer: Customer.get(params.long("id"))]
     }
-
-    
 
     def update() {
         try {
             Customer customer = customerService.update(params)
-            if (customer){
-                redirect([action: "show", id: customer.id])
-            }
-        } catch(Exception exception) {}
+            if (customer) redirect([action: "show", id: customer.id])
+        } catch(Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
+        }
     }
-
 }

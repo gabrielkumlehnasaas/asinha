@@ -7,11 +7,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class CustomerService {
 
-    def getCustomer(Long id) {
-        return Customer.get(id)
-    }
-
-    def update(Map params) {
+    public Customer update(Map params) {
         Customer customer = Customer.get(params.long("id"))
         customer.address = params.address
         customer.addressNumber = params.addressNumber

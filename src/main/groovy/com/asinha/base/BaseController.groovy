@@ -1,23 +1,17 @@
 package com.asinha.base
 
-abstract class BaseEntity {
-
-    Boolean deleted = false
-
-    Date dateCreated = new Date()
-
-    Date lastUpdate = dateCreated
-
-    Date dateDeleted
+abstract class BaseController {
 
     static mapping = {
         tablePerHierarchy false
     }
 
-    static constraints = {
-        deleted nullable: false
-        dateCreated nullable: false
-        lastUpdate nullable: false
-        dateDeleted nullable: true
+    private Integer getLimitPerPage() {
+        return 10
+    }
+
+    private Integer getCurrentPage() {
+        if(!params.offset) params.offset = 0
+        return Integer.valueOf(params.offset)
     }
 }

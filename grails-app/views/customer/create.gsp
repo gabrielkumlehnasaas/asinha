@@ -7,9 +7,9 @@
         <asset:javascript src="application.js"/>
     </head>
     <body>
-        <div class="container-fluid">
+        <div class="container-fluid" id="customer-create-container">
             <p id="error"></p>
-            <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'save']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'customer', action:'list']) }" action="${ g.createLink([controller:'customer', action:'save']) }">
                 <div class="col-md-6 p-3 bg-light">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="cpfCnpjRadio" id="cpfRadio" checked>
@@ -24,23 +24,24 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="Name">Nome</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="" name="name" required>
+                    <input type="text" class="form-control border border-1 border-dark" name="name" id="name" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="cpfCnpj" id="cpfCnpjLabel">CPF</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="" name="cpfCnpj" minlength="11" maxlength="14" required>
+                    <input type="text" class="form-control border border-1 border-dark" name="cpfCnpj" id="cpfCnpj" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="email">E-mail</label>
-                    <input type="email" class="form-control border border-1 border-dark" placeholder="email@address.com" name="email" required>
+                    <small id="textEmail"></small>
+                    <input type="email" class="form-control border border-1 border-dark" id="email" placeholder="email@address.com" name="email" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="phone">Telefone</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="(00) 00000-0000" name="phone" minlength="11" maxlength="11" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="phone" name="phone" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="postalCode">CEP</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="00.000-000" name="postalCode" minlength="8" maxlength="8" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="cep" name="postalCode" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="addess">Endereço</label>
@@ -52,56 +53,28 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="province">Bairro</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="" name="province" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="province" placeholder="" name="province" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="complement">Complemento</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="" name="complement">
+                    <input type="text" class="form-control border border-1 border-dark" id="complement" placeholder="" name="complement">
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="city">Cidade</label>
-                    <input type="text" class="form-control border border-1 border-dark" placeholder="" name="city" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="city" placeholder="" name="city" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
-                    <label for="state">Estado</label>
-                    <input list="states" class="form-control border border-1 border-dark" placeholder="" name="state" required>
-                    <datalist id="states">
-                        <option value="AC"></option> 
-                        <option value="AL"></option> 
-                        <option value="AM"></option> 
-                        <option value="AP"></option> 
-                        <option value="BA"></option> 
-                        <option value="CE"></option> 
-                        <option value="DF"></option> 
-                        <option value="ES"></option> 
-                        <option value="GO"></option> 
-                        <option value="MA"></option> 
-                        <option value="MT"></option> 
-                        <option value="MS"></option> 
-                        <option value="MG"></option> 
-                        <option value="PA"></option> 
-                        <option value="PB"></option> 
-                        <option value="PR"></option> 
-                        <option value="PE"></option> 
-                        <option value="PI"></option> 
-                        <option value="RJ"></option> 
-                        <option value="RN"></option> 
-                        <option value="RO"></option> 
-                        <option value="RS"></option> 
-                        <option value="RR"></option> 
-                        <option value="SC"></option> 
-                        <option value="SE"></option> 
-                        <option value="SP"></option> 
-                        <option value="TO"></option> 
-                    </datalist>
+                    <g:render template="/utils/selectStates"/>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <input type="checkbox" id="termos" required>
-                        <label for="termos">Li e concordo com os 
-                        <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.</label>
+                    <label for="termos">Li e concordo com os 
+                        <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.
+                    </label>
                 </div>
                 <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" id="create">
             </form>
-        </div>
+        </div> 
+        <asset:javascript src="customer-create-import.js"/>
     </body>
-</html>
+</html> 
