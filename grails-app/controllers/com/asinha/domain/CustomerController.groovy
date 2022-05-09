@@ -1,8 +1,10 @@
 package com.asinha.domain
+
 import com.asinha.domain.Customer
+
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 
 class CustomerController {
 

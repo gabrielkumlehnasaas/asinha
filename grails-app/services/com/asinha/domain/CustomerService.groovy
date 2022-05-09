@@ -1,7 +1,8 @@
 package com.asinha.domain
 
-import grails.gorm.transactions.Transactional
 import com.asinha.domain.Customer
+
+import grails.gorm.transactions.Transactional
 
 @Transactional
 class CustomerService {
