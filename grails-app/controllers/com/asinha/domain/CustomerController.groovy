@@ -1,20 +1,18 @@
 package com.asinha.domain
+
+import com.asinha.base.BaseController
 import com.asinha.domain.Customer
+
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 
-class CustomerController {
+class CustomerController extends BaseController {
 
     def customerService
 
-   def list() {
-        [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
-    }
-
-    private Integer getCurrentPage() {
-        if(!params.offset) params.offset = 0
-        return Integer.valueOf(params.offset)
+    def list() {
+        [customerService.list()]
     }
 
     def create() {}
@@ -24,12 +22,9 @@ class CustomerController {
     def save() {
         try {
             Customer customer = customerService.save(params)
-            Integer listPage = Math.round(Math.ceil(customer.id/20))
-            if(customer) {
-                redirect(action: "list", id:listPage)
-            }
+            if(customer) render ([success: true] as JSON)
         } catch(Exception exception) {
-            println(exception)
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
 }
