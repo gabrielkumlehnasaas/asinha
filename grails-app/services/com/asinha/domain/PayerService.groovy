@@ -7,7 +7,19 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-    def save(Map params) {
+    public List<Payer> getPayersByCustomer(customerId, max, offset) {
+        def payerCriteria = Payer.createCriteria()
+        def payerList = payerCriteria.list(max: max, offset: offset) {
+            like("customer", Customer.get(customerId))
+        }
+        return payerList
+    }
+
+    public Long countPayersByCustomer(customerId) {
+        payerList
+    }
+
+    public Payer save(Map params) {
         Payer payer = new Payer()
         payer.address = params.address
         payer.addressNumber = params.addressNumber
