@@ -1,10 +1,13 @@
-package com.asinha.domain
+package com.asinha.base
 
-class BaseEntity {
+abstract class BaseEntity {
 
     Boolean deleted = false
+
     Date dateCreated = new Date()
+
     Date lastUpdate = dateCreated
+
     Date dateDeleted
 
     static mapping = {

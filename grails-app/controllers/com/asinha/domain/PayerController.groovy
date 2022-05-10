@@ -1,27 +1,26 @@
 package com.asinha.domain
+
+import com.asinha.base.BaseController
 import com.asinha.domain.Payer
+
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 
-class PayerController {
+class PayerController extends BaseController {
 
     def payerService
 
-    def index() {
-        return [payerList: payerService.list()]
-    }
+    def index() {}
 
     def create() {
-        Integer id = params.int("id")
-        return [customerId: id]
+        return [customerId: params.long("id")]
     }
 
     def save() {
-        try {Payer payer = payerService.save(params)
-            if(payer) {
-                render([success: true])
-            }
+        try {
+            Payer payer = payerService.save(params)
+            if(payer) render ([success: true] as JSON)
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
