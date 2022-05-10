@@ -1,57 +1,46 @@
 package com.asinha.domain
+
+import com.asinha.base.BaseController
 import com.asinha.domain.Payer
-import com.asinha.domain.Customer
+
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 
-class PayerController {
+class PayerController extends BaseController {
 
     def payerService
+
+    def index() {}
+
+    def create() {
+        return [customerId: params.long("id")]
+    }
+
+    def save() {
+        try {
+            Payer payer = payerService.save(params)
+            if(payer) render ([success: true] as JSON)
+        } catch(Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
+        }
+    }
+
+    def list() {
+        def payerList = payerService.getPayersByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
+        return [payerList: payerList, totalCount: payerList.size()]
+    }
+    
+    def show(){
+        return [payer: Payer.get(params.long("id")]
+    }
 
     def update() {
         try {
             Payer payer = payerService.update(params)
-            if (payer){
-                redirect([action: "show", id: payer.id])
-            }
-        } catch(Exception exception) {}
-    }
-
-    def show(){
-        Integer id = params.int("id")
-        return [payer: payerService.getPayer(id)]
-    }
-
-    def index() {
-    }
-
-    def list() {
-        Integer customerId = params.int("id")
-        def payerCriteria = Payer.createCriteria()
-        def payerList = payerCriteria.list(max: 10, offset: getCurrentPage()) {
-            like("customer", Customer.get(customerId))
-        }
-        [payerList: payerList, totalCount: Payer.count(), customerId: customerId]
-    }
-    
-    private Integer getCurrentPage() {
-        if(!params.offset) params.offset = 0
-        return Integer.valueOf(params.offset)
-    }
-
-    def create() {
-        Integer id = params.int("id")
-        return [customerId: id]
-    }
-
-    def save() {
-        try {Payer payer = payerService.save(params)
-            if(payer) {
-                render([success: true])
-            }
+            if (payer) redirect([action: "show", id: payer.id])
         } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
 }

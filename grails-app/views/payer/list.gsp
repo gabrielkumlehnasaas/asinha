@@ -7,8 +7,9 @@
         <asset:javascript src="application.js"/>
     </head>
     <body>
-            <table>
-                <tr>
+        <table class="table">
+            <thead class="thead-light">
+                <tr></tr>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>CPF/CNPJ</th>
@@ -17,6 +18,8 @@
                     <th>Número de Cobranças</th>
                     <th></th>
                 </tr>
+            </thead>
+            <tbody>
                 <g:each var="payer" in="${ payerList }">
                     <tr data-url="${ g.createLink([controller:'payer', action:'show', params:[id: payer.id]])}">
                         <td>${ payer.id }</td>
@@ -24,19 +27,16 @@
                         <td>${ payer.cpfCnpj }</td>
                         <td>${ payer.email }</td>
                         <td>${ payer.phone }</td>
-                        <td>${}</td>
+                        <td><a href="${ g.createLink([controller:'payer', action:'show', params:[id: payer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                         <td><button type="button" class="btn btn-sm">Editar</button></td>
                     </tr>
                 </g:each>
-            </table>
-
-            <div class="pagination">
-                <g:paginate total="${ totalCount }" controller="payer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
-            </div>
-            <a href="${ g.createLink([controller:'customer', action:'show', params:[id: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
-
-            <asset:javascript src="utils/click-list.js"/>
-
-
+            </tbody>
+        </table>
+        <div class="pagination">
+            <g:paginate total="${ totalCount }" controller="payer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
+        </div>
+        <a href="${ g.createLink([controller:'customer', action:'show', params:[id: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
+        <asset:javascript src="utils/click-list.js"/>
     </body>
 </html>
