@@ -1,6 +1,6 @@
-function PayerCreate() {
+function CustomerCreate() {
     
-    this.reference = $("#payer-create-container");
+    this.reference = $("#customer-create-container");
     var cpfCnpjLabelReference = this.reference.find("#cpfCnpjLabel").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
     var addressNumberInputReference = this.reference.find("#addressNumber").get(0);
@@ -84,16 +84,16 @@ function PayerCreate() {
     };
 
     var submitForm = function() {
-        let infosPayer = {};
+        let infosCustomer = {};
         let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
-            if (key != "cpfCnpjRadio") infosPayer[key] = value;
+            if (key != "cpfCnpjRadio") infosCustomer[key] = value;
         });
         
         var url = document.querySelector("form").getAttribute("action");
 
-        $.post(url, infosPayer, function(response) {
+        $.post(url, infosCustomer, function(response) {
             if (response.success) {
                 window.location.href = document.querySelector("form").getAttribute("data-redirect");
             } else {
@@ -112,9 +112,9 @@ function PayerCreate() {
     };
 };
 
-var payerCreate;
+var customerCreate;
 
 $(document).ready(function () {
-    payerCreate = new PayerCreate();
-    payerCreate.init();   
+    customerCreate = new CustomerCreate();
+    customerCreate.init();   
 });
