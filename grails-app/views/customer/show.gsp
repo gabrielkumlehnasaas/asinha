@@ -47,6 +47,13 @@
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'create', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
                     <a href="${ g.createLink([controller:'payer', action:'list', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Meus pagadores</button></a>
+                    <a href="${ g.createLink([controller:'payment', action:'create', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Nova cobrança</button></a>
+            </div>
+        </div>
+        
+    </body>
+</html>
+
                 </div>
             </form>
         </div>

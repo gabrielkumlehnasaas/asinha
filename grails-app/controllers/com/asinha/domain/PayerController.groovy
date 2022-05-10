@@ -22,12 +22,12 @@ class PayerController extends BaseController {
             Payer payer = payerService.save(params)
             if(payer) render ([success: true] as JSON)
         } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+            render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
         }
     }
 
     def list() {
-        def payerList = payerService.getPayersByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
+        List<Payer> payerList = payerService.getPayersByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
         return [customerId: params.long("id"), payerList: payerList, totalCount: payerList.size()]
     }
     
@@ -40,7 +40,7 @@ class PayerController extends BaseController {
             Payer payer = payerService.update(params)
             if (payer) redirect([action: "show", id: payer.id])
         } catch(Exception exception) {
-             render([success: false, message: "Erro, tente novamente"] as JSON)
+             render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.asinha.domain
 
+import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 
 import grails.gorm.transactions.Transactional
@@ -7,12 +8,19 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-    public List<Payer> getPayersByCustomer(customerId, max, offset) {
+    public List<Payer> getPayersByCustomer(customerId, max = null, offset = null) {
         def payerCriteria = Payer.createCriteria()
-        def payerList = payerCriteria.list(max: max, offset: offset) {
-            like("customer", Customer.get(customerId))
+        if (max == null || offset == null) {
+            def payerList = payerCriteria.list() {
+                like("customer", Customer.get(customerId))
+            }
+            return payerList
+        } else {
+            def payerList = payerCriteria.list(max: max, offset: offset) {
+                like("customer", Customer.get(customerId))
+            }
+            return payerList
         }
-        return payerList
     }
 
     public Payer save(Map params) {
