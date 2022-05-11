@@ -16,8 +16,12 @@ class CustomDateUtils {
     }
 
     public static String formatTimestamp(Timestamp date) {
-        String[] reverseDate = date.toString().split(" ")[0].split("-") 
-        return reverseDate[2]+"/"+reverseDate[1]+"/"+reverseDate[0] 
+        if (date == null) {
+            return "Aguardando"
+        } else {
+            String[] reverseDate = date.toString().split(" ")[0].split("-") 
+            return reverseDate[2]+"/"+reverseDate[1]+"/"+reverseDate[0] 
+        }
     }
 
 
