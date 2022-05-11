@@ -13,16 +13,17 @@
             <h4>Detalhes da cobrança</h4>
                  <div class="card w-100 mb-2">
                     <div class="card-header row">
-                        <h5 class="card-text col-md">Valor: R$${ payment.value }</h5>
                         <h5 class="card-text col-md">Descrição: ${ payment.description }</h5>
                     </div>
                     <div class="card-body row">
-                        <h5 class="card-text col-md">Vencimento: ${ CustomDateUtils.formatTimestamp(payment.dueDate) }</h5>
-                        <h5 class="card-text col-md">Forma de Pagamento: <g:message code="PaymentMethod.${payment.method}"/></h5>
+                        <h5 class="card-text col-md">Valor: R$${ payment.value }</h5>
                         <h5 class="card-text col-md">Status: <g:message code="PaymentStatus.${payment.status}"/></h5>
+                        <h5 class="card-text col-md">Forma de Pagamento: <g:message code="PaymentMethod.${payment.method}"/></h5>
+                    </div>
+                    <div class="card-body row">    
                         <h5 class="card-text col-md">Criada em: ${ CustomDateUtils.formatTimestamp(payment.dateCreated) }</h5>
-                        <h5 class="card-text col-md">Pago em: ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</h5>
-
+                        <h5 class="card-text col-md">Vencimento: ${ CustomDateUtils.formatTimestamp(payment.dueDate) }</h5>
+                        <h5 class="card-text col-md">Data do Pagamento: ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</h5>
                     </div>
                 </div>
                 <div class="card-deck">
