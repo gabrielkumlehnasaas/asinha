@@ -32,8 +32,4 @@ class PaymentController extends BaseController {
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
         return [customerId: params.long("id"), paymentList: paymentList, totalCount: paymentList.size()]
     }
-
-    def show() {
-        return [payment: Payment.get(params.long("id"))]
-    }
 }
