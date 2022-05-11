@@ -13,6 +13,15 @@ import java.math.BigDecimal
 @Transactional
 class PaymentService {
 
+    public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
+        def paymentCriteria = Payment.createCriteria()
+        def paymentList = paymentCriteria.list(max: max, offset: offset) {
+            eq("customer", Customer.get(customerId))
+        }
+        return paymentList
+    }
+  
+
     public Payment save(Map params) {
         Payment payment = new Payment()
         payment.value = new BigDecimal(params.value)
