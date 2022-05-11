@@ -28,7 +28,7 @@
                         <td>${ payment.description }</td>
                         <td>${ payment.value }</td>
                         <td>${ payment.payer.name }</td>
-                        <td>${ payment.dueDate}</td>
+                        <td>${ payment.dueDate.getYear()}</td>
                         <td>${ payment.method }</td>
                         <td>${ payment.status}</td>
                         <td>${ payment.paymentDate }</td>
