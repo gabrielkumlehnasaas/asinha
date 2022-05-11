@@ -34,7 +34,7 @@
                         <td>${ CustomDateUtils.formatTimestamp(payment.dueDate)}</td>
                         <td>${ payment.method }</td>
                         <td>${ payment.status}</td>
-                        <td>${ payment.paymentDate }</td>
+                        <td>${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
                         <td><a href="${ g.createLink([controller:'payment', action:'show', params:[id: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
