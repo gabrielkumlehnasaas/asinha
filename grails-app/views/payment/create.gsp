@@ -10,7 +10,7 @@
     <body>
         <div class="container-fluid" id="payment-create-container">
             <p id="error"></p>
-            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payment', action:'list', params:[id: customerId]])}" action="${ g.createLink([controller:'payment', action:'save']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payment', action:'list', params:[customerId: customerId]])}" action="${ g.createLink([controller:'payment', action:'save']) }">
                 <div class="col-md-6 p-3 bg-light">
                     <label for="value">Valor</label>
                     <input class=" form-control border border-1 border-dark" type="text" name="value" id="value" required>

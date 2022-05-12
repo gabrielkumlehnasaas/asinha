@@ -45,7 +45,7 @@
                     </div>
                     <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
-                    <a href="${ g.createLink([controller:'payer', action:'list', params:[id: payer.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
+                    <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: payer.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
                 </div>
             </form>
         </div>

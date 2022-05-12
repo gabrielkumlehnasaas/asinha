@@ -15,7 +15,7 @@ class PaymentController {
     def paymentService
 
     def create() {
-        Long customerId = params.long("id")
+        Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.getPayersByCustomer(customerId)
         return [customerId: customerId, payerList: payerList]
     }
