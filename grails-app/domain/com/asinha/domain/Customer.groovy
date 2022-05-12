@@ -30,7 +30,7 @@ class Customer extends BaseEntity{
         address size: 1..255, nullable: false
         addressNumber size: 1..255, nullable: false
         city size: 1..255, nullable: false
-        complement size: 1..255
+        complement size: 1..255, nullable: true
         cpfCnpj size: 11..14, nullable: false
         email email: true, size: 5..255, nullable: false
         phone size: 1..255, nullable: false
