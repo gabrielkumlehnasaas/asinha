@@ -9,7 +9,7 @@
         <div class="container-fluid mt-3 ml-4" id="customer-show-container">
             <h4>Detalhes do Cliente</h4>
             <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'update']) }">
-                <input type="hidden" name="id" id="id" value="${ customer.id }">
+                <input type="hidden" name="customerId" id="customerId" value="${ customer.id }">
                 <div class="card w-100 mb-2">
                     <div class="card-header row">
                         <h5 class="card-text col-md">Nome: <input type="text" class="border border-1 border-dark" id="name" name="name" value="${ customer.name }" required disabled></h5>
@@ -45,10 +45,10 @@
                     </div>
                     <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
-                    <a href="${ g.createLink([controller:'payer', action:'create', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
-                    <a href="${ g.createLink([controller:'payer', action:'list', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Meus pagadores</button></a>
-                    <a href="${ g.createLink([controller:'payment', action:'create', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar cobrança</button></a>
-                    <a href="${ g.createLink([controller:'payment', action:'list', params:[id: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Minhas cobranças</button></a>
+                    <a href="${ g.createLink([controller:'payer', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
+                    <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Meus pagadores</button></a>
+                    <a href="${ g.createLink([controller:'payment', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar cobrança</button></a>
+                    <a href="${ g.createLink([controller:'payment', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Minhas cobranças</button></a>
             </div>
         </div>
         

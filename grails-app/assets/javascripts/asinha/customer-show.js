@@ -11,7 +11,7 @@ function CustomerShow() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var idInputReference = this.reference.find("#id").get(0);
+    var customerIdInputReference = this.reference.find("#customerId").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
@@ -36,7 +36,7 @@ function CustomerShow() {
         disableInputs();
         $.post(url, infosCustomer, function(response) {
             console.log(response);
-            window.location.href = `/customer/show/${ infosCustomer.id }`;
+            window.location.href = `/customer/show/${ infosCustomer.customerId }`;
         });
     };
 
@@ -45,7 +45,7 @@ function CustomerShow() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            idInputReference.disabled = false;
+            customerIdInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -61,7 +61,7 @@ function CustomerShow() {
     }
     
     var disableInputs = function () {
-        idInputReference.disabled = true;
+        customerIdInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;

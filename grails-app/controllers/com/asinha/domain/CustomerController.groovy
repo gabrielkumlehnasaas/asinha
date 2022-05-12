@@ -29,13 +29,13 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("id"))]
+        return [customer: Customer.get(params.long("customerId"))]
     }
 
     def update() {
         try {
             Customer customer = customerService.update(params)
-            if (customer) redirect([action: "show", id: customer.id])
+            if (customer) redirect([action: "show", customerId: customer.id])
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
         }

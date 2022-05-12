@@ -61,7 +61,7 @@ function PayerCreate() {
 
     var bindCep = function() {
         cepInputReference.addEventListener("input", function() {
-            searchCep.getPostalCode(this.value, pesquisarCep)
+            searchCep.getPostalCode(this.value, pesquisarCep);
         });
     };
 

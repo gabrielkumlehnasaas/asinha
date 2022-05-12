@@ -29,7 +29,7 @@
                 <div class="card-deck">
                     <div class="card mb-2">
                         <div class="card-header">
-                            <h5 class="card-title">Pagador <a href="${ g.createLink([controller:'payer', action:'show', params:[id: payment.payer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Visualizar</button></a></h5>
+                            <h5 class="card-title">Pagador <a href="${ g.createLink([controller:'payer', action:'show', params:[payerId: payment.payer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Visualizar</button></a></h5>
                         </div>
                         <div class="card-body row">
                             <h5 class="card-text col-md">Nome: ${payment.payer.name}</h5>
@@ -41,11 +41,12 @@
                             <h5 class="card-text col-md">Email: ${ payment.payer.email }</h5>
                         </div>
                     </div>
-                    
-                    <a href="${ g.createLink([controller:'payment', action:'list', params:[id: payment.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
+                    <a href="${ g.createLink([controller:'payment', action:'list', params:[customerId: payment.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
+                    <input type="hidden" name="status" id="status" value="${g.message(code: "PaymentStatus.${ payment.status }")}">
+                    <button type="button" id="confirmbtn" data-url="${ g.createLink([controller:'payment', action:'confirm', params:[paymentId: payment.id]]) }" class="btn btn-success btn-padding-y">Confirmar pagamento</button>
                 </div>
             </form>
         </div>
-    <asset:javascript src="asinha/payer-show.js"/>
+    <asset:javascript src="asinha/payment-confirm.js"/>
     </body>
 </html>

@@ -21,7 +21,6 @@ class PaymentService {
         return paymentList
     }
   
-
     public Payment save(Map params) {
         Payment payment = new Payment()
         payment.value = new BigDecimal(params.value)
@@ -29,9 +28,18 @@ class PaymentService {
         payment.method = PaymentMethod.valueOf(params.method) 
         payment.status = PaymentStatus.PENDING
         payment.dueDate = CustomDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
-        payment.payer = Payer.get(params.payer)
-        payment.customer = Customer.get(params.customer)
+        payment.payer = Payer.get(params.long("payerId"))
+        payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
+        return payment
+    }
+
+    public Payment confirmPayment(paymentId) {
+        Payment payment = Payment.get(paymentId)
+        payment.status = PaymentMethod.PAID
+        payment.paymentDate = new Date()
+        payment.lastUpdate = new Date()
+        payment.save(flush: true, failOnError:true)
         return payment
     }
 }

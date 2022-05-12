@@ -11,10 +11,11 @@ function PayerShow() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var idInputReference = this.reference.find("#id").get(0);
+    var payerIdInputReference = this.reference.find("#payerId").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
+    
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
@@ -39,7 +40,7 @@ function PayerShow() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            idInputReference.disabled = false;
+            payerIdInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -54,7 +55,7 @@ function PayerShow() {
         })
     }
     var disableInputs = function () {
-        idInputReference.disabled = true;
+        payerIdInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;
