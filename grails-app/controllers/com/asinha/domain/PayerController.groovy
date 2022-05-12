@@ -25,10 +25,11 @@ class PayerController extends BaseController {
             render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
         }
     }
-
+    
     def list() {
-        List<Payer> payerList = payerService.getPayersByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
-        return [customerId: params.long("id"), payerList: payerList, totalCount: payerList.size()]
+        Long customerId = params.long("id")
+        List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
+        return [customerId: customerId, payerList: payerList, totalCount: payerList.size()]
     }
     
     def show(){
