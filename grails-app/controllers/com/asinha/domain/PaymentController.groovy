@@ -16,8 +16,9 @@ class PaymentController extends BaseController {
     def paymentService
 
     def create() {
-        List<Payer> payerList = payerService.getPayersByCustomer(params.long("id"))
-        return [customerId: params.long("id"), payerList: payerList]
+        Long customerId = params.long("customerId")
+        List<Payer> payerList = payerService.getPayersByCustomer(customerId)
+        return [customerId: customerId, payerList: payerList]
     }
 
     def save() {
@@ -29,7 +30,8 @@ class PaymentController extends BaseController {
     }
 
     def list() {
-        List<Payment> paymentList = paymentService.getPaymentsByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
-        return [customerId: params.long("id"), paymentList: paymentList, totalCount: paymentList.size()]
+        Long customerId = params.long("customerId")
+        List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
+        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
     }
 }
