@@ -40,7 +40,7 @@ function PaymentCreate() {
 
         $.post(url, infosPayment, function(response) {
             console.log(response);
-            // window.location.href = document.querySelector("form").getAttribute("data-redirect"); para quando existir view list
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
 
