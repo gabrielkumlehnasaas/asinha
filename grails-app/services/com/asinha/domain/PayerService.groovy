@@ -20,7 +20,7 @@ class PayerService {
         payer.postalCode = params.postalCode
         payer.province = params.province
         payer.state = params.state
-        payer.customer = Customer.get(params.long("customer"))
+        payer.customer = Customer.get(params.long("customerId"))
         payer.save(failOnError: true)
         return payer
     }
