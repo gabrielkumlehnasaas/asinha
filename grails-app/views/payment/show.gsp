@@ -43,7 +43,10 @@
                     </div>
                     <a href="${ g.createLink([controller:'payment', action:'list', params:[customerId: payment.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
                     <input type="hidden" name="status" id="status" value="${g.message(code: "PaymentStatus.${ payment.status }")}">
-                    <button type="button" id="confirmbtn" data-url="${ g.createLink([controller:'payment', action:'confirm', params:[paymentId: payment.id]]) }" class="btn btn-success btn-padding-y">Confirmar pagamento</button>
+                    <form class="form" id="confirm-form" data-redirect="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"  action="${ g.createLink([controller:'payment', action:'confirm']) }">
+                        <input type="hidden" name="paymentId" id="paymentId" value="${ payment.id }">
+                    </form>
+                    <button type="sumbit" id="confirmbtn" class="btn btn-success btn-padding-y">Confirmar pagamento</button>
                 </div>
             </form>
         </div>

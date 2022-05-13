@@ -36,7 +36,8 @@ class PaymentService {
 
     public Payment confirmPayment(paymentId) {
         Payment payment = Payment.get(paymentId)
-        payment.status = PaymentMethod.PAID
+        payment.status = PaymentStatus.PAID
+        println(payment.status)
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
