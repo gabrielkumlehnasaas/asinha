@@ -9,6 +9,5 @@ import static org.springframework.http.HttpStatus.*
 
 class PayerController extends BaseController {
 
-    def index() {
-    }
+    def index() {}
 }
