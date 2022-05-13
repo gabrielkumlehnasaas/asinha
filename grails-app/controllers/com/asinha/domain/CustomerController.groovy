@@ -16,10 +16,6 @@ class CustomerController extends BaseController {
 
     def create() {}
     
-    def list() {
-        return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
-    }
-
     def save() {
         try {
             Customer customer = customerService.save(params)
@@ -27,5 +23,9 @@ class CustomerController extends BaseController {
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
+    }
+    
+    def list() {
+        return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
     }
 }
