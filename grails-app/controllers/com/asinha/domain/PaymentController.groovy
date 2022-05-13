@@ -27,4 +27,10 @@ class PaymentController {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
+
+    def list() {
+        Long customerId = params.long("customerId")
+        List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
+        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+    }
 }

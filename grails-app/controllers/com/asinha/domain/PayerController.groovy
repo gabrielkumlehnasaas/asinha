@@ -32,7 +32,8 @@ class PayerController extends BaseController {
     }
     
     def show(){
-        return [payer: Payer.get(params.long("payerId"))]
+        Long payerId = params.long("payerId")
+        return [payer: Payer.get(payerId)]
     }
 
     def update() {
