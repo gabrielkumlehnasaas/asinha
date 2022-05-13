@@ -33,35 +33,35 @@ function CustomerCreate() {
         });
     };
 
-    var preeencherFormulario = (endereco) => {
-        addressInputReference.value = endereco.logradouro;
-        provinceInputReference.value = endereco.bairro;
-        cityInputReference.value = endereco.localidade;
-        stateInputReference.value = endereco.uf;
+    var fillForm = (address) => {
+        addressInputReference.value = address.logradouro;
+        provinceInputReference.value = address.bairro;
+        cityInputReference.value = address.localidade;
+        stateInputReference.value = address.uf;
         addressNumberInputReference.focus();
     };
 
-    var limpaFormulario = () => {
+    var cleanForm = () => {
         addressInputReference.value = "";
         provinceInputReference.value = "";
         cityInputReference.value = "";
         stateInputReference.value = "";
     };
     
-    var pesquisarCep = function(data) {
+    var validateCep = function(data) {
         let error = ("erro" in data);
         if (!error) {
             errorMessageReference.innerHTML = "";
-            preeencherFormulario(data);
+            fillForm(data);
         } else {
-            limpaFormulario();
+            cleanForm();
             errorMessageReference.innerHTML = "CEP inválido";
         };
     };
 
     var bindCep = function() {
         cepInputReference.addEventListener("input", function() {
-            searchCep.getPostalCode(this.value, pesquisarCep)
+            searchCep.getPostalCode(this.value, validateCep)
         });
     };
 

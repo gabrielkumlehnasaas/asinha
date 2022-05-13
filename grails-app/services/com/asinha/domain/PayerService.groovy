@@ -28,13 +28,13 @@ class PayerService {
         payer.postalCode = params.postalCode
         payer.province = params.province
         payer.state = params.state
-        payer.customer = Customer.get(params.long("customer"))
+        payer.customer = Customer.get(params.long("customerId"))
         payer.save(failOnError: true)
         return payer
     }
 
     public Payer update(Map params) {
-        Payer payer = Payer.get(params.long("id"))
+        Payer payer = Payer.get(params.long("payerId"))
         payer.address = params.address
         payer.addressNumber = params.addressNumber
         payer.city = params.city
