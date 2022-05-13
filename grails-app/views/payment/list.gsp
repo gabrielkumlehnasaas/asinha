@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%-- <meta name="layout" content="main"/> --%>
+        <meta name="layout" content="main"/>
         <%@ page import="com.asinha.enums.PaymentMethod" %>
         <%@ page import="com.asinha.enums.PaymentStatus" %>
         <%@ page import="com.asinha.utils.CustomDateUtils" %>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <title>Clientes</title>
-        <asset:javascript src="application.js"/>
+        <title>Cobranças</title>
     </head>
     <body>
         <table class="table">
@@ -26,7 +24,7 @@
             </thead>
             <tbody>
                 <g:each var="payment" in="${ paymentList }">
-                    <tr data-url="${ g.createLink([controller:'payment', action:'show', params:[id: payment.id]])}">
+                    <tr data-url="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]])}">
                         <td>${ payment.id }</td>
                         <td>${ payment.description }</td>
                         <td>${ payment.value }</td>
@@ -35,7 +33,7 @@
                         <td><g:message code="PaymentMethod.${payment.method}"/></td>
                         <td><g:message code="PaymentStatus.${payment.status}"/></td>
                         <td>${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
-                        <td><a href="${ g.createLink([controller:'payment', action:'show', params:[id: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
+                        <td><a href="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
             </tbody>
@@ -43,7 +41,7 @@
         <div class="pagination">
             <g:paginate total="${ totalCount }" controller="payment" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
         </div>
-        <a href="${ g.createLink([controller:'customer', action:'show', params:[id: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
+        <a href="${ g.createLink([controller:'customer', action:'show', params:[customerId: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
         <asset:javascript src="utils/click-list.js"/>
     </body>
 </html>
