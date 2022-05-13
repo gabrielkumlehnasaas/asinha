@@ -2,10 +2,8 @@
 <html>
     <head>
         <%@ page import="com.asinha.enums.PaymentMethod" %>
-        <%--    <meta name="layout" content="main" /> --%>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
+        <meta name="layout" content="main" />
         <title>Cadastro de cobranças</title>
-        <asset:javascript src="application.js"/>
     </head>
     <body>
         <div class="container-fluid" id="payment-create-container">
@@ -36,9 +34,8 @@
                     <label for="dueDate">Vencimento</label>
                     <input class=" form-control border border-1 border-dark" type="date" name="dueDate" id="dueDate" required>
                 </div>
-                <input hidden value="${ customerId }" name="customer" id="customer">
+                <input hidden value="${ customerId }" name="customerId" id="customerId">
                 <input class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">
-      
             </form>      
         </div>
         <asset:javascript src="payment-create-import.js"/>
