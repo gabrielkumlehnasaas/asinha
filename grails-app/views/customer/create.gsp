@@ -22,16 +22,16 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="Name">Nome</label>
-                    <input type="text" class="form-control border border-1 border-dark" name="name" id="name" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="name" name="name" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="cpfCnpj" id="cpfCnpjLabel">CPF</label>
-                    <input type="text" class="form-control border border-1 border-dark" name="cpfCnpj" id="cpfCnpj" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="cpfCnpj" name="cpfCnpj" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="email">E-mail</label>
                     <small id="textEmail"></small>
-                    <input type="email" class="form-control border border-1 border-dark" id="email" placeholder="email@address.com" name="email" required>
+                    <input type="email" class="form-control border border-1 border-dark" id="email" name="email" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="phone">Telefone</label>
@@ -43,34 +43,34 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="addess">Endereço</label>
-                    <input type="text" class="form-control border border-1 border-dark" id="address" placeholder="" name="address" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="address" name="address" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="addressNumber">Número</label>
-                    <input type="text" class="form-control border border-1 border-dark" id="addressNumber" placeholder="" name="addressNumber" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="addressNumber" name="addressNumber" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="province">Bairro</label>
-                    <input type="text" class="form-control border border-1 border-dark" id="province" placeholder="" name="province" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="province" name="province" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="complement">Complemento</label>
-                    <input type="text" class="form-control border border-1 border-dark" id="complement" placeholder="" name="complement">
+                    <input type="text" class="form-control border border-1 border-dark" id="complement" name="complement">
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="city">Cidade</label>
-                    <input type="text" class="form-control border border-1 border-dark" id="city" placeholder="" name="city" required>
+                    <input type="text" class="form-control border border-1 border-dark" id="city" name="city" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <g:render template="/utils/selectStates"/>
                 </div>
-                <div class="col-md-6 p-3 bg-light">
+                <div class="col-md-6 p-3 bg-light d-flex justify-content-center align-items-center">
                     <input type="checkbox" id="termos" required>
                     <label for="termos">Li e concordo com os 
                         <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.
                     </label>
                 </div>
-                <button class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">Criar conta</button>
+                <button type="submit" class="btn btn-primary btn-padding-y" id="create" name="create">Criar conta</button>
             </form>
         </div> 
         <asset:javascript src="customer-create-import.js"/>
