@@ -7,19 +7,19 @@ import com.asinha.enums.PaymentStatus
 class Payment extends BaseEntity {
 
     BigDecimal value
-    
+
     String description
-    
+
     PaymentMethod method
-    
+
     PaymentStatus status
-    
+
     Date dueDate
-    
+
     Date paymentDate
-    
+
     Payer payer
-    
+
     Customer customer
 
     static constraints = {
