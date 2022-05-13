@@ -38,7 +38,7 @@ class CustomerController extends BaseController {
             Customer customer = customerService.update(params)
             if (customer) redirect([action: "show", customerId: customer.id])
         } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
+            render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)            
         }
     }
 }
