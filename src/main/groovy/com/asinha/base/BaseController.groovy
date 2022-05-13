@@ -1,6 +1,6 @@
 package com.asinha.base
 
-abstract class BaseController{
+abstract class BaseController {
 
     static mapping = {
         tablePerHierarchy false

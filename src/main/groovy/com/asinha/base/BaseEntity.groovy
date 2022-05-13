@@ -1,6 +1,6 @@
 package com.asinha.base
 
-abstract class BaseEntity{
+abstract class BaseEntity {
 
     Boolean deleted = false
 

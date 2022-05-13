@@ -12,13 +12,13 @@ class CustomerController extends BaseController {
 
     def customerService
 
+    def index() {}
+
+    def create() {}
+    
     def list() {
         return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
     }
-
-    def create() {}
-
-    def index() {}
 
     def save() {
         try {
