@@ -6,6 +6,7 @@ import com.asinha.domain.Customer
 import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import static org.springframework.validation.Errors.*
 
 class CustomerController extends BaseController {
 
@@ -14,7 +15,7 @@ class CustomerController extends BaseController {
     def index() {}
 
     def create() {}
-
+    
     def save() {
         try {
             Customer customer = customerService.save(params)
@@ -29,13 +30,13 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("id"))]
+        return [customer: Customer.get(params.long("customerId"))]
     }
 
     def update() {
         try {
             Customer customer = customerService.update(params)
-            if (customer) redirect([action: "show", id: customer.id])
+            if (customer) redirect([action: "show", customerId: customer.id])
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
