@@ -9,7 +9,6 @@
         <div class="container-fluid mt-3 ml-4" id="payer-show-container">
             <h4>Detalhes do Cliente</h4>
             <form class="form row" id="create-form" action="${ g.createLink([controller:'payer', action:'update']) }">
-                <input type="hidden" name="payerId" id="payerId" value="${ payer.id }">
                 <div class="card w-100 mb-2">
                     <div class="card-header row">
                         <h5 class="card-text col-md">Nome: <input type="text" class="border border-1 border-dark" id="name" name="name" value="${ payer.name }" required disabled></h5>
@@ -43,6 +42,7 @@
                             <h5 class="card-text">CEP: <input type="text" class="border border-1 border-dark" id="cep" name="postalCode" value="${ payer.postalCode }" required disabled></h5>
                         </div>
                     </div>
+                    <input type="hidden" name="payerId" id="payerId" value="${ payer.id }">
                     <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: payer.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>

@@ -33,7 +33,7 @@ function PayerCreate() {
         });
     };
 
-    var preeencherFormulario = (endereco) => {
+    var fillForm = (endereco) => {
         addressInputReference.value = endereco.logradouro;
         provinceInputReference.value = endereco.bairro;
         cityInputReference.value = endereco.localidade;
@@ -41,27 +41,27 @@ function PayerCreate() {
         addressNumberInputReference.focus();
     };
 
-    var limpaFormulario = () => {
+    var cleanForm = () => {
         addressInputReference.value = "";
         provinceInputReference.value = "";
         cityInputReference.value = "";
         stateInputReference.value = "";
     };
     
-    var pesquisarCep = function(data) {
+    var validateCep = function(data) {
         let error = ("erro" in data);
         if (!error) {
             errorMessageReference.innerHTML = "";
-            preeencherFormulario(data);
+            fillForm(data);
         } else {
-            limpaFormulario();
+            cleanForm();
             errorMessageReference.innerHTML = "CEP inválido";
         };
     };
 
     var bindCep = function() {
         cepInputReference.addEventListener("input", function() {
-            searchCep.getPostalCode(this.value, pesquisarCep);
+            searchCep.getPostalCode(this.value, validateCep)
         });
     };
 
@@ -94,8 +94,11 @@ function PayerCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayer, function(response) {
-            console.log(response);
-            window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            if (response.success) {
+                window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            } else {
+                alert("Erro ao Criar Conta")
+            }
         });
     }
 

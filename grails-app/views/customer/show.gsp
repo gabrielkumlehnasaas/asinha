@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <asset:javascript src="application.js"/>
+        <meta name="layout" content="main"/>
         <title>Cliente</title>
     </head>
     <body>
@@ -47,17 +46,11 @@
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
                     <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Meus pagadores</button></a>
-                    <a href="${ g.createLink([controller:'payment', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar cobrança</button></a>
-                    <a href="${ g.createLink([controller:'payment', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Minhas cobranças</button></a>
-            </div>
-        </div>
-        
-    </body>
-</html>
-
+                    <a href="${ g.createLink([controller:'payment', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Nova cobrança</button></a>
+                    <a href="${ g.createLink([controller:'payment', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Minhas cobraças</button></a>
                 </div>
             </form>
         </div>
-    <asset:javascript src="asinha/customer-show.js"/>
+        <asset:javascript src="asinha/customer-show.js"/>
     </body>
 </html>

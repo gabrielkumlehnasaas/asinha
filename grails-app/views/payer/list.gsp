@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%-- <meta name="layout" content="main"/> --%>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <title>Clientes</title>
-        <asset:javascript src="application.js"/>
+        <meta name="layout" content="main"/>
+        <title>Meus pagadores</title>
     </head>
     <body>
         <table class="table">
             <thead class="thead-light">
-                <tr></tr>
+                <tr>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>CPF/CNPJ</th>
                     <th>Email</th>
                     <th>Telefone</th>
-                    <th>Número de Cobranças</th>
                     <th></th>
                 </tr>
             </thead>

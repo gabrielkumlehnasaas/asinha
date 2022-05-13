@@ -1,6 +1,5 @@
 package com.asinha.domain
 
-import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
@@ -10,7 +9,7 @@ import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
-class PaymentController extends BaseController {
+class PaymentController {
 
     def payerService
     def paymentService
@@ -25,7 +24,7 @@ class PaymentController extends BaseController {
         try {Payment payment = paymentService.save(params)
             if(payment) render([success: true] as JSON)
         } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
 

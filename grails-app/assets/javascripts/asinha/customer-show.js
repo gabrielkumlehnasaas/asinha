@@ -14,7 +14,7 @@ function CustomerShow() {
     var customerIdInputReference = this.reference.find("#customerId").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
-    var _this = this
+    var _this = this;
 
     var bindForm = function() {
         updateButton.on("click", function (e) {

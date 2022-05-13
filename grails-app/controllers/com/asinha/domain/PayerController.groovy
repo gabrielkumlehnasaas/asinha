@@ -1,3 +1,4 @@
+
 package com.asinha.domain
 
 import com.asinha.base.BaseController
@@ -11,8 +12,6 @@ class PayerController extends BaseController {
 
     def payerService
 
-    def index() {}
-
     def create() {
         return [customerId: params.long("customerId")]
     }
@@ -22,7 +21,7 @@ class PayerController extends BaseController {
             Payer payer = payerService.save(params)
             if(payer) render ([success: true] as JSON)
         } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
 
@@ -41,7 +40,7 @@ class PayerController extends BaseController {
             Payer payer = payerService.update(params)
             if (payer) redirect([action: "show", payerId: payer.id])
         } catch(Exception exception) {
-             render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
 }

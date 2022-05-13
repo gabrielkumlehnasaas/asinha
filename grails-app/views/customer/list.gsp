@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <%-- <meta name="layout" content="main"/> --%>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
+        <meta name="layout" content="main"/>
         <title>Clientes</title>
-        <asset:javascript src="application.js"/>
     </head>
     <body>
         <table class="table">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">#ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">CPF/CNPJ</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col"></th>
+                    <th>#ID</th>
+                    <th>Nome</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <g:each var="customer" in="${ customerList }">
                     <tr data-url="${ g.createLink([controller:'customer', action:'show', params:[customerId: customer.id]])}">
-                        <th scope="row">${ customer.id }</th>
+                        <th>${ customer.id }</th>
                         <td>${ customer.name }</td>
                         <td>${ customer.cpfCnpj }</td>
                         <td>${ customer.email }</td>
@@ -31,6 +29,9 @@
                 </g:each>
             </tbody>
         </table>
+        <div class="pagination">
+            <g:paginate total="${ totalCount }" controller="customer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
+        </div>
         <a href="${ g.createLink([controller:'customer', action:'index']) }"><button class="btn btn-primary btn-padding-y">Home</button></a>
         <asset:javascript src="utils/click-list.js"/>
     </body>
