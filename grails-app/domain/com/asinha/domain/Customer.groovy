@@ -23,7 +23,7 @@ class Customer extends BaseEntity {
     String postalCode
 
     String province
-
+    
     String state
 
     static constraints = {
