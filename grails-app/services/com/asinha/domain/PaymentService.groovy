@@ -20,8 +20,8 @@ class PaymentService {
         payment.method = PaymentMethod.valueOf(params.method) 
         payment.status = PaymentStatus.PENDING
         payment.dueDate = CustomDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
-        payment.payer = Payer.get(params.payer)
-        payment.customer = Customer.get(params.customer)
+        payment.payer = Payer.get(params.payerId)
+        payment.customer = Customer.get(params.customerId)
         payment.save(failOnError: true)
         return payment
     }
