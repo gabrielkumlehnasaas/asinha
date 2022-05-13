@@ -14,7 +14,7 @@ class PayerController extends BaseController {
     def index() {}
 
     def create() {
-        return [customerId: params.long("id")]
+        return [customerId: params.long("customerId")]
     }
 
     def save() {
