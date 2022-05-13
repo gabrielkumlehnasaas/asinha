@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="layout" content="main"/>
         <%@ page import="com.asinha.enums.PaymentMethod" %>
         <%@ page import="com.asinha.enums.PaymentStatus" %>
         <%@ page import="com.asinha.utils.CustomDateUtils" %>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <asset:javascript src="application.js"/>
-        <title>Cliente</title>
+        <title>Cobrança</title>
     </head>
     <body>
         <div class="container-fluid mt-3 ml-4" id="payer-show-container">
