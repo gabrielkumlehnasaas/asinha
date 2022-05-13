@@ -70,7 +70,7 @@
                         <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.
                     </label>
                 </div>
-                <input class="btn btn-primary btn-padding-y 10 save " type="submit" name="create" id="create">
+                <button class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">Criar conta</button>
             </form>
         </div> 
         <asset:javascript src="customer-create-import.js"/>
