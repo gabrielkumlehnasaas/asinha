@@ -8,16 +8,16 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-    public List<Payer> getPayersByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+    public List<Payer> getPayersByCustomer(customerId, max = null, offset = null) {
         def payerCriteria = Payer.createCriteria()
         if (max == null || offset == null) {
             def payerList = payerCriteria.list() {
-                eq("customer", Customer.get(customerId))
+                like("customer", Customer.get(customerId))
             }
             return payerList
         } else {
             def payerList = payerCriteria.list(max: max, offset: offset) {
-                eq("customer", Customer.get(customerId))
+                like("customer", Customer.get(customerId))
             }
             return payerList
         }
@@ -36,13 +36,13 @@ class PayerService {
         payer.postalCode = params.postalCode
         payer.province = params.province
         payer.state = params.state
-        payer.customer = Customer.get(params.long("customer"))
+        payer.customer = Customer.get(params.long("customerId"))
         payer.save(failOnError: true)
         return payer
     }
 
     public Payer update(Map params) {
-        Payer payer = Payer.get(params.long("id"))
+        Payer payer = Payer.get(params.long("payerId"))
         payer.address = params.address
         payer.addressNumber = params.addressNumber
         payer.city = params.city

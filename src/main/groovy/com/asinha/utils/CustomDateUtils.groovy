@@ -10,11 +10,6 @@ class CustomDateUtils {
         return format.parse(date)
     }
 
-    public static String toString(Timestamp date, String pattern) {
-        SimpleDateFormat format = new SimpleDateFormat(pattern)
-        return format.format(date)
-    }
-
     public static String formatTimestamp(Timestamp date) {
         if (date == null) {
             return "Aguardando"
@@ -23,6 +18,4 @@ class CustomDateUtils {
             return reverseDate[2]+"/"+reverseDate[1]+"/"+reverseDate[0] 
         }
     }
-
-
 }

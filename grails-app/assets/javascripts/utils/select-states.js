@@ -25,4 +25,4 @@ var selectStates;
 $(document).ready(function() {
     selectStates = new SelectStates();
     selectStates.populateSelectStates();
-}) 
+})
