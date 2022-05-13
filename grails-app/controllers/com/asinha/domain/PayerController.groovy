@@ -1,3 +1,4 @@
+
 package com.asinha.domain
 
 import com.asinha.base.BaseController
@@ -11,10 +12,8 @@ class PayerController extends BaseController {
 
     def payerService
 
-    def index() {}
-
     def create() {
-        return [customerId: params.long("id")]
+        return [customerId: params.long("customerId")]
     }
 
     def save() {
@@ -27,18 +26,18 @@ class PayerController extends BaseController {
     }
 
     def list() {
-        List<Payer> payerList = payerService.getPayersByCustomer(params.long("id"), getLimitPerPage(), getCurrentPage())
-        return [customerId: params.long("id"), payerList: payerList, totalCount: payerList.size()]
+        List<Payer> payerList = payerService.getPayersByCustomer(params.long("customerId"), getLimitPerPage(), getCurrentPage())
+        return [payerList: payerList, totalCount: payerList.size()]
     }
     
     def show(){
-        return [payer: Payer.get(params.long("id"))]
+        return [payer: Payer.get(params.long("payerId"))]
     }
 
     def update() {
         try {
             Payer payer = payerService.update(params)
-            if (payer) redirect([action: "show", id: payer.id])
+            if (payer) redirect([action: "show", payerId: payer.id])
         } catch(Exception exception) {
              render([success: false, message: "Erro, tente novamente. Erro: "+ exception.message] as JSON)
         }
