@@ -1,4 +1,3 @@
-
 package com.asinha.domain
 
 import com.asinha.base.BaseController
