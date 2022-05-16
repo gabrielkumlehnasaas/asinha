@@ -11,16 +11,14 @@ class PayerService {
     public List<Payer> getPayersByCustomer(customerId, max = null, offset = null) {
         def payerCriteria = Payer.createCriteria()
         if (max == null || offset == null) {
-            def payerList = payerCriteria.list() {
+            List<Payer> payerList = payerCriteria.list() {
                 like("customer", Customer.get(customerId))
             }
             return payerList
-        } else {
-            def payerList = payerCriteria.list(max: max, offset: offset) {
-                like("customer", Customer.get(customerId))
-            }
-            return payerList
+        List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
+            like("customer", Customer.get(customerId))
         }
+        return payerList
     }
 
     public Payer save(Map params) {

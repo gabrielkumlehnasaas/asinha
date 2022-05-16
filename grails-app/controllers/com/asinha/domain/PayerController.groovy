@@ -1,4 +1,3 @@
-
 package com.asinha.domain
 
 import com.asinha.base.BaseController
@@ -31,14 +30,14 @@ class PayerController extends BaseController {
         return [customerId: customerId, payerList: payerList, totalCount: payerList.size()]
     }
     
-    def show(){
+    def show() {
         return [payer: Payer.get(params.long("payerId"))]
     }
 
     def update() {
         try {
             Payer payer = payerService.update(params)
-            if (payer) redirect([action: "show", payerId: payer.id])
+            if(payer) render ([success: true] as JSON)
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
