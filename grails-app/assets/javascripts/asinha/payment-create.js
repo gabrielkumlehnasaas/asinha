@@ -40,8 +40,9 @@ function PaymentCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
-            if(!response.success) {
-                
+            if (!response.success) {
+                alert("Erro ao criar Cobrança")
+                return
             }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
