@@ -15,12 +15,19 @@ function PayerShowAndEditController() {
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
+    
+    this.init = function() {
+        bindForm();
+        bindEditPayer();
+    };
+
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
             submitForm();
         });
     };
+
     var submitForm = function() {
         let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
@@ -34,6 +41,7 @@ function PayerShowAndEditController() {
             window.location.href = `/payer/show/${ infosPayer.id }`;
         });
     };
+
     var bindEditPayer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -53,6 +61,7 @@ function PayerShowAndEditController() {
             complementInputReference.disabled = false;
         })
     }
+
     var disableInputs = function () {
         idInputReference.disabled = true;
         nameInputReference.disabled = true;
@@ -66,13 +75,11 @@ function PayerShowAndEditController() {
         phoneInputReference.disabled = true;
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
-    }
-    this.init = function() {
-        bindForm();
-        bindEditPayer();
     };
 };
+
 var payerShowAndEditController;
+
 $(document).ready(function () {
     payerShowAndEditController = new PayerShowAndEditController();
     payerShowAndEditController.init();
