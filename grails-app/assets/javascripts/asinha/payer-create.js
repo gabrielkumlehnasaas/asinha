@@ -33,11 +33,11 @@ function PayerCreate() {
         });
     };
 
-    var fillForm = (endereco) => {
-        addressInputReference.value = endereco.logradouro;
-        provinceInputReference.value = endereco.bairro;
-        cityInputReference.value = endereco.localidade;
-        stateInputReference.value = endereco.uf;
+    var fillForm = (address ) => {
+        addressInputReference.value = address .logradouro;
+        provinceInputReference.value = address .bairro;
+        cityInputReference.value = address .localidade;
+        stateInputReference.value = address .uf;
         addressNumberInputReference.focus();
     };
 
