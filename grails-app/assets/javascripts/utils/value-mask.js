@@ -1,15 +1,15 @@
 function ValueMask() {
 
-    var valueInputReference = $("#value").get(0);
+    var valueInputReference = $("#value");
 
     this.init = function() {
-        $("#value").maskMoney({prefix:'R$ ', allowNegative: false, thousands:',', decimal:'.', affixesStay: false});
+        valueInputReference.maskMoney({prefix:'R$ ', allowNegative: false, thousands:',', decimal:'.', affixesStay: false});
     };
 }
 
-var valueMasks;
+var valueMask;
 
 $(document).ready(function () {
-    valueMasks = new ValueMasks();
-    valueMasks.init();   
+    valueMask = new ValueMask();
+    valueMask.init();   
 });
