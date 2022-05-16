@@ -4,20 +4,21 @@ function PaymentCreate() {
     var valueInputReference = this.reference.find("#value").get(0);
     var errorMessageReference = this.reference.find("#error").get(0);
     var _this = this;
-
-    var initInputMasks = function() {
-        $("#value").maskMoney({prefix:'R$ ', allowNegative: false, thousands:',', decimal:'.', affixesStay: false});
+    
+    this.init = function() {
+        bindForm();
+        bindValue();
     };
 
     var bindValue = function() {
         valueInputReference.addEventListener("focusout", function() {
             var value = parseFloat(valueInputReference.value);
             if (value < 5) {
-                console.log("erro")
                 errorMessageReference.innerHTML = "O valor mínimo de cobrança é de R$5,00";
-            } else {
-                errorMessageReference.innerHTML = "";
+                return
             };
+            
+            errorMessageReference.innerHTML = "";
         });
     };
 
@@ -39,16 +40,12 @@ function PaymentCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
-            console.log(response);
+            if(!response.success) {
+                
+            }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
-
-    this.init = function() {
-        initInputMasks();
-        bindForm();
-        bindValue();
-    };
 };
 
 var paymentCreate;
