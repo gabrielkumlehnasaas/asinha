@@ -7,7 +7,7 @@
     <body>
         <div class="container-fluid mt-3 ml-4" id="customer-show-container">
             <h4>Detalhes do Cliente</h4>
-            <form class="form row" id="create-form" action="${ g.createLink([controller:'customer', action:'update']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'customer', action:'show', params:[customerId: customer.id]]) }" action="${ g.createLink([controller:'customer', action:'update']) }">
                 <input type="hidden" name="customerId" id="customerId" value="${ customer.id }">
                 <div class="card w-100 mb-2">
                     <div class="card-header row">
@@ -42,8 +42,8 @@
                             <h5 class="card-text">CEP: <input type="text" class="border border-1 border-dark" id="cep" name="postalCode" value="${ customer.postalCode }" required disabled></h5>
                         </div>
                     </div>
-                    <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
-                    <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
+                    <button class="btn btn-primary btn-padding-y" type="button" name="editbtn" id="editbtn">Editar</button>
+                    <button class="btn btn-primary btn-padding-y" hidden type="submit" name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
                     <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Meus pagadores</button></a>
                     <a href="${ g.createLink([controller:'payment', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Nova cobrança</button></a>
