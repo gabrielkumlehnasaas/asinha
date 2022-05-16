@@ -31,7 +31,7 @@ class CustomerService {
         customer.addressNumber = params.addressNumber
         customer.city = params.city
         customer.complement = params.complement
-        customer.cpfCnpj = params.cpfCnpj
+        customer.cpfCnpj = params.cpfCnpj.replaceAll("[^0-9]", '')
         customer.email = params.email
         customer.phone = params.phone
         customer.name = params.name
@@ -40,5 +40,10 @@ class CustomerService {
         customer.state = params.state
         customer.save(failOnError: true)
         return customer
+    }
+
+    public List validate(Map params) {
+
+
     }
 }
