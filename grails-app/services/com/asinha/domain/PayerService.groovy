@@ -9,9 +9,8 @@ import grails.gorm.transactions.Transactional
 class PayerService {
 
     public List<Payer> getPayersByCustomer(customerId, max, offset) {
-        def payerCriteria = Payer.createCriteria()
-        def payerList = payerCriteria.list(max: max, offset: offset) {
-            like("customer", Customer.get(customerId))
+        List<Payer> payerCriteria = Payer.createCriteria().list(max: max, offset: offset) {
+            eq("customer", Customer.get(customerId))
         }
         return payerList
     }
