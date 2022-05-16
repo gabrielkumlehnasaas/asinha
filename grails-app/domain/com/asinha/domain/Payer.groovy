@@ -1,6 +1,7 @@
 package com.asinha.domain
 
 import com.asinha.base.BaseEntity
+import com.asinha.domain.Customer
 
 class Payer extends BaseEntity {
 

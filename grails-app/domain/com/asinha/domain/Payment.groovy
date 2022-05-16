@@ -1,6 +1,8 @@
 package com.asinha.domain
 
 import com.asinha.base.BaseEntity
+import com.asinha.domain.Customer
+import com.asinha.domain.Payer
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
 
