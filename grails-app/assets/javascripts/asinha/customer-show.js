@@ -39,6 +39,10 @@ function CustomerShowAndEditController() {
         var url = document.querySelector("form").getAttribute("action");
         disableInputs();
         $.post(url, infosCustomer, function(response) {
+            if (!response.success) {
+                alert("Erro ao Editar Dados")
+                return
+            }
             window.location.href = `/customer/show/${ infosCustomer.id }`;
         });
     };

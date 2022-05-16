@@ -1,4 +1,5 @@
 function PayerShow() {
+    
     this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -15,12 +16,19 @@ function PayerShow() {
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
+    
+    this.init = function() {
+        bindForm();
+        bindEditPayer();
+    };
+    
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
             submitForm();
         });
     };
+
     var submitForm = function() {
         let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
@@ -30,10 +38,14 @@ function PayerShow() {
         var url = document.querySelector("form").getAttribute("action");
         disableInputs();
         $.post(url, infosPayer, function(response) {
-            console.log(response);
+            if (!response.success) {
+                alert("Erro ao Editar Pagador")
+                return
+            }
             window.location.href = `/payer/show/${ infosPayer.id }`;
         });
     };
+
     var bindEditPayer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -51,8 +63,9 @@ function PayerShow() {
             phoneInputReference.disabled = false;
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
-        })
+        });
     }
+
     var disableInputs = function () {
         idInputReference.disabled = true;
         nameInputReference.disabled = true;
@@ -67,12 +80,10 @@ function PayerShow() {
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
     }
-    this.init = function() {
-        bindForm();
-        bindEditPayer();
-    };
 };
+
 var payerShow;
+
 $(document).ready(function () {
     payerShow = new PayerShow();
     payerShow.init();
