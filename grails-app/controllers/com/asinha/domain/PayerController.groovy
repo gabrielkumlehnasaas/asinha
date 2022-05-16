@@ -29,7 +29,7 @@ class PayerController extends BaseController {
         return [payerList: payerList, totalCount: payerList.size()]
     }
     
-    def show(){
+    def show() {
         return [payer: Payer.get(params.long("payerId"))]
     }
 
