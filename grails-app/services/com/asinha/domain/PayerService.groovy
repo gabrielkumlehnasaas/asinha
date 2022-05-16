@@ -15,6 +15,7 @@ class PayerService {
                 like("customer", Customer.get(customerId))
             }
             return payerList
+        }
         List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
             like("customer", Customer.get(customerId))
         }
