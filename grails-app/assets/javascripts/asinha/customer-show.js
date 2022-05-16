@@ -36,14 +36,14 @@ function CustomerShowAndEditController() {
             infosCustomer[key] = value;
         });
         
-        var url = document.querySelector("form").getAttribute("action");
         disableInputs();
+        var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
                 alert("Erro ao Editar Dados")
                 return
             }
-            window.location.href = `/customer/show/${ infosCustomer.id }`;
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 

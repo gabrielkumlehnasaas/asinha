@@ -36,7 +36,7 @@ class PayerController extends BaseController {
     def update() {
         try {
             Payer payer = payerService.update(params)
-            if (payer) redirect([action: "show", payerId: payer.id])
+            if(payer) render ([success: true] as JSON)
         } catch(Exception exception) {
              render([success: false, message: "Erro, tente novamente"] as JSON)
         }

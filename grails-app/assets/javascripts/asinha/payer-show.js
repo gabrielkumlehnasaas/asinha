@@ -42,7 +42,7 @@ function PayerShowAndEditController() {
                 alert("Erro ao Editar Pagador")
                 return
             }
-            window.location.href = `/payer/show/${ infosPayer.id }`;
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 
