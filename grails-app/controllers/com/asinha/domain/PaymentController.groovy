@@ -6,8 +6,6 @@ import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 
 import grails.converters.JSON
-import grails.validation.ValidationException
-import static org.springframework.http.HttpStatus.*
 
 class PaymentController {
 

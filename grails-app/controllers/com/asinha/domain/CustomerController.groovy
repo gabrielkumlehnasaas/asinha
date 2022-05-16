@@ -4,9 +4,6 @@ import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 
 import grails.converters.JSON
-import grails.validation.ValidationException
-import static org.springframework.http.HttpStatus.*
-import static org.springframework.validation.Errors.*
 
 class CustomerController extends BaseController {
 
