@@ -1,36 +1,22 @@
 function CustomerCreate() {
     
     this.reference = $("#customer-create-container");
-    var cpfCnpjLabelReference = this.reference.find("#cpfCnpjLabel").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
     var addressNumberInputReference = this.reference.find("#addressNumber").get(0);
     var emailInputReference = this.reference.find("#email").get(0);
     var provinceInputReference = this.reference.find("#province").get(0);
     var cityInputReference = this.reference.find("#city").get(0);
     var stateInputReference = this.reference.find("#state").get(0);
-    var cpfCnpjInputReference = this.reference.find("#cpfCnpj").get(0);
-    var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var errorMessageReference = this.reference.find("#error").get(0);
     var searchCep;
     var _this = this;
 
-    var initInputMasks = function() {
-        new Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
-        new Inputmask({mask: ["(99) 9999-9999", "(99) 9 9999-9999"], showMaskOnHover: false, keepStatic: true}).mask(phoneInputReference);
-        new Inputmask({mask: "99999-999", showMaskOnHover: false, keepStatic: true}).mask(cepInputReference);
-    };
-
-    var bindRadioButton = function() {
-        _this.reference.find("#cpfRadio").on("click", function() {
-            cpfCnpjLabelReference.innerHTML = "CPF";
-            Inputmask({mask: "999.999.999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
-        });
-
-        _this.reference.find("#cnpjRadio").on("click", function() {
-            cpfCnpjLabelReference.innerHTML = "CNPJ";
-            new Inputmask({mask: "99.999.999/9999-99", showMaskOnHover: false, keepStatic: true}).mask(cpfCnpjInputReference);
-        });
+    this.init = function() {
+        bindForm();
+        bindCep();
+        bindEmail();
+        searchCep = new SearchCep();
     };
 
     var fillForm = (address) => {
@@ -50,13 +36,14 @@ function CustomerCreate() {
     
     var validateCep = function(data) {
         let error = ("erro" in data);
-        if (!error) {
-            errorMessageReference.innerHTML = "";
-            fillForm(data);
-        } else {
+        if (error) {
             cleanForm();
             errorMessageReference.innerHTML = "CEP inválido";
+            return
         };
+        
+        errorMessageReference.innerHTML = "";
+        fillForm(data);
     };
 
     var bindCep = function() {
@@ -94,22 +81,14 @@ function CustomerCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosCustomer, function(response) {
-            if (response.success) {
-                window.location.href = document.querySelector("form").getAttribute("data-redirect");
-            } else {
+            if (!response.success) {
                 alert("Erro ao Criar Conta")
+                return
             }
+            
+            window.location.href = document.querySelector("form").getAttribute("data-redirect"); 
         });
     }
-
-    this.init = function() {
-        initInputMasks();
-        bindForm();
-        bindRadioButton();
-        bindCep();
-        bindEmail();
-        searchCep = new SearchCep();
-    };
 };
 
 var customerCreate;

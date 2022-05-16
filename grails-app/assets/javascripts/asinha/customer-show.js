@@ -15,6 +15,11 @@ function CustomerShowAndEditController() {
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this;
+    
+    this.init = function() {
+        bindForm();
+        bindEditCustomer();
+    };
 
     var bindForm = function() {
         updateButton.on("click", function (e) {
@@ -24,7 +29,6 @@ function CustomerShowAndEditController() {
     };
 
     var submitForm = function() {
-        
         let infosCustomer = {};
         let data = new FormData(document.querySelector("form"));
         
@@ -32,11 +36,14 @@ function CustomerShowAndEditController() {
             infosCustomer[key] = value;
         });
         
-        var url = document.querySelector("form").getAttribute("action");
         disableInputs();
+        var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
-            console.log(response);
-            window.location.href = `/customer/show/${ infosCustomer.id }`;
+            if (!response.success) {
+                alert("Erro ao Editar Dados")
+                return
+            }
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 
@@ -75,10 +82,6 @@ function CustomerShowAndEditController() {
         complementInputReference.disabled = true;
     }
 
-    this.init = function() {
-        bindForm();
-        bindEditCustomer();
-    };
 };
 
 var customerShowAndEditController;

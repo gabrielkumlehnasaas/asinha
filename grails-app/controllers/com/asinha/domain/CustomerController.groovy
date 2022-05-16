@@ -36,7 +36,7 @@ class CustomerController extends BaseController {
     def update() {
         try {
             Customer customer = customerService.update(params)
-            if (customer) redirect([action: "show", customerId: customer.id])
+            if(customer) render ([success: true] as JSON)
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }

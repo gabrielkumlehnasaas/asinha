@@ -1,4 +1,8 @@
 function PayerShowAndEditController() {
+<<<<<<< HEAD
+=======
+    
+>>>>>>> payerRefactor-show/edit
     this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -20,7 +24,11 @@ function PayerShowAndEditController() {
         bindForm();
         bindEditPayer();
     };
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> payerRefactor-show/edit
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
@@ -37,8 +45,11 @@ function PayerShowAndEditController() {
         var url = document.querySelector("form").getAttribute("action");
         disableInputs();
         $.post(url, infosPayer, function(response) {
-            console.log(response);
-            window.location.href = `/payer/show/${ infosPayer.id }`;
+            if (!response.success) {
+                alert("Erro ao Editar Pagador")
+                return
+            }
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 
@@ -59,7 +70,7 @@ function PayerShowAndEditController() {
             phoneInputReference.disabled = false;
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
-        })
+        });
     }
 
     var disableInputs = function () {
