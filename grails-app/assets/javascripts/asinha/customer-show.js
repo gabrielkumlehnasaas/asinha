@@ -1,4 +1,4 @@
-function CustomerShow() {
+function CustomerShowAndEditController() {
     this.reference = $("#customer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -81,9 +81,9 @@ function CustomerShow() {
     };
 };
 
-var customerShow;
+var customerShowAndEditController;
 
 $(document).ready(function () {
-    customerShow = new CustomerShow();
-    customerShow.init();    
+    customerShowAndEditController = new CustomerShowAndEditController();
+    customerShowAndEditController.init();    
 });
