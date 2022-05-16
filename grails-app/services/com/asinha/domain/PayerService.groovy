@@ -1,5 +1,6 @@
 package com.asinha.domain
 
+import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 
 import grails.gorm.transactions.Transactional
