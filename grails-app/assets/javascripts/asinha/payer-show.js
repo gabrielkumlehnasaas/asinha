@@ -1,4 +1,5 @@
-function PayerShow() {
+function PayerShowAndEditController() {
+    
     this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -16,12 +17,18 @@ function PayerShow() {
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
     
+    this.init = function() {
+        bindForm();
+        bindEditPayer();
+    };
+    
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
             submitForm();
         });
     };
+
     var submitForm = function() {
         let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
@@ -31,10 +38,14 @@ function PayerShow() {
         var url = document.querySelector("form").getAttribute("action");
         disableInputs();
         $.post(url, infosPayer, function(response) {
-            console.log(response);
-            window.location.href = `/payer/show/${ infosPayer.id }`;
+            if (!response.success) {
+                alert("Erro ao Editar Pagador")
+                return
+            }
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
+
     var bindEditPayer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -52,8 +63,9 @@ function PayerShow() {
             phoneInputReference.disabled = false;
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
-        })
+        });
     }
+
     var disableInputs = function () {
         payerIdInputReference.disabled = true;
         nameInputReference.disabled = true;
@@ -67,14 +79,12 @@ function PayerShow() {
         phoneInputReference.disabled = true;
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
-    }
-    this.init = function() {
-        bindForm();
-        bindEditPayer();
-    };
+    };e
 };
-var payerShow;
+
+var payerShowAndEditController;
+
 $(document).ready(function () {
-    payerShow = new PayerShow();
-    payerShow.init();
+    payerShowAndEditController = new PayerShowAndEditController();
+    payerShowAndEditController.init();
 });
