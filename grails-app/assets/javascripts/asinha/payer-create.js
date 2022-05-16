@@ -81,11 +81,12 @@ function PayerCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayer, function(response) {
-            if (response.success) {
-                window.location.href = document.querySelector("form").getAttribute("data-redirect");
-            } else {
+            if (!response.success) {
                 alert("Erro ao Criar Conta")
+                return
             }
+            
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
 };
