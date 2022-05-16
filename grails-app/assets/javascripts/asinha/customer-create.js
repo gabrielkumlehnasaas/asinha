@@ -36,13 +36,14 @@ function CustomerCreate() {
     
     var validateCep = function(data) {
         let error = ("erro" in data);
-        if (!error) {
-            errorMessageReference.innerHTML = "";
-            fillForm(data);
-        } else {
+        if (error) {
             cleanForm();
             errorMessageReference.innerHTML = "CEP inválido";
+            return
         };
+        
+        errorMessageReference.innerHTML = "";
+        fillForm(data);
     };
 
     var bindCep = function() {
