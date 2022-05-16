@@ -1,4 +1,4 @@
-function PayerShow() {
+function PayerShowAndEditController() {
     this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -72,8 +72,8 @@ function PayerShow() {
         bindEditPayer();
     };
 };
-var payerShow;
+var payerShowAndEditController;
 $(document).ready(function () {
-    payerShow = new PayerShow();
-    payerShow.init();
+    payerShowAndEditController = new PayerShowAndEditController();
+    payerShowAndEditController.init();
 });
