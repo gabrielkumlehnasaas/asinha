@@ -4,10 +4,6 @@ import com.asinha.domain.Customer
 
 class CustomerService {
 
-    def list() {
-        return Customer.getAll()
-    }
-
     public Customer save(Map params) {
         Customer customer = new Customer()
         customer.address = params.address
