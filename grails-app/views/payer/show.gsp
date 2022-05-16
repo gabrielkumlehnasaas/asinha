@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha284-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW2" crossorigin="anonymous">
-        <asset:javascript src="application.js"/>
+        <meta name="layout" content="main"/>
         <title>Cliente</title>
     </head>
     <body>
         <div class="container-fluid mt-3 ml-4" id="payer-show-container">
             <h4>Detalhes do Cliente</h4>
-            <form class="form row" id="create-form" action="${ g.createLink([controller:'payer', action:'update']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payer', action:'show', params:[payerId: payer.id]]) }" action="${ g.createLink([controller:'payer', action:'update']) }">
                 <div class="card w-100 mb-2">
                     <div class="card-header row">
                         <h5 class="card-text col-md">Nome: <input type="text" class="border border-1 border-dark" id="name" name="name" value="${ payer.name }" required disabled></h5>
