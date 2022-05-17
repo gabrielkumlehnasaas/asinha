@@ -17,6 +17,7 @@ class PayerService {
             return payerList
         }
         List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
+
             eq("customer", Customer.get(customerId))
         }
         return payerList
