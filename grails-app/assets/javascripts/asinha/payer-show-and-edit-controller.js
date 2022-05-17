@@ -1,5 +1,6 @@
-function CustomerShowAndEditController() {
-    this.reference = $("#customer-show-container");
+function PayerShowAndEditController() {
+    
+    this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
     var addressNumberInputReference = this.reference.find("#addressNumber").get(0);
@@ -11,48 +12,46 @@ function CustomerShowAndEditController() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var customerIdInputReference = this.reference.find("#customerId").get(0);
+    var idInputReference = this.reference.find("#id").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
-    var _this = this;
+    var _this = this
     
     this.init = function() {
         bindForm();
-        bindEditCustomer();
+        bindEditPayer();
     };
-
+    
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
-            submitForm(); 
+            submitForm();
         });
     };
 
     var submitForm = function() {
-        let infosCustomer = {};
+        let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
-        
         data.forEach(function (value,key) {
-            infosCustomer[key] = value;
+            infosPayer[key] = value;
         });
-        
-        disableInputs();
         var url = document.querySelector("form").getAttribute("action");
-        $.post(url, infosCustomer, function(response) {
+        disableInputs();
+        $.post(url, infosPayer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Dados")
+                alert("Erro ao Editar Pagador")
                 return
             }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 
-    var bindEditCustomer = function() {
+    var bindEditPayer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            customerIdInputReference.disabled = false;
+            idInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -64,11 +63,11 @@ function CustomerShowAndEditController() {
             phoneInputReference.disabled = false;
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
-        })
+        });
     }
-    
+
     var disableInputs = function () {
-        customerIdInputReference.disabled = true;
+        idInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;
@@ -81,12 +80,11 @@ function CustomerShowAndEditController() {
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
     }
-
 };
 
-var customerShowAndEditController;
+var payerShowAndEditController;
 
 $(document).ready(function () {
-    customerShowAndEditController = new CustomerShowAndEditController();
-    customerShowAndEditController.init();    
+    payerShowAndEditController = new PayerShowAndEditController();
+    payerShowAndEditController.init();
 });

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="layout" content="main"/>
-        <title>Clientes</title>
+        <title>Meus pagadores</title>
     </head>
     <body>
         <table class="table">
@@ -18,13 +18,13 @@
             </thead>
             <tbody>
                 <g:each var="payer" in="${ payerList }">
-                    <tr>
+                    <tr data-url="${ g.createLink([controller:'payer', action:'show', params:[payerId: payer.id]])}">
                         <td>${ payer.id }</td>
                         <td>${ payer.name }</td>
                         <td>${ payer.cpfCnpj }</td>
                         <td>${ payer.email }</td>
                         <td>${ payer.phone }</td>
-                        <td></td>
+                        <td><a href="${ g.createLink([controller:'payer', action:'show', params:[payerId: payer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
             </tbody>
@@ -32,6 +32,7 @@
         <div class="pagination">
             <g:paginate total="${ totalCount }" controller="payer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
         </div>
-        <a href="${ g.createLink([controller:'customer', action:'show', params:[id: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
+        <a href="${ g.createLink([controller:'customer', action:'show', params:[customerId: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
+        <asset:javascript src="utils/click-list.js"/>
     </body>
 </html>
