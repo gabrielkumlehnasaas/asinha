@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
         <%@ page import="com.asinha.enums.PaymentMethod" %>
+        <meta name="layout" content="main" />
         <title>Cadastro de cobranças</title>
     </head>
     <body>
@@ -18,8 +18,8 @@
                     <input class="form-control border border-1 border-dark" type="text" name="description" id="description" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
-                    <label for="payerId">Pagador</label>
-                    <select id="payerId" class="form-control border border-1 border-dark" name="payerId" required>
+                    <label for="payer">Pagador</label>
+                    <select id="payer" class="form-control border border-1 border-dark" name="payer" required>
                         <option>Selecione um Pagador</option>
                         <g:each var="payer" in="${ payerList }">
                            <option value="${ payer.id }">${ payer.name }</option>

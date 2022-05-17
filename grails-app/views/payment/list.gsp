@@ -33,7 +33,7 @@
                         <td><g:message code="PaymentMethod.${payment.method}"/></td>
                         <td><g:message code="PaymentStatus.${payment.status}"/></td>
                         <td>${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
-                        <td><a href="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Detalhes</button></a></td>
+                        <td><a href="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
             </tbody>
