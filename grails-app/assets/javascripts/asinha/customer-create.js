@@ -86,7 +86,7 @@ function CustomerCreate() {
                 return
             }
             
-            window.location.href = document.querySelector("form").getAttribute("data-redirect"); 
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
 };
