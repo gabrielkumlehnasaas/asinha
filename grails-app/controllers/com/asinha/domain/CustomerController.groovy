@@ -14,12 +14,23 @@ class CustomerController extends BaseController {
     def create() {}
     
     def save() {
+<<<<<<< HEAD
         try {
             Customer customer = customerService.save(params)
             if (customer) render ([success: true] as JSON)
         } catch(Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
+=======
+        Customer customer = customerService.save(params)
+        if(customer.hasErrors()) {
+            String errorMessages = ""
+            for(error in customer.errors.allErrors) {
+                errorMessages += error + "\n" 
+            }
+            render([success: false, message: errorMessages] as JSON)
+>>>>>>> 9f6ca4e976cfcccf1db54a26d3b81f35a0190272
         }
+        render ([success: true] as JSON)
     }
 
     def list() {
