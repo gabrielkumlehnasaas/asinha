@@ -47,6 +47,6 @@
                 </div>
             </form>
         </div>
-    <asset:javascript src="asinha/customer-show.js"/>
+    <asset:javascript src="asinha/customer-show-and-edit-controller.js"/>
     </body>
 </html>
