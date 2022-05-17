@@ -24,8 +24,21 @@ class CustomerController extends BaseController {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
-    
+
     def list() {
         return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
+    }
+
+    def show() {
+        return [customer: Customer.get(params.long("customerId"))]
+    }
+
+    def update() {
+        try {
+            Customer customer = customerService.update(params)
+            if (customer) redirect([action: "show", customerId: customer.id])
+        } catch(Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
+        }
     }
 }
