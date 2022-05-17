@@ -48,6 +48,6 @@
                 </div>
             </form>
         </div>
-    <asset:javascript src="asinha/payer-show.js"/>
+    <asset:javascript src="asinha/payer-show-and-edit-controller.js"/>
     </body>
 </html>
