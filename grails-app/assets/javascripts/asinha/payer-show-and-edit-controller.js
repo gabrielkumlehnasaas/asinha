@@ -1,8 +1,5 @@
 function PayerShowAndEditController() {
-<<<<<<< HEAD
-=======
     
->>>>>>> payerRefactor-show/edit
     this.reference = $("#payer-show-container");
     var nameInputReference = this.reference.find("#name").get(0);
     var addressInputReference = this.reference.find("#address").get(0);
@@ -24,11 +21,7 @@ function PayerShowAndEditController() {
         bindForm();
         bindEditPayer();
     };
-<<<<<<< HEAD
-
-=======
     
->>>>>>> payerRefactor-show/edit
     var bindForm = function() {
         updateButton.on("click", function (e) {
             e.preventDefault();
