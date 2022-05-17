@@ -8,7 +8,6 @@ import grails.gorm.transactions.Transactional
 class CustomerService {
 
     public Customer update(Map params) {
-        println(params)
         Customer customer = Customer.get(params.long("customerId"))
         customer.address = params.address
         customer.addressNumber = params.addressNumber
