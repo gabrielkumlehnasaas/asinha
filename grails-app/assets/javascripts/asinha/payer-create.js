@@ -19,7 +19,7 @@ function PayerCreate() {
         searchCep = new SearchCep();
     };
 
-    var fillForm = (address ) => {
+    var fillForm = (address) => {
         addressInputReference.value = address .logradouro;
         provinceInputReference.value = address .bairro;
         cityInputReference.value = address .localidade;
@@ -81,8 +81,8 @@ function PayerCreate() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayer, function(response) {
-            if (!response.success) {
-                alert("Erro ao Criar Conta")
+            if(!response.success) {
+                alert("Error ao Criar Pagador")
                 return
             }
             
