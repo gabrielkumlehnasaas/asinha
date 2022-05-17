@@ -22,7 +22,7 @@ class PaymentController {
         try {
             Payment payment = paymentService.save(params)
             if(payment) render([success: true] as JSON)
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
