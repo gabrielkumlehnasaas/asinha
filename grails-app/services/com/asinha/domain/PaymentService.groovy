@@ -14,15 +14,14 @@ import java.math.BigDecimal
 class PaymentService {
 
     public Payment save(Map params) {
-        println(params)
         Payment payment = new Payment()
         payment.value = new BigDecimal(params.value)
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
         payment.status = PaymentStatus.PENDING
         payment.dueDate = CustomDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
-        payment.payer = Payer.get(params.long("payerId")
-        payment.customer = Customer.get(params.long("customerId")
+        payment.payer = Payer.get(params.long("payerId"))
+        payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
         return payment
     }
