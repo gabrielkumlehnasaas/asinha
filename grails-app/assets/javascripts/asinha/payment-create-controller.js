@@ -1,4 +1,4 @@
-function PaymentCreate() {
+function PaymentCreateController() {
     
     this.reference = $("#payment-create-container");
     var valueInputReference = this.reference.find("#value").get(0);
@@ -49,9 +49,9 @@ function PaymentCreate() {
     }
 };
 
-var paymentCreate;
+var paymentCreateController;
 
 $(document).ready(function () {
-    paymentCreate = new PaymentCreate();
-    paymentCreate.init();   
+    paymentCreateController = new PaymentCreateController();
+    paymentCreateController.init();   
 });
