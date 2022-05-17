@@ -14,7 +14,6 @@ import java.math.BigDecimal
 class PaymentService {
 
     public Payment save(Map params) {
-        println(params)
         Payment payment = new Payment()
         payment.value = new BigDecimal(params.value)
         payment.description = params.description
