@@ -36,6 +36,9 @@ class DomainUtils {
     public Boolean postalCodeValidate(String postalCode) {
         String cleanPostalCode = postalCode.replaceAll(patternNotNumbers, '')
         if(cleanPostalCode.length() == 8) {
+            def get = new URL("viacep.com.br/ws/" + cleanCpfCnpj + "/json/")
+            def getResponseCode = get.getResponseCode()
+            
             // realiza pesquisa via cep
         }
         return false
