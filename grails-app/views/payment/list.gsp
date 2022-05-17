@@ -37,7 +37,7 @@
                                 ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
                             </g:if>
                             <g:else>
-                                Aguardado    
+                                Aguardando    
                             </g:else>
                         </td>
                         <td><a href="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>

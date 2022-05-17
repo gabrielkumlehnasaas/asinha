@@ -22,7 +22,7 @@ class PaymentController {
         try {
             Payment payment = paymentService.save(params)
             if(payment) render([success: true] as JSON)
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
@@ -31,5 +31,9 @@ class PaymentController {
         Long customerId = params.long("customerId")
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+    }
+
+    def show() {
+        return [payment: Payment.get(params.long("paymentId"))]
     }
 }

@@ -17,7 +17,7 @@ class PayerController extends BaseController {
         try {
             Payer payer = payerService.save(params)
             if (payer) render ([success: true] as JSON)
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
@@ -36,7 +36,7 @@ class PayerController extends BaseController {
         try {
             Payer payer = payerService.update(params)
             if (payer) render ([success: true] as JSON)
-        } catch(Exception exception) {
+        } catch (Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }
