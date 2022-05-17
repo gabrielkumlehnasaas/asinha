@@ -12,12 +12,12 @@ class PayerService {
         def payerCriteria = Payer.createCriteria()
         if (max == null || offset == null) {
             List<Payer> payerList = payerCriteria.list() {
-                like("customer", Customer.get(customerId))
+                eq("customer", Customer.get(customerId))
             }
             return payerList
         }
         List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
-            like("customer", Customer.get(customerId))
+            eq("customer", Customer.get(customerId))
         }
         return payerList
     }
