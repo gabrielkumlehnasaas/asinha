@@ -36,20 +36,4 @@ class PaymentController {
     def show() {
         return [payment: Payment.get(params.long("paymentId"))]
     }
-
-    def confirm() {
-        Long paymentId = params.long("paymentId")
-        println(paymentId)
-        try {
-            Payment payment = paymentService.confirmPayment(paymentId)
-            println(payment)
-            if (payment) {
-                render([success: true] as JSON) 
-                redirect(controller:"payment", action:"show", params:[paymentId: paymentId])
-            }
-        } catch(Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
-            exception.printStackTrace()
-        }
-    }
 }
