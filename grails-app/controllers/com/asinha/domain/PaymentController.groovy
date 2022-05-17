@@ -32,4 +32,8 @@ class PaymentController {
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
     }
+
+    ]def show() {
+        return [payment: Payment.get(params.long("paymentId"))]
+    }
 }
