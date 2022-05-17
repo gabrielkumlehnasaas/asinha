@@ -33,6 +33,10 @@ function PaymentConfirmController() {
         });
         var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosPayment, function(response) {
+            if (!response.success) {
+                alert("Erro ao Confirmar Pagamento")
+                return
+            }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
