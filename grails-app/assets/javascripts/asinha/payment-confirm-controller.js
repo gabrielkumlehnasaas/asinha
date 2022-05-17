@@ -1,4 +1,4 @@
-function PaymentConfirm() {
+function PaymentConfirmController() {
     
     this.reference = $("#payer-show-container");
     var confirmButtonReference = this.reference.find("#confirmbtn");
@@ -32,7 +32,6 @@ function PaymentConfirm() {
             infosPayment[key] = value;
         });
         var url = document.querySelector("form").getAttribute("action");
-        console.log(url)
         $.post(url, infosPayment, function(response) {
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
@@ -40,9 +39,9 @@ function PaymentConfirm() {
                                                                                                                                                                      
 };
 
-var paymentConfirm;
+var paymentConfirmController;
 
 $(document).ready(function () {
-    paymentConfirm = new PaymentConfirm();
-    paymentConfirm.init();   
+    paymentConfirmController = new PaymentConfirmController();
+    paymentConfirmController.init();   
 });
