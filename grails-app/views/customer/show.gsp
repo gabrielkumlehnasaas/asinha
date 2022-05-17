@@ -44,6 +44,7 @@
                     </div>
                     <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
+                    <a href="${ g.createLink([controller:'payer', action:'create', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Criar pagador</button></a>
                 </div>
             </form>
         </div>

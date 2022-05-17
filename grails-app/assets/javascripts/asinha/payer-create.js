@@ -1,6 +1,6 @@
-function CustomerCreate() {
+function PayerCreate() {
     
-    this.reference = $("#customer-create-container");
+    this.reference = $("#payer-create-container");
     var addressInputReference = this.reference.find("#address").get(0);
     var addressNumberInputReference = this.reference.find("#addressNumber").get(0);
     var emailInputReference = this.reference.find("#email").get(0);
@@ -11,7 +11,7 @@ function CustomerCreate() {
     var errorMessageReference = this.reference.find("#error").get(0);
     var searchCep;
     var _this = this;
-
+    
     this.init = function() {
         bindForm();
         bindCep();
@@ -20,10 +20,10 @@ function CustomerCreate() {
     };
 
     var fillForm = (address) => {
-        addressInputReference.value = address.logradouro;
-        provinceInputReference.value = address.bairro;
-        cityInputReference.value = address.localidade;
-        stateInputReference.value = address.uf;
+        addressInputReference.value = address .logradouro;
+        provinceInputReference.value = address .bairro;
+        cityInputReference.value = address .localidade;
+        stateInputReference.value = address .uf;
         addressNumberInputReference.focus();
     };
 
@@ -41,7 +41,7 @@ function CustomerCreate() {
             errorMessageReference.innerHTML = "CEP inválido";
             return
         };
-        
+
         errorMessageReference.innerHTML = "";
         fillForm(data);
     };
@@ -71,18 +71,18 @@ function CustomerCreate() {
     };
 
     var submitForm = function() {
-        let infosCustomer = {};
+        let infosPayer = {};
         let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
-            if (key != "cpfCnpjRadio") infosCustomer[key] = value;
+            if (key != "cpfCnpjRadio") infosPayer[key] = value;
         });
         
         var url = document.querySelector("form").getAttribute("action");
 
-        $.post(url, infosCustomer, function(response) {
-            if (!response.success) {
-                alert("Erro ao Criar Conta")
+        $.post(url, infosPayer, function(response) {
+            if(!response.success) {
+                alert("Error ao Criar Pagador")
                 return
             }
             
@@ -91,9 +91,9 @@ function CustomerCreate() {
     }
 };
 
-var customerCreate;
+var payerCreate;
 
 $(document).ready(function () {
-    customerCreate = new CustomerCreate();
-    customerCreate.init();   
+    payerCreate = new PayerCreate();
+    payerCreate.init();   
 });
