@@ -32,7 +32,14 @@
                         <td>${ CustomDateUtils.formatTimestamp(payment.dueDate)}</td>
                         <td><g:message code="PaymentMethod.${payment.method}"/></td>
                         <td><g:message code="PaymentStatus.${payment.status}"/></td>
-                        <td>${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
+                        <td>
+                            <g:if test="${ payment.status == PaymentStatus.PAID }">
+                                ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</td>
+                            </g:if>
+                            <g:else>
+                                Aguardado    
+                            </g:else>
+                        </td>
                         <td><a href="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
