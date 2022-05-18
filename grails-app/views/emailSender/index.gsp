@@ -13,7 +13,7 @@
                 </div>
             </g:if>
             <h2>Enviar e-mail para:</h2>
-            <g:form controller="emailSender" id="formSendEmailReference" action="send">
+            <g:form controller="emailSender" action="send">
                 <div class="fieldcontain">
                   <g:textField name="emailSendEmail" id="emailSendEmail" placeholder="asinha@gmail.com" required="" />
                 </div>
