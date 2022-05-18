@@ -17,8 +17,8 @@ class CustomerController extends BaseController {
         Customer customer = customerService.save(params)
         if(customer.hasErrors()) {
             String errorMessages = ""
-            for(error in customer.errors.allErrors) {
-                errorMessages += error + "\n" 
+            customer.errors.allErrors.each {
+                errorMessages += it + "\n" 
             }
             render([success: false, message: errorMessages] as JSON)
         }

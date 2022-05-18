@@ -5,6 +5,7 @@ import com.asinha.utils.DomainUtils
 import com.asinha.utils.ValidationUtils
 
 import grails.gorm.transactions.Transactional
+import java.lang.String
 
 @Transactional
 class CustomerService {
@@ -29,6 +30,9 @@ class CustomerService {
 
     public Customer save(Map params) {
         Customer customer = new Customer()
+        customer = validate(customer, params)
+        println(customer.hasErrors())
+        if (customer.hasErrors()) return customer
         customer.address = params.address
         customer.addressNumber = params.addressNumber
         customer.city = params.city
@@ -45,16 +49,16 @@ class CustomerService {
     }
 
     public Customer validate(Customer customer, Map params) {
-        if(!ValidationUtils.addressNumberValidate(params.addressNumber)) {
-            DomainUtils.addError(customer, "Endereço sem número"))
+        if (!(ValidationUtils.addressNumberValidate(params.addressNumber))) {
+            DomainUtils.addError(customer, "Endereço sem número")
         }
-        if (!ValidationUtils.phoneValidate(params.phone)) {
+        if (!(ValidationUtils.phoneValidate(params.phone))) {
             DomainUtils.addError(customer, "Número de telefone inválido")
         }
-        if (!ValidationUtils.cpfCnpjValidate(params.cpfCnpj)) {
+        if (!(ValidationUtils.cpfCnpjValidate(params.cpfCnpj))) {
             DomainUtils.addError(customer, "CPF/CNPJ inválido")
         }
-        if (!ValidationUtils.postalCodeValidate(params.postalCode)) {
+        if (!(ValidationUtils.postalCodeValidate(params.postalCode))) {
             DomainUtils.addError(customer, "CEP inválido")
         }
         return customer
