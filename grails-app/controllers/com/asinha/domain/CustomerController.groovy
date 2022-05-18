@@ -14,15 +14,12 @@ class CustomerController extends BaseController {
     def create() {}
     
     def save() {
-        Customer customer = customerService.save(params)
-        if(customer.hasErrors()) {
-            String errorMessages = ""
-            for(error in customer.errors.allErrors) {
-                errorMessages += error + "\n" 
-            }
-            render([success: false, message: errorMessages] as JSON)
+        try {
+            Customer customer = customerService.save(params)
+            if (customer) render ([success: true] as JSON)
+        } catch (Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
-        render ([success: true] as JSON)
     }
 
     def list() {
@@ -36,8 +33,8 @@ class CustomerController extends BaseController {
     def update() {
         try {
             Customer customer = customerService.update(params)
-            if(customer) render ([success: true] as JSON)
-        } catch(Exception exception) {
+            if (customer) render ([success: true] as JSON)
+        } catch (Exception exception) {
             render([success: false, message: "Erro, tente novamente"] as JSON)
         }
     }

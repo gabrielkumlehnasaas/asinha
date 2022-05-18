@@ -8,7 +8,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-    public List<Payer> getPayersByCustomer(customerId, Integer max = null, Integer offset = null) {
+    public List<Payer> getPayersByCustomer(Long customerId, Integer max = null, Integer offset = null) {
         def payerCriteria = Payer.createCriteria()
         if (max == null || offset == null) {
             List<Payer> payerList = payerCriteria.list() {

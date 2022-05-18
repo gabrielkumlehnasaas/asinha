@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="layout" content="main" />
         <%@ page import="com.asinha.enums.PaymentMethod" %>
+        <meta name="layout" content="main" />
         <title>Cadastro de cobranças</title>
     </head>
     <body>

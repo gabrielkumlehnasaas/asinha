@@ -22,7 +22,14 @@
                     <div class="card-body row">    
                         <h5 class="card-text col-md">Criada em: ${ CustomDateUtils.formatTimestamp(payment.dateCreated) }</h5>
                         <h5 class="card-text col-md">Vencimento: ${ CustomDateUtils.formatTimestamp(payment.dueDate) }</h5>
-                        <h5 class="card-text col-md">Data do Pagamento: ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }</h5>
+                        <h5 class="card-text col-md">Data do Pagamento: 
+                            <g:if test="${ payment.status == PaymentStatus.PAID }">
+                                ${ CustomDateUtils.formatTimestamp(payment.paymentDate) }
+                            </g:if>
+                            <g:else>
+                               Aguardando
+                            </g:else>
+                        </h5>
                     </div>
                 </div>
                 <div class="card-deck">
@@ -49,6 +56,6 @@
                 </div>
             </form>
         </div>
-    <asset:javascript src="asinha/payment-confirm.js"/>
+    <asset:javascript src="asinha/payment-confirm-controller.js"/>
     </body>
 </html>

@@ -1,4 +1,4 @@
-function PayerCreate() {
+function PayerCreateController() {
     
     this.reference = $("#payer-create-container");
     var addressInputReference = this.reference.find("#address").get(0);
@@ -91,9 +91,9 @@ function PayerCreate() {
     }
 };
 
-var payerCreate;
+var payerCreateController;
 
 $(document).ready(function () {
-    payerCreate = new PayerCreate();
-    payerCreate.init();   
+    payerCreateController = new PayerCreateController();
+    payerCreateController.init();   
 });
