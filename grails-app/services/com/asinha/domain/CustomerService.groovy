@@ -31,7 +31,6 @@ class CustomerService {
     public Customer save(Map params) {
         Customer customer = new Customer()
         customer = validate(customer, params)
-        println(customer.hasErrors())
         if (customer.hasErrors()) return customer
         customer.address = params.address
         customer.addressNumber = params.addressNumber

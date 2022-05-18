@@ -23,18 +23,18 @@ class ValidationUtils {
 
     public static Boolean phoneValidate(String phone) {
         String cleanPhone = digitsOnlyCleaner(phone)
-        if(cleanPhone.length() != 10 || cleanPhone.lenght() != 11) {
-            return false
+        if(cleanPhone.length() == 10 || cleanPhone.length() == 11) {
+            return true
         }
-        return true
+        return false
     }
 
     public static Boolean cpfCnpjValidate(String cpfCnpj) {
         String cleanCpfCnpj = digitsOnlyCleaner(cpfCnpj)
-        if(cleanCpfCnpj.length() !=  11 || cleanCpfCnpj.length() !=  14) {
-            return false
+        if(cleanCpfCnpj.length() ==  11 || cleanCpfCnpj.length() ==  14) {
+            return true
         }
-        return true
+        return false
     }
 
     public static Boolean postalCodeValidate(String postalCode) {
