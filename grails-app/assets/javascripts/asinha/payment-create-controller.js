@@ -36,7 +36,7 @@ function PaymentCreateController() {
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
-      
+        console.log(infosPayment)
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
