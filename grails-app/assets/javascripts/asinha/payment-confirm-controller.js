@@ -1,9 +1,14 @@
-function PaymentConfirm() {
-
+function PaymentConfirmController() {
+    
     this.reference = $("#payer-show-container");
     var confirmButtonReference = this.reference.find("#confirmbtn");
     var inputStatusReference = this.reference.find("#status").get(0);
     this_ = this;
+    
+    this.init = function() {
+        initConfirmButtonHidder();
+        bindConfirmButton();
+    };
 
     var initConfirmButtonHidder = function() {
         if ( inputStatusReference.value == "Pago" ) {
@@ -27,21 +32,20 @@ function PaymentConfirm() {
             infosPayment[key] = value;
         });
         var url = document.querySelector("form").getAttribute("action");
-        console.log(url)
         $.post(url, infosPayment, function(response) {
+            if (!response.success) {
+                alert("Erro ao Confirmar Pagamento")
+                return
+            }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
                                                                                                                                                                      
-    this.init = function() {
-        initConfirmButtonHidder();
-        bindConfirmButton();
-    };
 };
 
-var paymentConfirm;
+var paymentConfirmController;
 
 $(document).ready(function () {
-    paymentConfirm = new PaymentConfirm();
-    paymentConfirm.init();   
+    paymentConfirmController = new PaymentConfirmController();
+    paymentConfirmController.init();   
 });

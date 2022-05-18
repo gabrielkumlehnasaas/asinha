@@ -14,13 +14,12 @@ import java.math.BigDecimal
 class PaymentService {
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
-        def paymentCriteria = Payment.createCriteria()
-        def paymentList = paymentCriteria.list(max: max, offset: offset) {
+        List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
             eq("customer", Customer.get(customerId))
         }
         return paymentList
     }
-  
+
     public Payment save(Map params) {
         Payment payment = new Payment()
         payment.value = new BigDecimal(params.value)
@@ -34,10 +33,9 @@ class PaymentService {
         return payment
     }
 
-    public Payment confirmPayment(paymentId) {
+        public Payment confirmPayment(paymentId) {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
-        println(payment.status)
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
