@@ -19,6 +19,5 @@ class EmailSenderController {
         } finally {
             redirect action:"index"
         }
-
     }
 }
