@@ -1,5 +1,6 @@
 package com.asinha.domain
 
+import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
@@ -7,7 +8,7 @@ import com.asinha.enums.PaymentMethod
 
 import grails.converters.JSON
 
-class PaymentController {
+class PaymentController extends BaseController{
 
     def payerService
     def paymentService
