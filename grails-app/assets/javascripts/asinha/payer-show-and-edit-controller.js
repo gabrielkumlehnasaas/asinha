@@ -12,7 +12,7 @@ function PayerShowAndEditController() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var payerIdInputReference = this.reference.find("#payerId").get(0);
+    var idInputReference = this.reference.find("#id").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this
@@ -51,7 +51,7 @@ function PayerShowAndEditController() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            payerIdInputReference.disabled = false;
+            idInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -67,7 +67,7 @@ function PayerShowAndEditController() {
     }
 
     var disableInputs = function () {
-        payerIdInputReference.disabled = true;
+        idInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;
@@ -79,7 +79,7 @@ function PayerShowAndEditController() {
         phoneInputReference.disabled = true;
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
-    };e
+    };
 };
 
 var payerShowAndEditController;

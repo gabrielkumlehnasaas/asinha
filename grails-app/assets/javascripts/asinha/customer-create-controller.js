@@ -1,4 +1,4 @@
-function CustomerCreate() {
+function CustomerCreateController() {
     
     this.reference = $("#customer-create-container");
     var addressInputReference = this.reference.find("#address").get(0);
@@ -91,9 +91,9 @@ function CustomerCreate() {
     }
 };
 
-var customerCreate;
+var customerCreateController;
 
 $(document).ready(function () {
-    customerCreate = new CustomerCreate();
-    customerCreate.init();   
+    customerCreateController = new CustomerCreateController();
+    customerCreateController.init();   
 });

@@ -1,4 +1,4 @@
-function PaymentCreate() {
+function PaymentCreateController() {
     
     this.reference = $("#payment-create-container");
     var valueInputReference = this.reference.find("#value").get(0);
@@ -36,7 +36,7 @@ function PaymentCreate() {
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
-      
+        console.log(infosPayment)
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
@@ -49,9 +49,9 @@ function PaymentCreate() {
     }
 };
 
-var paymentCreate;
+var paymentCreateController;
 
 $(document).ready(function () {
-    paymentCreate = new PaymentCreate();
-    paymentCreate.init();   
+    paymentCreateController = new PaymentCreateController();
+    paymentCreateController.init();   
 });
