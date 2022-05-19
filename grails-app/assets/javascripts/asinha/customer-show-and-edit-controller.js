@@ -36,7 +36,6 @@ function CustomerShowAndEditController() {
             infosCustomer[key] = value;
         });
         
-        disableInputs();
         var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
@@ -47,6 +46,7 @@ function CustomerShowAndEditController() {
                 alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
+            disableInputs();
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
