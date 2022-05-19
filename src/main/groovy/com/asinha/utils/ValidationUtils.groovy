@@ -64,6 +64,5 @@ class ValidationUtils {
             return true
         }
         return false
-        
     }
 }
