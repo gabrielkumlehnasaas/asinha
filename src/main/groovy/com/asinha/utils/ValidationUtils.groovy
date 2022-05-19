@@ -1,52 +1,69 @@
 
 package com.asinha.utils
 
+import groovy.json.JsonSlurper
 import java.lang.String
 import java.net.URL.*
+import org.apache.commons.validator.routines.EmailValidator
 
 class ValidationUtils {
-
-    // String patternNumbers = "[0-9]"
-    // def patternNotNumbers = "[^0-9]"
 
     public static String digitsOnlyCleaner(String dirty) {
         String clean = dirty.replaceAll("[^0-9]", '')
         return clean
     }
 
-    public static Boolean addressNumberValidate(String addressNumber) {
-        if(!(addressNumber.contains("[0-9]"))) {
-            return false
+    public static Boolean validateNotNull(String parameter) {
+        if (parameter != null) {
+            return true
         }
-        return true
+        return false
     }
 
-    public static Boolean phoneValidate(String phone) {
+    public static Boolean validateAddressNumber(String addressNumber) {
+        String cleanAddressNumber = digitsOnlyCleaner(addressNumber)
+        if (cleanAddressNumber.length() == addressNumber.length() && addressNumber != null) {
+            return true
+        }
+        return false
+    }
+
+    public static Boolean validatePhone(String phone) {
         String cleanPhone = digitsOnlyCleaner(phone)
-        if(cleanPhone.length() == 10 || cleanPhone.length() == 11) {
+        if (cleanPhone != null && cleanPhone.length() == 10 || cleanPhone.length() == 11) {
             return true
         }
         return false
     }
 
-    public static Boolean cpfCnpjValidate(String cpfCnpj) {
+    public static Boolean validateCpfCnpj(String cpfCnpj) {
         String cleanCpfCnpj = digitsOnlyCleaner(cpfCnpj)
-        if(cleanCpfCnpj.length() ==  11 || cleanCpfCnpj.length() ==  14) {
+        if (cleanCpfCnpj != null && cleanCpfCnpj.length() ==  11 || cleanCpfCnpj.length() ==  14) {
             return true
         }
         return false
     }
 
-    public static Boolean postalCodeValidate(String postalCode) {
+    public static Boolean validatePostalCode(String postalCode) {
         String cleanPostalCode = digitsOnlyCleaner(postalCode)
-        if(cleanPostalCode.length() == 8) {
+        if (cleanPostalCode != null && cleanPostalCode.length() == 8) {
             def get = new URL("https://viacep.com.br/ws/" + cleanPostalCode + "/json/").openConnection()
-            def getResponseCode = get.getResponseCode()
-                if (getResponseCode.equals(200)) {
-                return true
+            def sluper = new JsonSlurper()
+            def getResponse = sluper.parseText(get.content.text)
+            if (getResponse.erro) {
+                return false
             }
-            return false
+            return true
         }
         return false
+    }
+
+    public static Boolean validateEmail(String email) {
+        EmailValidator emailValidator = EmailValidator.getInstance()
+        if (emailValidator.isValid(email)) {
+            return true
+        }
+        return false
+        
     }
 }

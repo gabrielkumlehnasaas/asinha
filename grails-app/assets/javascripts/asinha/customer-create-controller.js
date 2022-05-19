@@ -81,8 +81,13 @@ function CustomerCreateController() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosCustomer, function(response) {
+            console.log(response)
             if (!response.success) {
-                alert("Erro ao Criar Conta")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Criar Conta:\n" + errorMessages)
                 return
             }
             

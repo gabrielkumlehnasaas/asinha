@@ -4,9 +4,9 @@ abstract class BaseEntity {
 
     Boolean deleted = false
 
-    Date dateCreated = new Date()
+    Date dateCreated
 
-    Date lastUpdate = dateCreated
+    Date lastUpdated
 
     Date dateDeleted
 
@@ -15,9 +15,6 @@ abstract class BaseEntity {
     }
 
     static constraints = {
-        deleted nullable: false
-        dateCreated nullable: false
-        lastUpdate nullable: false
         dateDeleted nullable: true
     }
 }

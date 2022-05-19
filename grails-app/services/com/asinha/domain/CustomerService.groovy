@@ -48,18 +48,37 @@ class CustomerService {
     }
 
     public Customer validate(Customer customer, Map params) {
-        if (!(ValidationUtils.addressNumberValidate(params.addressNumber))) {
-            DomainUtils.addError(customer, "Endereço sem número")
+        if (!(ValidationUtils.validateNotNull(params.address))) {
+            DomainUtils.addError(customer, "Campo Endereço é obrigatório")
         }
-        if (!(ValidationUtils.phoneValidate(params.phone))) {
-            DomainUtils.addError(customer, "Número de telefone inválido")
+        if (!(ValidationUtils.validateAddressNumber(params.addressNumber))) {
+            DomainUtils.addError(customer, "Número inválido")
         }
-        if (!(ValidationUtils.cpfCnpjValidate(params.cpfCnpj))) {
+        if (!(ValidationUtils.validateNotNull(params.city))) {
+            DomainUtils.addError(customer, "Campo Cidade é obrigatório")
+        }
+        if (!(ValidationUtils.validateCpfCnpj(params.cpfCnpj))) {
             DomainUtils.addError(customer, "CPF/CNPJ inválido")
         }
-        if (!(ValidationUtils.postalCodeValidate(params.postalCode))) {
+        if (!(ValidationUtils.validateEmail(params.email))) {
+            DomainUtils.addError(customer, "E-mail inválido")
+        }
+        if (!(ValidationUtils.validatePhone(params.phone))) {
+            DomainUtils.addError(customer, "Número de telefone inválido")
+        }
+        if (!(ValidationUtils.validateNotNull(params.name))) {
+            DomainUtils.addError(customer, "Campo Nome é obrigatório")
+        }
+        if (!(ValidationUtils.validatePostalCode(params.postalCode))) {
             DomainUtils.addError(customer, "CEP inválido")
         }
+        if (!(ValidationUtils.validateNotNull(params.province))) {
+            DomainUtils.addError(customer, "Campo Bairro é obrigatório")
+        }
+        if (!(ValidationUtils.validateNotNull(params.state))) {
+            DomainUtils.addError(customer, "Campo Estado é obrigatório")
+        }
+
         return customer
     }
 }

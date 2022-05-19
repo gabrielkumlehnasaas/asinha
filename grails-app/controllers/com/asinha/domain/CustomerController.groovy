@@ -15,14 +15,12 @@ class CustomerController extends BaseController {
     
     def save() {
         Customer customer = customerService.save(params)
-        println(customer.hasErrors())
         if(customer.hasErrors()) {
-            String errorMessages = ""
+            List errorMessages = []
             customer.errors.allErrors.each {
-                // errorMessages += it.message + "\n"
-                println(it.defaultMessage)
+                errorMessages.push(it.defaultMessage)
             }
-            render([success: false, message: errorMessages] as JSON)
+            render([success: false, messages: errorMessages] as JSON)
             return
         }
         render ([success: true] as JSON)
