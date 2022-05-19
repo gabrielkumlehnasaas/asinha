@@ -6,6 +6,8 @@ import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
+import com.asinha.utils.DomainUtils
+import com.asinha.utils.ValidationUtils
 
 import grails.gorm.transactions.Transactional
 import java.math.BigDecimal
@@ -37,8 +39,24 @@ class PaymentService {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
-        payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
         return payment
+    }
+
+    public Payment validate(Payment payment, Map params) {
+        if (!ValidationUtils.validateValue(params.value)) {
+            DomainUtils.addError(payment, 'Cobrança mínima de R$5.00')
+        }
+        if (!(ValidationUtils.validateNotNull(params.description))) {
+            DomainUtils.addError(payment, "Campo Cidade é obrigatório")
+        }
+        if (!ValidationUtils.validateMethod(params.method)) {
+            DomainUtils.addError(payment, "Método de pagamento inválido")
+        }
+        if (!ValidationUtils.validateDueDate(oarams.dueDate)) {
+            DomainUtils.addErrors(payment, "Data de vencimento já passou")
+        }
+
+
     }
 }

@@ -1,8 +1,11 @@
-
 package com.asinha.utils
+
+import com.asinha.enums.PaymentMethod
+import com.asinha.utils.CustomDateUtils
 
 import groovy.json.JsonSlurper
 import java.lang.String
+import java.math.BigDecimal
 import java.net.URL.*
 import org.apache.commons.validator.routines.EmailValidator
 
@@ -64,5 +67,24 @@ class ValidationUtils {
             return true
         }
         return false
+    }
+
+    public static Boolean validateValue(String value) {
+        BigDecimal parsedValue = BigDecimal(value)
+        if (parsedValue < 5.00) {
+            return false
+        }
+    return true
+    }
+
+    public static Boolean validateMethod(String method) {
+        if (PaymentMethod.values().contains(PaymentMethod.valueOf(method))) {
+            return true
+        }
+        return false
+    }
+
+    public static Boolean validateDueDate(String dueDate) {
+        Date yesterday = CustomDateUtils.getYesterday()
     }
 }
