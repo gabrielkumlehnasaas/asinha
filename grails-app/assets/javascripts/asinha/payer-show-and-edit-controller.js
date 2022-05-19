@@ -56,7 +56,6 @@ function PayerShowAndEditController() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            idInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -72,7 +71,6 @@ function PayerShowAndEditController() {
     }
 
     var disableInputs = function () {
-        idInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;

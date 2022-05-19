@@ -42,7 +42,7 @@ class PayerService {
         payer.customer = Customer.get(params.long("customerId"))
         payer.save(failOnError: true)
         return payer
-    }
+    }   
 
     public Payer update(Map params) {
         Payer payer = Payer.get(params.long("payerId"))
@@ -59,7 +59,6 @@ class PayerService {
         payer.postalCode = ValidationUtils.digitsOnlyCleaner(params.postalCode)
         payer.province = params.province
         payer.state = params.state
-        payer.lastUpdate = new Date()
         payer.save(flush: true, failOnError:true)
         return payer
     }
