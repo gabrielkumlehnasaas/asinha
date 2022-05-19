@@ -31,7 +31,7 @@
                 <div class="col-md-6 p-3 bg-light">
                     <label for="email">E-mail</label>
                     <small id="textEmail"></small>
-                    <input type="text" class="form-control border border-1 border-dark" id="email" name="email" required>
+                    <input type="email" class="form-control border border-1 border-dark" id="email" name="email" required>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="phone">Telefone</label>

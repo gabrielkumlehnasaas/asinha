@@ -81,7 +81,6 @@ function CustomerCreateController() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosCustomer, function(response) {
-            console.log(response)
             if (!response.success) {
                 errorMessages = ""
                 response.messages.forEach(function (value) {
@@ -90,7 +89,7 @@ function CustomerCreateController() {
                 alert("Erro ao Criar Conta:\n" + errorMessages)
                 return
             }
-            
+
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }

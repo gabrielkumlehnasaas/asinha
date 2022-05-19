@@ -40,7 +40,11 @@ function CustomerShowAndEditController() {
         var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Dados")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
             window.location.href = document.querySelector("form").getAttribute("data-redirect");

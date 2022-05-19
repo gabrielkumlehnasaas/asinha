@@ -35,11 +35,15 @@ class CustomerController extends BaseController {
     }
 
     def update() {
-        try {
-            Customer customer = customerService.update(params)
-            if (customer) render ([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Customer customer = customerService.update(params)
+        if(customer.hasErrors()) {
+            List errorMessages = []
+            customer.errors.allErrors.each {
+                errorMessages.push(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render ([success: true] as JSON)
     }
 }
