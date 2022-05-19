@@ -49,5 +49,6 @@
             </form>
         </div>
     <asset:javascript src="asinha/payer-show-and-edit-controller.js"/>
+    <asset:javascript src="utils/client-form-utils.js"/>
     </body>
 </html>

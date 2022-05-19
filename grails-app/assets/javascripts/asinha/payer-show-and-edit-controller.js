@@ -36,12 +36,17 @@ function PayerShowAndEditController() {
             infosPayer[key] = value;
         });
         var url = document.querySelector("form").getAttribute("action");
-        disableInputs();
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Pagador")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Editar Pagador:\n" + errorMessages)
                 return
             }
+            
+            disableInputs();
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };

@@ -17,7 +17,7 @@ class PayerController extends BaseController {
         Payer payer = payerService.save(params)
         if(payer.hasErrors()) {
             List errorMessages = []
-            customer.errors.allErrors.each {
+            payer.errors.allErrors.each {
                 errorMessages.push(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
@@ -40,7 +40,7 @@ class PayerController extends BaseController {
         Payer payer = payerService.update(params)
         if(payer.hasErrors()) {
             List errorMessages = []
-            customer.errors.allErrors.each {
+            payer.errors.allErrors.each {
                 errorMessages.push(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
