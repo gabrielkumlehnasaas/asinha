@@ -15,9 +15,18 @@ class CustomDateUtils {
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
 
+    public static Calendar clearTime(Calendar calendar) {
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)
+        return calendar
+    }
+
     public static Date getYesterday() {
         Calendar yesterday = Calendar.getInstance()
         yesterday.add(Calendar.DAY_OF_MONTH, -1)
+        yesterday = clearTime(yesterday)
         return yesterday.getTime()
     }
 }
