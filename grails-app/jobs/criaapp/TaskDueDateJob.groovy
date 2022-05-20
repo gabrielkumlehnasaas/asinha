@@ -1,7 +1,9 @@
 package criaapp
 
 import com.asinha.domain.Payment
+import com.asinha.domain.PaymentService
 import com.asinha.enums.PaymentStatus
+import com.asinha.utils.CustomDateUtils
 
 import grails.gorm.transactions.Transactional
 
@@ -14,22 +16,17 @@ class TaskDueDateJob {
   
   static concurrent = false
 
+  def paymentService
+
   def execute(){
-    Date today = new Date()
-    List<Payment> paymentList = Payment.list()
+    Date yesterday = CustomDateUtils.getYesterday()
+    List<Payment> paymentList = paymentService.listPaymentByStatusAndDueDate(PaymentStatus.PENDING, yesterday)
     for(Payment payment : paymentList) {
-      if(today.after(payment.dueDate)) {
+      if(yesterday == (payment.dueDate)) {
         payment.status = PaymentStatus.OVERDUE
-        payment.lastUpdate = today
         payment.save(flush: true, failOnError:true)
         print "Job Executando..."
       }
     }
   }
-    public static Date getYesterday() {
-    Calendar yesterday = getInstanceOfCalendar(new Date())
-    yesterday.add(Calendar.DATE, -1)
-    return yesterday.getTime().clearTime()
-  }    
 }
-
