@@ -58,6 +58,6 @@ class PaymentService {
         if (!ValidationUtils.validateDueDate(params.dueDate)) {
             DomainUtils.addError(payment, "Data de vencimento inválida")
         }
-        if ()
+        return payment
     }
 }
