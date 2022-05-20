@@ -33,12 +33,22 @@ class PaymentService {
         return payment
     }
 
-        public Payment confirmPayment(paymentId) {
+    public Payment confirmPayment(paymentId) {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
         return payment
+    }
+    
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
+        List<Payment> paymentList= Payment.createCriteria().list() {
+            eq("status", paymentStatus)
+            and {
+                like("dueDate", yesterday) 
+            }
+        }
+        return paymentList
     }
 }
