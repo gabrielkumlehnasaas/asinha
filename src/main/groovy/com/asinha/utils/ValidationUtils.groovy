@@ -70,7 +70,7 @@ class ValidationUtils {
     }
 
     public static Boolean validateValue(String value) {
-        BigDecimal parsedValue = BigDecimal(value)
+        BigDecimal parsedValue = new BigDecimal(value)
         if (parsedValue < 5.00) {
             return false
         }
@@ -85,6 +85,9 @@ class ValidationUtils {
     }
 
     public static Boolean validateDueDate(String dueDate) {
-        Date yesterday = CustomDateUtils.getYesterday()
+        if (CustomDateUtils.toDate(dueDate, "yyyy-MM-dd") < CustomDateUtils.getToday()) {
+            return false
+        }
+        return true
     }
 }

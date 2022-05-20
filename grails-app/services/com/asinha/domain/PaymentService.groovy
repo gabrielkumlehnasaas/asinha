@@ -24,6 +24,8 @@ class PaymentService {
 
     public Payment save(Map params) {
         Payment payment = new Payment()
+        payment = validate(payment, params)
+        if (payment.hasErrors()) return payment
         payment.value = new BigDecimal(params.value)
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
@@ -53,10 +55,9 @@ class PaymentService {
         if (!ValidationUtils.validateMethod(params.method)) {
             DomainUtils.addError(payment, "Método de pagamento inválido")
         }
-        if (!ValidationUtils.validateDueDate(oarams.dueDate)) {
-            DomainUtils.addErrors(payment, "Data de vencimento já passou")
+        if (!ValidationUtils.validateDueDate(params.dueDate)) {
+            DomainUtils.addError(payment, "Data de vencimento inválida")
         }
-
-
+        if ()
     }
 }

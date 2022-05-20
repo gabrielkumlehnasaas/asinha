@@ -2,6 +2,7 @@ package com.asinha.utils
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CustomDateUtils {
 
@@ -16,13 +17,13 @@ class CustomDateUtils {
     }
 
     public static Date getToday() {
-       Calendar today = getInstanceOfCalendar(new Date())
-       return today.getTime().clearTime()
+       Calendar today = Calendar.getInstance()
+       return today.getTime()
     }
 
     public static Date getYesterday() {
-       Calendar yesterday = getInstanceOfCalendar(new Date())
+       Calendar yesterday = Calendar.getInstance()
        yesterday.add(Calendar.DAY_OF_MONTH, -1)
-       return yesterday.getTime().clearTime()
+       return yesterday.getTime()
     }
 }
