@@ -1,5 +1,9 @@
 package criaapp
 
+import com.asinha.utils.CustomDateUtils
+
+import java.sql.Timestamp
+
 class EmailSenderController {
 
     def index() {}
@@ -11,7 +15,9 @@ class EmailSenderController {
                 subject params.subjectSendEmail
                 text params.messageSendEmail
             }
-                flash.message = "E-mail enviado em "+new Date()
+                Date now = new Date()
+                Timestamp ts = new Timestamp(now.getTime())
+                flash.message = "E-mail enviado em " + CustomDateUtils.formatTimestamp(ts)
                 flash.type = "success"
         } catch (Exception e) {
             flash.message = "Erro ao enviar E-mail"
