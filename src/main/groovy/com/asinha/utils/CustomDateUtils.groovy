@@ -15,6 +15,12 @@ class CustomDateUtils {
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
 
+    public static Date getMinutesBefore(minutes) {
+        Calendar now = Calendar.getInstance()
+        now.add(Calendar.MINUTE, -minutes)
+        return now.getTime()
+    }
+
     public static Calendar clearTime(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0)
         calendar.set(Calendar.MINUTE, 0)
