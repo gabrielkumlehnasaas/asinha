@@ -1,4 +1,4 @@
-package criaapp
+package com.asinha.domain
 
 import com.asinha.utils.CustomDateUtils
 
@@ -7,7 +7,7 @@ import java.sql.Timestamp
 class EmailSenderController {
 
     def index() {}
-    
+
     def send() {
         try {
             sendMail {

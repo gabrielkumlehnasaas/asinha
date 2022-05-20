@@ -11,17 +11,18 @@ class TaskEmailNotificationJob {
     }
     
     def paymentService
-    def groovyPageRenderer
-    def emailSenderService
+    def emailSenderController
 
     String customerTemplate = '/utils/newPaymentCustomer'
     String payerTemplate = '/utils/newPaymentPayer'
 
     def execute() {
+        println("job")
         List<Payment> paymentList = paymentService.listLastNewPaymentsByMin(PaymentStatus.PENDING, 1)
         String subject = "Notificação de nova cobrança"
         println(subject)
         for(Payment payment : paymentList) {
+
             emailSenderService.emailSender(payment.customer.email, subject, customerTemplate, payment)
             emailSenderService.emailSender(payment.payer.email, subject, payerTemplate, payment)
         }
