@@ -42,13 +42,12 @@
                         </div>
                     </div>
                     <input type="hidden" name="payerId" id="payerId" value="${ payer.id }">
-                    <button class="btn btn-primary btn-padding-y" type="button" name="editbtn" id="editbtn">Editar</button>
-                    <button class="btn btn-primary btn-padding-y" type="submit" hidden name="updatebtn" id="updatebtn">Salvar</button>
+                    <button class="btn btn-primary btn-padding-y" name="editbtn" id="editbtn">Editar</button>
+                    <button class="btn btn-primary btn-padding-y" hidden name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: payer.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
                 </div>
             </form>
         </div>
     <asset:javascript src="asinha/payer-show-and-edit-controller.js"/>
-    <asset:javascript src="utils/client-form-utils.js"/>
     </body>
 </html>
