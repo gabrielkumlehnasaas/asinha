@@ -20,10 +20,4 @@ class CustomDateUtils {
        Calendar today = Calendar.getInstance()
        return today.getTime()
     }
-
-    public static Date getYesterday() {
-       Calendar yesterday = Calendar.getInstance()
-       yesterday.add(Calendar.DAY_OF_MONTH, -1)
-       return yesterday.getTime()
-    }
 }

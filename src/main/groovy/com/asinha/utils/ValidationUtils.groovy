@@ -53,7 +53,7 @@ class ValidationUtils {
             def get = new URL("https://viacep.com.br/ws/" + cleanPostalCode + "/json/").openConnection()
             def sluper = new JsonSlurper()
             def getResponse = sluper.parseText(get.content.text)
-            if (getResponse.erro) {
+            if (getResponse.erro) { 
                 return false
             }
             return true
@@ -63,25 +63,19 @@ class ValidationUtils {
 
     public static Boolean validateEmail(String email) {
         EmailValidator emailValidator = EmailValidator.getInstance()
-        if (emailValidator.isValid(email)) {
-            return true
-        }
-        return false
+        return emailValidator.isValid(email) 
     }
 
     public static Boolean validateValue(String value) {
-        BigDecimal parsedValue = new BigDecimal(value)
+        BigDecimal parsedValue = new BigDecimal(value.replaceAll(",", ""))
         if (parsedValue < 5.00) {
             return false
-        }
-    return true
+            }
+        return true
     }
 
     public static Boolean validateMethod(String method) {
-        if (PaymentMethod.values().contains(PaymentMethod.valueOf(method))) {
-            return true
-        }
-        return false
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
     }
 
     public static Boolean validateDueDate(String dueDate) {

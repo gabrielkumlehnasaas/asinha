@@ -12,7 +12,7 @@ function PaymentCreateController() {
 
     var bindValue = function() {
         valueInputReference.addEventListener("focusout", function() {
-            var value = parseFloat(valueInputReference.value);
+            var value = parseFloat(valueInputReference.value.replaceAll(",", ""));
             if (value < 5) {
                 errorMessageReference.innerHTML = "O valor mínimo de cobrança é de R$5,00";
                 return
