@@ -41,4 +41,19 @@ class PaymentService {
         payment.save(flush: true, failOnError:true)
         return payment
     }
+    List<Payment> listPaymentByStatusAndDueDate(PaymentStatus paymentStatus, Date yesterday) {
+        List<Payment> paymentList= Payment.createCriteria().list() {
+            eq("status", paymentStatus)
+            and {
+                le("dueDate", yesterday) 
+            }
+        }
+        return paymentList
+    }
 }
+
+
+
+
+
+
