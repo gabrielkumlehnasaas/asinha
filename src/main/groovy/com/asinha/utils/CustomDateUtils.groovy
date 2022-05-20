@@ -15,9 +15,4 @@ class CustomDateUtils {
         String[] reverseDate = date.toString().split(" ")[0].split("-") 
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
-
-    public static Date getToday() {
-       Calendar today = Calendar.getInstance()
-       return today.getTime()
-    }
 }

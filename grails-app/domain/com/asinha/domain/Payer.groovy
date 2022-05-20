@@ -30,17 +30,17 @@ class Payer extends BaseEntity {
     Customer customer
 
     static constraints = {
-        address nullable: false
-        addressNumber nullable: false
-        city nullable: false
-        complement nullable: true
-        cpfCnpj nullable: false
-        email email: true, nullable: false
-        phone nullable: false
-        name nullable: false
-        postalCode nullable: false
-        province nullable: false
-        state nullable: false
+        address size: 1..255, nullable: false
+        addressNumber size: 1..255, nullable: false
+        city size: 1..255, nullable: false
+        complement size: 1..255, nullable: true
+        cpfCnpj size: 11..14, nullable: false
+        email email: true, size: 5..255, nullable: false
+        phone size: 1..255, nullable: false
+        name size: 1..255, nullable: false
+        postalCode size: 1..255, nullable: false
+        province size: 1..255, nullable: false
+        state size: 1..255, nullable: false
         customer nullable: false
     }
 }

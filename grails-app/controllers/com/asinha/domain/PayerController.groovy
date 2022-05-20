@@ -14,16 +14,12 @@ class PayerController extends BaseController {
     }
 
     def save() {
-        Payer payer = payerService.save(params)
-        if(payer.hasErrors()) {
-            List errorMessages = []
-            payer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
-            }
-            render([success: false, messages: errorMessages] as JSON)
-            return
+        try {
+            Payer payer = payerService.save(params)
+            if (payer) render ([success: true] as JSON)
+        } catch (Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
-        render ([success: true] as JSON)
     }
 
     def list() {
@@ -37,15 +33,11 @@ class PayerController extends BaseController {
     }
 
     def update() {
-        Payer payer = payerService.update(params)
-        if(payer.hasErrors()) {
-            List errorMessages = []
-            payer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
-            }
-            render([success: false, messages: errorMessages] as JSON)
-            return
+        try {
+            Payer payer = payerService.update(params)
+            if (payer) render ([success: true] as JSON)
+        } catch (Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
         }
-        render ([success: true] as JSON)
     }
 }

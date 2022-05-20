@@ -81,12 +81,8 @@ function PayerCreateController() {
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayer, function(response) {
-            if (!response.success) {
-                errorMessages = ""
-                response.messages.forEach(function (value) {
-                    errorMessages += value + "\n"
-                });
-                alert("Erro ao Criar Pagador:\n" + errorMessages)
+            if(!response.success) {
+                alert("Error ao Criar Pagador")
                 return
             }
             
