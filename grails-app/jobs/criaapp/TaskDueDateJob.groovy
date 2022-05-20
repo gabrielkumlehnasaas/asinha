@@ -9,7 +9,7 @@ import grails.gorm.transactions.Transactional
 class TaskDueDateJob {
   
   static triggers = {
-    cron name: 'dueDate', cronExpression: "0 59 23 1/1 * ? *"
+    cron name: 'dueDate', cronExpression: "0 0/1 * 1/1 * ? *"
   }
   
   static concurrent = false
@@ -22,7 +22,14 @@ class TaskDueDateJob {
         payment.status = PaymentStatus.OVERDUE
         payment.lastUpdate = today
         payment.save(flush: true, failOnError:true)
+        print "Job Executando..."
       }
     }
   }
+    public static Date getYesterday() {
+    Calendar yesterday = getInstanceOfCalendar(new Date())
+    yesterday.add(Calendar.DATE, -1)
+    return yesterday.getTime().clearTime()
+  }    
 }
+
