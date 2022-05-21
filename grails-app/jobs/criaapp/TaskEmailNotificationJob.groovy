@@ -6,25 +6,26 @@ import com.asinha.domain.PaymentService
 import com.asinha.enums.PaymentStatus
 
 class TaskEmailNotificationJob {
+    
     static triggers = {
-        cron name: 'dueDate', cronExpression: "0/30 0 0 ? * * *"
+        cron name: 'EmailNotification', cronExpression: "0/20 * * ? * * *"
     }
     
     def paymentService
     def emailSenderController
 
-    String customerTemplate = '/utils/newPaymentCustomer'
-    String payerTemplate = '/utils/newPaymentPayer'
+    String customerTemplate = '/email/newPaymentCustomer'
+    String payerTemplate = '/email/newPaymentPayer'
 
     def execute() {
-        println("job")
-        List<Payment> paymentList = paymentService.listLastNewPaymentsByMin(PaymentStatus.PENDING, 1)
+        // List<Payment> paymentList = paymentService.listLastNewPaymentsByMin(PaymentStatus.PENDING, 1)
         String subject = "Notificação de nova cobrança"
         println(subject)
-        for(Payment payment : paymentList) {
+        EmailSenderService.sendEmail("gskumlehn@gmail.com", subject, "/email/test", [name: "name"])
+        // for(Payment payment : paymentList) {
 
-            emailSenderService.emailSender(payment.customer.email, subject, customerTemplate, payment)
-            emailSenderService.emailSender(payment.payer.email, subject, payerTemplate, payment)
-        }
+        //     emailSenderService.emailSender(payment.customer.email, subject, customerTemplate, payment)
+        //     emailSenderService.emailSender(payment.payer.email, subject, payerTemplate, payment)
+        // }
     }
 }

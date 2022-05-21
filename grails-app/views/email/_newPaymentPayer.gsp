@@ -1,5 +1,5 @@
 <%@ page contentType="text/html" %>
-<html>
+<!doctype html>
 <head>
     <title>Você possui uma nova Cobrança</title>
     <%@ page import="com.asinha.utils.CustomDateUtils" %>

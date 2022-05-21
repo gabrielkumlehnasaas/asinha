@@ -24,6 +24,7 @@ class TaskDueDateJob {
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
             payment.save(flush: true, failOnError:true)
+            
         }
     }
 }
