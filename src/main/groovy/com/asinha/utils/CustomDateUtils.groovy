@@ -1,6 +1,6 @@
 package com.asinha.utils
 
-import java.sql.Timestamp;
+import java.sql.Timestamp
 import java.text.SimpleDateFormat
 
 class CustomDateUtils {

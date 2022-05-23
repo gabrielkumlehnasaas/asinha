@@ -8,10 +8,14 @@ import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
 
 import grails.gorm.transactions.Transactional
+import grails.plugin.asyncmail.AsynchronousMailService
 import java.math.BigDecimal
 
 @Transactional
 class PaymentService {
+
+    grails.gsp.PageRenderer groovyPageRenderer
+    AsynchronousMailService asyncMailService
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
@@ -30,6 +34,16 @@ class PaymentService {
         payment.payer = Payer.get(params.long("payerId"))
         payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
+        asyncMailService.sendMail {
+            to payment.customer.email
+            subject "Notificação de nova cobrança"
+            html groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment])
+        }
+        asyncMailService.sendMail {
+            to payment.payer.email
+            subject "Notificação de nova cobrança"
+            html groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment])
+        }
         return payment
     }
 
@@ -39,6 +53,16 @@ class PaymentService {
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
+        asyncMailService.sendMail {
+            to payment.customer.email
+            subject "Notificação de pagamento"
+            html groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment])
+        }
+        asyncMailService.sendMail {
+            to payment.payer.email
+            subject "Notificação de pagamento"
+            html groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment])
+        }
         return payment
     }
     
