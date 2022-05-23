@@ -15,7 +15,7 @@ class TaskDueDateJob {
     grails.gsp.PageRenderer groovyPageRenderer
 
     static triggers = {
-        cron name: 'dueDate', cronExpression: "0/20 * * ? * * *"
+        cron name: 'dueDate', cronExpression: "0 1 0 1/1 * ? *"
     }
   
     static concurrent = false
