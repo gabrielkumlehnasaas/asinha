@@ -41,19 +41,26 @@ class PaymentService {
         payment.save(flush: true, failOnError:true)
         return payment
     }
-    List<Payment> listPaymentByStatusAndDueDate(PaymentStatus paymentStatus, Date yesterday) {
+    
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
-                le("dueDate", yesterday) 
+                like("dueDate", yesterday) 
             }
         }
         return paymentList
     }
+
+    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes) {
+        Date minutesBefore = CustomDateUtils.getMinutesBefore(minutes)
+        List<Payment> paymentList= Payment.createCriteria().list() {
+            eq("status", paymentStatus)
+            and {
+                gt("dateCreated", minutesBefore) 
+            }
+        }
+        return paymentList
+    }
+
 }
-
-
-
-
-
-
