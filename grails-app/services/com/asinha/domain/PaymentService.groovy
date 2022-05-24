@@ -17,7 +17,13 @@ class PaymentService {
     grails.gsp.PageRenderer groovyPageRenderer
     AsynchronousMailService asyncMailService
 
-    public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
+    public List<Payment> getPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+        if (max == null || offset == null) {
+            List<Payment> paymentList = Payment.createCriteria().list() {
+                eq("customer", Customer.get(customerId))
+            }
+            return paymentList
+        }
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
             eq("customer", Customer.get(customerId))
         }
@@ -66,30 +72,30 @@ class PaymentService {
         return payment
     }
     
-    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
-        List<Payment> paymentList= Payment.createCriteria().list() {
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
+        List<Payment> paymentList = Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
-                like("dueDate", yesterday) 
+                like("dueDate", date) 
             }
         }
         return paymentList
     }
 
-    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes = null) {
-        if (minutes == null) {
-            List<Payment> paymentList= Payment.createCriteria().list() {
-                eq("status", paymentStatus)
-            }
-            return paymentList
-        }
-        Date minutesBefore = CustomDateUtils.getMinutesBefore(minutes)
-        List<Payment> paymentList= Payment.createCriteria().list() {
-            eq("status", paymentStatus)
+    public List<Payment> listPaymentByCustomerAndStatus(Long customerId, PaymentStatus paymentStatus) {
+        List<Payment> paymentList = Payment.createCriteria().list() {
+            eq("customer", Customer.get(customerId))
             and {
-                gt("dateCreated", minutesBefore) 
+                eq(status, paymentStatus)
             }
         }
         return paymentList
+    }
+
+    public BigDecimal sumOfValuesInList(List<Payment> paymentList) {
+        BigDecimal totalValue = 0.00
+        paymentList.forEach() {
+            totalValue += it.value
+        }
     }
 }
