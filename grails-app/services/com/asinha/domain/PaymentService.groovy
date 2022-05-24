@@ -2,6 +2,7 @@ package com.asinha.domain
 
 import com.asinha.domain.Customer
 import com.asinha.domain.Payer
+import com.asinha.domain.PayerService
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
@@ -14,8 +15,13 @@ import java.math.BigDecimal
 @Transactional
 class PaymentService {
 
+    def payerService
     grails.gsp.PageRenderer groovyPageRenderer
     AsynchronousMailService asyncMailService
+
+    public String getString() {
+        return "importei o service de payment"
+    }
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
         if (max == null || offset == null) {
@@ -86,7 +92,7 @@ class PaymentService {
         List<Payment> paymentList = Payment.createCriteria().list() {
             eq("customer", Customer.get(customerId))
             and {
-                eq(status, paymentStatus)
+                eq("status", paymentStatus)
             }
         }
         return paymentList
@@ -96,6 +102,31 @@ class PaymentService {
         BigDecimal totalValue = 0.00
         paymentList.forEach() {
             totalValue += it.value
+        }
+        return totalValue
+    }
+
+    public Map getDashboardInfo(Long customerId) {
+        if (getPaymentsByCustomer(customerId)) {
+
+            List<Payer> payerList = payerService.getPayersByCustomer(customerId)
+            Integer totalPayers = payerList.size()
+            
+            List<Payment> overduePaymentList = listPaymentByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
+            List<Payer> defaultersList = new ArrayList<Payer>()
+            overduePaymentList.forEach() {
+                if (!defaultersList.includes(it.payer))
+                defaultersList.push(it.payer)
+            }
+            Integer defaulters = defaultersList.size()
+            Integer nonDefaulters = totalPayers - defaulters
+
+            BigDecimal recieved = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID))
+            BigDecimal foreseen = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING))
+            BigDecimal overdue = sumOfValuesInList(overduePaymentList)
+
+            return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, recieved: recieved, foreseen: foreseen, overdue: overdue]
+        return null
         }
     }
 }

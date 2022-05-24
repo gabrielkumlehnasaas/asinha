@@ -1,0 +1,16 @@
+.dashboard {
+    font-weight: 500;
+}
+
+.green-text {
+    color: green;
+}
+
+.yellow-text {
+    color: goldenrod;
+
+}
+
+.red-text {
+    color: firebrick;
+}

@@ -21,8 +21,12 @@ header{
     vertical-align: center;
 }
 
+body {
+    padding-bottom: 50px;
+}
+
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     padding-top: 7px;
     min-height: 30px;
