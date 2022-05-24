@@ -76,7 +76,13 @@ class PaymentService {
         return paymentList
     }
 
-    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes) {
+    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes = null) {
+        if (minutes == null) {
+            List<Payment> paymentList= Payment.createCriteria().list() {
+                eq("status", paymentStatus)
+            }
+            return paymentList
+        }
         Date minutesBefore = CustomDateUtils.getMinutesBefore(minutes)
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
@@ -86,5 +92,4 @@ class PaymentService {
         }
         return paymentList
     }
-
 }
