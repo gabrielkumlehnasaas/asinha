@@ -2,7 +2,6 @@
 <html>
     <head>
         <meta name="layout" content="main"/>
-        <%@ page import="com.asinha.enums.PaymentStatus" %>
         <title>Cliente</title>
     </head>
     <body>
