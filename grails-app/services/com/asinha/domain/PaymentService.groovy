@@ -1,6 +1,7 @@
 package com.asinha.domain
 
 import com.asinha.domain.Customer
+import com.asinha.domain.MailService
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
@@ -8,14 +9,13 @@ import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
 
 import grails.gorm.transactions.Transactional
-import grails.plugin.asyncmail.AsynchronousMailService
 import java.math.BigDecimal
 
 @Transactional
 class PaymentService {
 
     grails.gsp.PageRenderer groovyPageRenderer
-    AsynchronousMailService asyncMailService
+    def mailService
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
@@ -34,16 +34,10 @@ class PaymentService {
         payment.payer = Payer.get(params.long("payerId"))
         payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
+        String subject = "Notificação de nova cobrança"
+        mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
+        mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
         asyncMailService.sendMail {
-            to payment.customer.email
-            subject "Notificação de nova cobrança"
-            html groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment])
-        }
-        asyncMailService.sendMail {
-            to payment.payer.email
-            subject "Notificação de nova cobrança"
-            html groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment])
-        }
         return payment
     }
 
@@ -53,16 +47,9 @@ class PaymentService {
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
-        asyncMailService.sendMail {
-            to payment.customer.email
-            subject "Notificação de pagamento"
-            html groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment])
-        }
-        asyncMailService.sendMail {
-            to payment.payer.email
-            subject "Notificação de pagamento"
-            html groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment])
-        }
+        String subject = "Notificação de pagamento"
+        mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
+        mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
         return payment
     }
     
@@ -86,5 +73,4 @@ class PaymentService {
         }
         return paymentList
     }
-
 }

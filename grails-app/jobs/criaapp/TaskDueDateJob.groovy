@@ -1,18 +1,16 @@
 package criaapp
 
+import com.asinha.domain.MailService
 import com.asinha.domain.Payment
 import com.asinha.domain.PaymentService
 import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
 
 import grails.gorm.transactions.Transactional
-import grails.plugin.asyncmail.AsynchronousMailService
 
 @Transactional
 class TaskDueDateJob {
 
-    AsynchronousMailService asyncMailService
-    grails.gsp.PageRenderer groovyPageRenderer
 
     static triggers = {
         cron name: 'dueDate', cronExpression: "0 1 0 1/1 * ? *"
@@ -20,6 +18,8 @@ class TaskDueDateJob {
   
     static concurrent = false
 
+    grails.gsp.PageRenderer groovyPageRenderer
+    def mailService
     def paymentService
 
     def execute(){
@@ -28,15 +28,9 @@ class TaskDueDateJob {
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
             payment.save(flush: true, failOnError:true)
-            asyncMailService.sendMail {
-                to payment.customer.email
-                subject "Notificação de cobrança vencida"
-                html groovyPageRenderer.render(template: "/email/overduePaymentCustomer", model: [payment: payment])
-            }
-            asyncMailService.sendMail {
-                to payment.payer.email
-                subject "Notificação de cobrança vencida"
-                html groovyPageRenderer.render(template: "/email/overduePaymentPayer", model: [payment: payment])
+            String subject = "Notificação de cobrança vencida"
+            mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentCustomer", model: [payment: payment]))
+            mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentPayer", model: [payment: payment]))
             }
         }
     }
