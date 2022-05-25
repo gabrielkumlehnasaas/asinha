@@ -1,7 +1,7 @@
 package com.asinha.domain
 
 import com.asinha.domain.Customer
-import com.asinha.domain.MailService
+import com.asinha.domain.EmailService
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
@@ -15,7 +15,7 @@ import java.math.BigDecimal
 class PaymentService {
 
     grails.gsp.PageRenderer groovyPageRenderer
-    def mailService
+    def emailService
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
@@ -35,9 +35,12 @@ class PaymentService {
         payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
         String subject = "Notificação de nova cobrança"
-        mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
-        mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
-        asyncMailService.sendMail {
+        try {
+            emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
+            emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
         return payment
     }
 
@@ -47,9 +50,9 @@ class PaymentService {
         payment.paymentDate = new Date()
         payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
-        String subject = "Notificação de pagamento"
-        mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
-        mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
+        String mailSubject = "Notificação de pagamento"
+        emailService.sendEmail(payment.customer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
         return payment
     }
     

@@ -1,6 +1,6 @@
 package criaapp
 
-import com.asinha.domain.MailService
+import com.asinha.domain.EmailService
 import com.asinha.domain.Payment
 import com.asinha.domain.PaymentService
 import com.asinha.enums.PaymentStatus
@@ -19,7 +19,7 @@ class TaskDueDateJob {
     static concurrent = false
 
     grails.gsp.PageRenderer groovyPageRenderer
-    def mailService
+    def emailService
     def paymentService
 
     def execute(){
@@ -29,9 +29,8 @@ class TaskDueDateJob {
             payment.status = PaymentStatus.OVERDUE
             payment.save(flush: true, failOnError:true)
             String subject = "Notificação de cobrança vencida"
-            mailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentCustomer", model: [payment: payment]))
-            mailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentPayer", model: [payment: payment]))
-            }
+            emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentCustomer", model: [payment: payment]))
+            emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentPayer", model: [payment: payment]))
         }
     }
 }
