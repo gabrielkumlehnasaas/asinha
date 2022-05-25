@@ -35,4 +35,9 @@ class CustomDateUtils {
         yesterday = clearTime(yesterday)
         return yesterday.getTime()
     }
+    
+    public static String formatDate(Date date, String pattern) {
+        SimpleDateFormat format = new SimpleDateFormat(pattern)
+        return format.format(date).toString()
+    }
 }
