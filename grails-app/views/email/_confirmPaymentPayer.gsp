@@ -3,6 +3,8 @@
 <head>
     <title>Sua Cobrança foi paga</title>
     <%@ page import="com.asinha.utils.CustomDateUtils" %>
+    <%@ page import="com.asinha.enums.PaymentMethod" %>
+    <%@ page import="com.asinha.utils.CustomDateUtils" %>
 </head>
 <body>
     <p>Olá ${ payment.payer.name }!</p>
