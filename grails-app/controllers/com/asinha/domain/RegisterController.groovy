@@ -6,6 +6,7 @@ import grails.plugin.springsecurity.annotation.Secured
 import com.asinha.domain.User
 import com.asinha.domain.Role
 import com.asinha.domain.UserRole
+import com.asinha.customUserDetails.CustomUserDetails
 
 @Transactional
 @Secured('permitAll')

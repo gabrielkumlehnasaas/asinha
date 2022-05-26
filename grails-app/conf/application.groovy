@@ -4,6 +4,7 @@
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.asinha.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.asinha.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.asinha.Role'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/customer'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

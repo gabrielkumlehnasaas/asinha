@@ -40,7 +40,6 @@ class Customer extends BaseEntity{
         state size: 1..255, nullable: false
     }
     
-    String toString() {
-        prodName
-    }
+    String toString() {}
+    
 }

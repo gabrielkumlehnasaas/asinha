@@ -1,4 +1,8 @@
 package com.asinha.customUserDetails
+import com.asinha.domain.Role
+import com.asinha.domain.User
+import com.asinha.domain.UserRole
+
 
 import grails.plugin.springsecurity.userdetails.GrailsUser
 import org.springframework.security.core.GrantedAuthority
