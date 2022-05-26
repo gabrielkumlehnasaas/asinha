@@ -59,6 +59,8 @@ dependencies {
     compile 'org.grails.plugins:quartz:2.0.13'
     compile 'org.grails.plugins:mail:3.0.0'
     compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.2.3'
+    compile "org.grails.plugins:spring-security-core:4.0.0.RC2"
+    compile 'org.grails.plugins:spring-security-core:4.0.3'
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"
     profile "org.grails.profiles:web"
