@@ -6,7 +6,8 @@
 <body>
     <p>Olá ${ payment.customer.name }!</p>
     <p>Sua Cobrança para ${ payment.payer.name } venceu</p>
-    <p>Esta cobrança é referente a "${ payment.description }", no valor de R$ ${ payment.value }</p>
+    <p>Descrição: ${ payment.description }</p>
+    <p>Valor: R$ ${ payment.value }</p>
     <br>
     <p>Esta é uma mensagem automatizada de Asinha Cobranças</p>
 </body>
