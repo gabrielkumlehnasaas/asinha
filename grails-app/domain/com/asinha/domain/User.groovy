@@ -1,4 +1,4 @@
-package com.asinha
+package com.asinha.domain
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -17,8 +17,8 @@ class User implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
+    String fullname
     
-
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
@@ -26,6 +26,7 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
+        fullname nullable: false, blank: false
     }
 
     static mapping = {

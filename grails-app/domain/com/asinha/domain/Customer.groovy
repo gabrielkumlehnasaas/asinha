@@ -39,4 +39,8 @@ class Customer extends BaseEntity{
         province size: 1..255, nullable: false
         state size: 1..255, nullable: false
     }
+    
+    String toString() {
+        prodName
+    }
 }

@@ -1,4 +1,4 @@
-package com.asinha
+package com.asinha.domain
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -19,5 +19,9 @@ class Role implements Serializable {
 
 	static mapping = {
 		cache true
+	}
+	
+	String toString() {
+  		authority
 	}
 }
