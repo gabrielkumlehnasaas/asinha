@@ -1,5 +1,9 @@
-package com.asinha
+package com.asinha.utils
 
+import com.asinha.domain.Role
+import com.asinha.domain.User
+import com.asinha.domain.UserRole
+import com.asinha.customUserDetails.CustomUserDetails
 import grails.plugin.springsecurity.SpringSecurityService
 import org.grails.datastore.mapping.engine.event.AbstractPersistenceEvent
 import org.grails.datastore.mapping.engine.event.PreInsertEvent
