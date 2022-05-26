@@ -37,7 +37,6 @@ class PaymentService {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
-        payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
         return payment
     }
