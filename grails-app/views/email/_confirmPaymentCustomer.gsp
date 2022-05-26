@@ -8,9 +8,9 @@
 </head>
 <body>
     <p>Olá ${ payment.customer.name }!</p>
-    <h1>Comprovante de pagamento</h1>
-    <p>Gerado em ${ CustomDateUtils.formatTimestamp(payment.dateCreated) } </p>
+    <p>Sua Cobrança para ${ payment.payer.name } foi paga</p>
     <p>Descrição: ${ payment.description }</p>
+    <p>Valor: R$ ${ payment.value }</p>
     <br>
     <h1>Dados do pagamento</h1>
     <p>Forma de pagamento: <g:message code="PaymentMethod.${payment.method}"/> </p>
