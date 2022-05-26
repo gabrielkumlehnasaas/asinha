@@ -4,13 +4,13 @@ import grails.plugin.asyncmail.AsynchronousMailService
 
 class EmailService {
 
-    def asynchronousMailService
+    AsynchronousMailService asynchronousMailService
 
-    def sendEmail(String email, String subject, String html) {
+    def sendEmail(String email, String mailSubject, String mailBody) {
         asynchronousMailService.sendMail {
             to email
-            subject subject
-            html html
+            subject mailSubject
+            html mailBody
         }
     }
 }
