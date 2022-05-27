@@ -41,13 +41,25 @@ class PaymentService {
         return payment
     }
     
-    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
+        Date beginningOfDay = CustomDateUtils.clearTime(date)
+        Date endOfday = CustomDateUtils.getEndOfDay(date) 
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
-                like("dueDate", yesterday) 
+                ge("dueDate", beginningOfDay)
+                le("dueDate", endOfday)
             }
         }
         return paymentList
+    }
+
+    public void updateOverduePayments() {
+        Date yesterday = CustomDateUtils.sumDays(new Date, -1)
+        List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
+        for(Payment payment : paymentList) {
+            payment.status = PaymentStatus.OVERDUE
+            payment.save(flush: true)
+        }
     }
 }

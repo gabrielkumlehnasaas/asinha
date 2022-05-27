@@ -19,11 +19,6 @@ class TaskDueDateJob {
     def paymentService
 
     def execute(){
-        Date yesterday = CustomDateUtils.getYesterday()
-        List<Payment> paymentList = paymentService.listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
-        for(Payment payment : paymentList) {
-            payment.status = PaymentStatus.OVERDUE
-            payment.save(flush: true, failOnError:true)
-        }
+        paymentService.updateOverduePayments()
     }
 }
