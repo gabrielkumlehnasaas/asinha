@@ -22,16 +22,10 @@
             </div>
             <div class="dropdown">
                 <sec:ifLoggedIn>
-                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <sec:loggedInUserInfo field='fullname'/>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li>
-                        <g:form controller="logout">
-                        <g:submitButton class="dropdown-item navbar-dark color-light" name="Submit" value="Logout" style="color:red" />
-                        </g:form>
-                    </li>
-                </ul>
+                <button class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><sec:loggedInUserInfo field='fullname'/></button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                   <a class="dropdown-item red-color" href="logoff">Sair</a>
+                </div>
                 </sec:ifLoggedIn>
             </div>
         </nav>
