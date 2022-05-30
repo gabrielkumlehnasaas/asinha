@@ -53,7 +53,6 @@ class PayerService {
         payer.postalCode = params.postalCode
         payer.province = params.province
         payer.state = params.state
-        payer.lastUpdate = new Date()
         payer.save(flush: true, failOnError:true)
         return payer
     }
