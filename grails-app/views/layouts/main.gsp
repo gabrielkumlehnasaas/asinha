@@ -20,31 +20,22 @@
             <div class="nav justify-content-end">
                 <h1 class="title">Asinha</h1>
             </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-static-top" role="navigation">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
-                <ul class="nav navbar-nav ml-auto">
-                <g:pageProperty name="page.nav"/>
+            <div class="dropdown">
                 <sec:ifLoggedIn>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    <sec:loggedInUserInfo field='fullname'/>
-                  </a>
-                  <div class="dropdown-menu navbar-dark">
-                    <g:form controller="logout">
-                      <g:submitButton class="dropdown-item navbar-dark color-light" name="Submit" value="Logout" style="color:gray" />
-                    </g:form>
-                  </div>
-              </li>
-                </sec:ifLoggedIn>
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <sec:loggedInUserInfo field='fullname'/>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                        <g:form controller="logout">
+                        <g:submitButton class="dropdown-item navbar-dark color-light" name="Submit" value="Logout" style="color:red" />
+                        </g:form>
+                    </li>
                 </ul>
+                </sec:ifLoggedIn>
             </div>
-
         </nav>
+        
     </header>
     <g:layoutBody/>
     <footer>
