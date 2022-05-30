@@ -8,13 +8,14 @@ import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
 
+import grails.gsp.PageRenderer
 import grails.gorm.transactions.Transactional
 import java.math.BigDecimal
 
 @Transactional
 class PaymentService {
 
-    grails.gsp.PageRenderer groovyPageRenderer
+    PageRenderer groovyPageRenderer
     def emailService
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
@@ -34,24 +35,16 @@ class PaymentService {
         payment.payer = Payer.get(params.long("payerId"))
         payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
-        String subject = "Notificação de nova cobrança"
-        try {
-            emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
-            emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
-        } catch (Exception e) {
-            e.printStackTrace()
-        }
+        notifyNewPayment(payment.id)
         return payment
     }
 
-    public Payment confirmPayment(paymentId) {
+    public Payment confirmPayment(Long paymentId) {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
         payment.save(flush: true, failOnError:true)
-        String mailSubject = "Notificação de pagamento"
-        emailService.sendEmail(payment.customer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
-        emailService.sendEmail(payment.payer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
+        notifyConfirmedPayment(paymentId)
         return payment
     }
     
@@ -75,5 +68,19 @@ class PaymentService {
             payment.status = PaymentStatus.OVERDUE
             payment.save(flush: true)
         }
+    }
+
+    private void notifyNewPayment(Long paymentId) {
+        Payment payment = Payment.get(paymentId)
+        String subject = "Notificação de nova cobrança"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
+    }
+
+    private void notifyConfirmedPayment(Long paymentId) {
+        Payment payment = Payment.get(paymentId)
+        String subject = "Notificação de pagamento"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
     }
 }
