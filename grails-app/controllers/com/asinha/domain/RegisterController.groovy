@@ -18,13 +18,14 @@ class RegisterController {
 
     def register() {
         if(!params.password.equals(params.repassword)) {
-            flash.message = "Password and Re-Password not match"
+            flash.message = "Senha e confirmação de senha não coincidem"
             redirect action: "index"
             return
         } else {
             try {
                 def user = User.findByUsername(params.username)?: new User(username: params.username, password: params.password, fullname: params.fullname).save()
-                def role = Role.get(params.role.id)
+                def role = Role.get(2)
+
                 if(user && role) {
                     UserRole.create user, role
 
@@ -33,15 +34,15 @@ class RegisterController {
                       it.clear()
                     }
 
-                    flash.message = "You have registered successfully. Please login."
+                    flash.message = "Você se registrou com sucesso. Por favor entre."
                     redirect controller: "login", action: "auth"
                 } else {
-                    flash.message = "Register failed"
+                    flash.message = "Falha no registro"
                     render view: "index"
                     return
                 }
             } catch (ValidationException e) {
-                flash.message = "Register Failed"
+                flash.message = "Falha no registro"
                 redirect action: "index"
                 return
             }

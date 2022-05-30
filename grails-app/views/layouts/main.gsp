@@ -24,12 +24,12 @@
                 <sec:ifLoggedIn>
                 <button class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"><sec:loggedInUserInfo field='fullname'/></button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                   <a class="dropdown-item red-color" href="logoff">Sair</a>
+                <g:link class="dropdown-item red-color" controller="logoff">Sair</g:link>
                 </div>
                 </sec:ifLoggedIn>
             </div>
         </nav>
-        
+
     </header>
     <g:layoutBody/>
     <footer>
