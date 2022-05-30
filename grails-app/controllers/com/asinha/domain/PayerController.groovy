@@ -18,7 +18,7 @@ class PayerController extends BaseController {
         if(payer.hasErrors()) {
             List<String> errorMessages = []
             payer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
+                errorMessages.add(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
             return
