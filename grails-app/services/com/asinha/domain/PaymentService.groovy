@@ -48,7 +48,6 @@ class PaymentService {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
-        payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
         String mailSubject = "Notificação de pagamento"
         emailService.sendEmail(payment.customer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
@@ -56,24 +55,25 @@ class PaymentService {
         return payment
     }
     
-    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
+        Date beginningOfDay = CustomDateUtils.clearTime(date)
+        Date endOfday = CustomDateUtils.getEndOfDay(date) 
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
-                like("dueDate", yesterday) 
+                ge("dueDate", beginningOfDay)
+                le("dueDate", endOfday)
             }
         }
         return paymentList
     }
 
-    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes) {
-        Date minutesBefore = CustomDateUtils.getMinutesBefore(minutes)
-        List<Payment> paymentList= Payment.createCriteria().list() {
-            eq("status", paymentStatus)
-            and {
-                gt("dateCreated", minutesBefore) 
-            }
+    public void updateOverduePayments() {
+        Date yesterday = CustomDateUtils.sumDays(new Date, -1)
+        List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
+        for(Payment payment : paymentList) {
+            payment.status = PaymentStatus.OVERDUE
+            payment.save(flush: true)
         }
-        return paymentList
     }
 }

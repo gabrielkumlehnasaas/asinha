@@ -23,14 +23,6 @@ class TaskDueDateJob {
     def paymentService
 
     def execute(){
-        Date yesterday = CustomDateUtils.getYesterday()
-        List<Payment> paymentList = paymentService.listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
-        for(Payment payment : paymentList) {
-            payment.status = PaymentStatus.OVERDUE
-            payment.save(flush: true, failOnError:true)
-            String subject = "Notificação de cobrança vencida"
-            emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentCustomer", model: [payment: payment]))
-            emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/overduePaymentPayer", model: [payment: payment]))
-        }
+        paymentService.updateOverduePayments()
     }
 }
