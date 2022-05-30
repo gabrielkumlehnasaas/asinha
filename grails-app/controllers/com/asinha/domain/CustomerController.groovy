@@ -39,7 +39,7 @@ class CustomerController extends BaseController {
         if(customer.hasErrors()) {
             List<String> errorMessages = []
             customer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
+                errorMessages.add(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
             return
