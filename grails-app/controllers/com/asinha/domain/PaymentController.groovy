@@ -22,9 +22,9 @@ class PaymentController extends BaseController{
     def save() {
         Payment payment = paymentService.save(params)
             if(payment.hasErrors()) {
-                List errorMessages = []
+                List<String> errorMessages = []
                 payment.errors.allErrors.each {
-                    errorMessages.push(it.defaultMessage)
+                    errorMessages.add(it.defaultMessage)
                 }
                 render([success: false, messages: errorMessages] as JSON)
                 return

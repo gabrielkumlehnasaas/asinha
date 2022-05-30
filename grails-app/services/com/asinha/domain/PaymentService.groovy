@@ -26,6 +26,7 @@ class PaymentService {
         Payment payment = new Payment()
         payment = validate(payment, params)
         if (payment.hasErrors()) return payment
+        
         payment.value = new BigDecimal(params.value.replaceAll(",", ""))
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
@@ -47,7 +48,7 @@ class PaymentService {
 
     public Payment validate(Payment payment, Map params) {
         if (!ValidationUtils.validateValue(params.value)) {
-            DomainUtils.addError(payment, 'Cobrança mínima de R$5.00')
+            DomainUtils.addError(payment, "Cobrança mínima de R$5.00")
         }
         if (!(ValidationUtils.validateNotNull(params.description))) {
             DomainUtils.addError(payment, "Campo Cidade é obrigatório")
