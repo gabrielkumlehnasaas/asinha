@@ -47,18 +47,29 @@ class PaymentService {
     }
 
     public Payment validate(Payment payment, Map params) {
-        if (!ValidationUtils.validateValue(params.value)) {
-            DomainUtils.addError(payment, "Cobrança mínima de R$5.00")
-        }
-        if (!(ValidationUtils.validateNotNull(params.description))) {
-            DomainUtils.addError(payment, "Campo Cidade é obrigatório")
-        }
-        if (!ValidationUtils.validateMethod(params.method)) {
-            DomainUtils.addError(payment, "Método de pagamento inválido")
-        }
-        if (!ValidationUtils.validateDueDate(params.dueDate)) {
-            DomainUtils.addError(payment, "Data de vencimento inválida")
-        }
+        if (!validateValue(params.value)) DomainUtils.addError(payment, "Cobrança mínima de R$5.00")
+        if (!(ValidationUtils.validateNotNull(params.description))) DomainUtils.addError(payment, "Campo Cidade é obrigatório")
+        if (!validateMethod(params.method)) DomainUtils.addError(payment, "Método de pagamento inválido")
+        if (!validateDueDate(params.dueDate)) DomainUtils.addError(payment, "Data de vencimento inválida")
         return payment
+    }
+
+    private static Boolean validateValue(String value) {
+        BigDecimal parsedValue = new BigDecimal(value.replaceAll(",", ""))
+        if (parsedValue < 5.00) {
+            return false
+            }
+        return true
+    }
+
+    private static Boolean validateMethod(String method) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
+    }
+
+    private static Boolean validateDueDate(String dueDate) {
+        if (CustomDateUtils.toDate(dueDate, "yyyy-MM-dd") < new Date()) {
+            return false
+        }
+        return true
     }
 }

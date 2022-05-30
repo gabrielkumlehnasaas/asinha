@@ -65,23 +65,4 @@ class ValidationUtils {
         EmailValidator emailValidator = EmailValidator.getInstance()
         return emailValidator.isValid(email) 
     }
-
-    public static Boolean validateValue(String value) {
-        BigDecimal parsedValue = new BigDecimal(value.replaceAll(",", ""))
-        if (parsedValue < 5.00) {
-            return false
-            }
-        return true
-    }
-
-    public static Boolean validateMethod(String method) {
-        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
-    }
-
-    public static Boolean validateDueDate(String dueDate) {
-        if (CustomDateUtils.toDate(dueDate, "yyyy-MM-dd") < CustomDateUtils.getToday()) {
-            return false
-        }
-        return true
-    }
 }
