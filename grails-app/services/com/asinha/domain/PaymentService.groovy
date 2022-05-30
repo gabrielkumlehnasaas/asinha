@@ -48,7 +48,7 @@ class PaymentService {
 
     public Payment validate(Payment payment, Map params) {
         if (!ValidationUtils.validateValue(params.value)) {
-            DomainUtils.addError(payment, 'Cobrança mínima de R$5.00')
+            DomainUtils.addError(payment, "Cobrança mínima de R$5.00")
         }
         if (!(ValidationUtils.validateNotNull(params.description))) {
             DomainUtils.addError(payment, "Campo Cidade é obrigatório")
