@@ -16,9 +16,9 @@ class CustomerController extends BaseController {
     def save() {
         Customer customer = customerService.save(params)
         if(customer.hasErrors()) {
-            List errorMessages = []
+            List<String> errorMessages = []
             customer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
+                errorMessages.add(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
             return
@@ -37,9 +37,9 @@ class CustomerController extends BaseController {
     def update() {
         Customer customer = customerService.update(params)
         if(customer.hasErrors()) {
-            List errorMessages = []
+            List<String> errorMessages = []
             customer.errors.allErrors.each {
-                errorMessages.push(it.defaultMessage)
+                errorMessages.add(it.defaultMessage)
             }
             render([success: false, messages: errorMessages] as JSON)
             return
