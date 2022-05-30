@@ -37,7 +37,7 @@ class CustomerController extends BaseController {
     def update() {
         Customer customer = customerService.update(params)
         if(customer.hasErrors()) {
-            List errorMessages = []
+            List<String> errorMessages = []
             customer.errors.allErrors.each {
                 errorMessages.push(it.defaultMessage)
             }
