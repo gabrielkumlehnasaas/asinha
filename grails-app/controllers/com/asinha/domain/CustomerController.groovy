@@ -16,7 +16,7 @@ class CustomerController extends BaseController {
     def save() {
         Customer customer = customerService.save(params)
         if(customer.hasErrors()) {
-            List errorMessages = []
+            List<String> errorMessages = []
             customer.errors.allErrors.each {
                 errorMessages.push(it.defaultMessage)
             }
