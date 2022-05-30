@@ -26,6 +26,7 @@ class PaymentService {
         Payment payment = new Payment()
         payment = validate(payment, params)
         if (payment.hasErrors()) return payment
+        
         payment.value = new BigDecimal(params.value.replaceAll(",", ""))
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
