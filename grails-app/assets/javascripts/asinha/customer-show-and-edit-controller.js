@@ -30,20 +30,20 @@ function CustomerShowAndEditController() {
 
     var submitForm = function() {
         let infosCustomer = {};
-        let data = new FormData(document.querySelector("form"));
+        let data = new FormData(document.querySelector("#create-form"));
         
         data.forEach(function (value,key) {
             infosCustomer[key] = value;
         });
         
         disableInputs();
-        var url = document.querySelector("form").getAttribute("action");
+        var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
                 alert("Erro ao Editar Dados")
                 return
             }
-            window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
     };
 

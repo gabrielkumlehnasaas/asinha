@@ -31,18 +31,20 @@ function PayerShowAndEditController() {
 
     var submitForm = function() {
         let infosPayer = {};
-        let data = new FormData(document.querySelector("form"));
+        let data = new FormData(document.querySelector("#create-form"));
+
         data.forEach(function (value,key) {
             infosPayer[key] = value;
         });
-        var url = document.querySelector("form").getAttribute("action");
+
         disableInputs();
+        var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
                 alert("Erro ao Editar Pagador")
                 return
             }
-            window.location.href = document.querySelector("form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
     };
 
