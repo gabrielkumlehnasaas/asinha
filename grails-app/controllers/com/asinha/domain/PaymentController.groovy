@@ -24,7 +24,7 @@ class PaymentController extends BaseController{
             if(payment.hasErrors()) {
                 List<String> errorMessages = []
                 payment.errors.allErrors.each {
-                    errorMessages.push(it.defaultMessage)
+                    errorMessages.add(it.defaultMessage)
                 }
                 render([success: false, messages: errorMessages] as JSON)
                 return
