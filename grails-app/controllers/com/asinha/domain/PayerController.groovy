@@ -15,7 +15,7 @@ class PayerController extends BaseController {
 
     def save() {
         Payer payer = payerService.save(params)
-        if(payer.hasErrors()) {
+        if (payer.hasErrors()) {
             List<String> errorMessages = []
             payer.errors.allErrors.each {
                 errorMessages.add(it.defaultMessage)
