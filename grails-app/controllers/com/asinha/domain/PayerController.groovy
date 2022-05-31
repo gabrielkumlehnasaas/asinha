@@ -38,7 +38,7 @@ class PayerController extends BaseController {
 
     def update() {
         Payer payer = payerService.update(params)
-        if(payer.hasErrors()) {
+        if (payer.hasErrors()) {
             List errorMessages = []
             payer.errors.allErrors.each {
                 errorMessages.push(it.defaultMessage)
