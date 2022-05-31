@@ -27,7 +27,6 @@ class Customer extends BaseEntity{
     String state
 
     static constraints = {
-        complement nullable: true
         email email: true
     }
 }

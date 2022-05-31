@@ -25,12 +25,6 @@ class Payment extends BaseEntity {
     Customer customer
 
     static constraints = {
-        value nullable: false
-        method nullable: false
-        status nullable: false
-        payer nullable: false
-        customer nullable: false
-        dueDate nullable: false
         paymentDate nullable: true
     }
 }

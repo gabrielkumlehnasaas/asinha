@@ -48,7 +48,7 @@ class PaymentService {
 
     public Payment validate(Payment payment, Map params) {
         if (!validateValue(params.value)) DomainUtils.addError(payment, "Cobrança mínima de R$5.00")
-        if (!(ValidationUtils.validateNotNull(params.description))) DomainUtils.addError(payment, "Campo Cidade é obrigatório")
+        if (!ValidationUtils.validateNotNull(params.description)) DomainUtils.addError(payment, "Campo Cidade é obrigatório")
         if (!validateMethod(params.method)) DomainUtils.addError(payment, "Método de pagamento inválido")
         if (!validateDueDate(params.dueDate)) DomainUtils.addError(payment, "Data de vencimento inválida")
         return payment

@@ -1,10 +1,8 @@
 package com.asinha.utils
 
-import com.asinha.enums.PaymentMethod
 import com.asinha.utils.CustomDateUtils
 
 import groovy.json.JsonSlurper
-import java.lang.String
 import java.math.BigDecimal
 import java.net.URL.*
 import org.apache.commons.validator.routines.EmailValidator
