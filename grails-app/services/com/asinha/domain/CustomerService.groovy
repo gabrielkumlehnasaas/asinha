@@ -17,7 +17,7 @@ class CustomerService {
         customer.addressNumber = params.addressNumber
         customer.city = params.city
         customer.complement = params.complement
-        customer.cpfCnpj =  params.cpfCnpj
+        customer.cpfCnpj = params.cpfCnpj
         customer.email = params.email
         customer.phone = ValidationUtils.digitsOnlyCleaner(params.phone)
         customer.name = params.name
