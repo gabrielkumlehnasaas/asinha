@@ -105,26 +105,24 @@ class PaymentService {
     }
 
     public Map getDashboardInfo(Long customerId) {
-        if (getPaymentsByCustomer(customerId)) {
-
-            List<Payer> payerList = payerService.getPayersByCustomer(customerId)
-            Integer totalPayers = payerList.size()
-            
-            List<Payment> overduePaymentList = listPaymentByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
-            List<Payer> defaultersList = new ArrayList<Payer>()
-            overduePaymentList.forEach() {
-                if (!defaultersList.includes(it.payer))
-                defaultersList.push(it.payer)
-            }
-            Integer defaulters = defaultersList.size()
-            Integer nonDefaulters = totalPayers - defaulters
-
-            BigDecimal recieved = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID))
-            BigDecimal foreseen = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING))
-            BigDecimal overdue = sumOfValuesInList(overduePaymentList)
-
-            return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, recieved: recieved, foreseen: foreseen, overdue: overdue]
-        return null
+        if (!getPaymentsByCustomer(customerId)) return null
+        
+        List<Payer> payerList = payerService.getPayersByCustomer(customerId)
+        Integer totalPayers = payerList.size()
+        
+        List<Payment> overduePaymentList = listPaymentByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
+        List<Payer> defaultersList = new ArrayList<Payer>()
+        overduePaymentList.forEach() {
+            if (!defaultersList.includes(it.payer))
+            defaultersList.push(it.payer)
         }
+        Integer defaulters = defaultersList.size()
+        Integer nonDefaulters = totalPayers - defaulters
+
+        BigDecimal recieved = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID))
+        BigDecimal foreseen = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING))
+        BigDecimal overdue = sumOfValuesInList(overduePaymentList)
+
+        return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, recieved: recieved, foreseen: foreseen, overdue: overdue]
     }
 }
