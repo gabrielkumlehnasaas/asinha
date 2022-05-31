@@ -64,16 +64,16 @@ class PayerService {
     }
 
     public Payer validate(Payer payer, Map params) {
-        if (!(ValidationUtils.validateNotNull(params.address))) DomainUtils.addError(payer, "Campo Endereço é obrigatório")
-        if (!(ValidationUtils.validateAddressNumber(params.addressNumber))) DomainUtils.addError(payer, "Número inválido")
-        if (!(ValidationUtils.validateNotNull(params.city))) DomainUtils.addError(payer, "Campo Cidade é obrigatório")
-        if (!(ValidationUtils.validateCpfCnpj(params.cpfCnpj))) DomainUtils.addError(payer, "CPF/CNPJ inválido")
-        if (!(ValidationUtils.validateEmail(params.email))) DomainUtils.addError(payer, "E-mail inválido")
-        if (!(ValidationUtils.validatePhone(params.phone))) DomainUtils.addError(payer, "Número de telefone inválido")
-        if (!(ValidationUtils.validateNotNull(params.name))) DomainUtils.addError(payer, "Campo Nome é obrigatório")
-        if (!(ValidationUtils.validatePostalCode(params.postalCode))) DomainUtils.addError(payer, "CEP inválido")
-        if (!(ValidationUtils.validateNotNull(params.province))) DomainUtils.addError(payer, "Campo Bairro é obrigatório")
-        if (!(ValidationUtils.validateNotNull(params.state))) DomainUtils.addError(payer, "Campo Estado é obrigatório")
+        if (!ValidationUtils.validateNotNull(params.address)) DomainUtils.addError(payer, "Campo Endereço é obrigatório")
+        if (!ValidationUtils.validateAddressNumber(params.addressNumber)) DomainUtils.addError(payer, "Número inválido")
+        if (!ValidationUtils.validateNotNull(params.city)) DomainUtils.addError(payer, "Campo Cidade é obrigatório")
+        if (!ValidationUtils.validateCpfCnpj(params.cpfCnpj)) DomainUtils.addError(payer, "CPF/CNPJ inválido")
+        if (!ValidationUtils.validateEmail(params.email)) DomainUtils.addError(payer, "E-mail inválido")
+        if (!ValidationUtils.validatePhone(params.phone)) DomainUtils.addError(payer, "Número de telefone inválido")
+        if (!ValidationUtils.validateNotNull(params.name)) DomainUtils.addError(payer, "Campo Nome é obrigatório")
+        if (!ValidationUtils.validatePostalCode(params.postalCode)) DomainUtils.addError(payer, "CEP inválido")
+        if (!ValidationUtils.validateNotNull(params.province)) DomainUtils.addError(payer, "Campo Bairro é obrigatório")
+        if (!ValidationUtils.validateNotNull(params.state)) DomainUtils.addError(payer, "Campo Estado é obrigatório")
         return  payer
     }
 }
