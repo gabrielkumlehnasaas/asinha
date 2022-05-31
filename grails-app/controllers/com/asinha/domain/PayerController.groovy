@@ -29,7 +29,7 @@ class PayerController extends BaseController {
     def list() {
         Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, payerList: payerList, totalCount: payerList.size()]
+        return [customerId: customerId, payerList: payerList, totalCount: payerList.totalCount]
     }
     
     def show() {
