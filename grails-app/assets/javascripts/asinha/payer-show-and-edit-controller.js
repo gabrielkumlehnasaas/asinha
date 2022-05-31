@@ -79,7 +79,7 @@ function PayerShowAndEditController() {
         phoneInputReference.disabled = true;
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
-    }
+    };
 };
 
 var payerShowAndEditController;
