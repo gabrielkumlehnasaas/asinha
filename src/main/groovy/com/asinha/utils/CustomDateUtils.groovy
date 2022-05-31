@@ -24,20 +24,11 @@ class CustomDateUtils {
         return now.getTime()
     }
 
-    public static Date clearTime(Date date) {
-        Calendar calendar = Calendar.getInstance()
-        calendar.setTime(date)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar.getTime()
-    }
     
     public static Date sumDays(Date date, Integer numberDays) {
         Calendar calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_MONTH, numberDays)
-        return clearTime(calendar.getTime())
+        return calendar.getTime().clearTime()
     }
 
     public static Date getEndOfDay(Date date) {

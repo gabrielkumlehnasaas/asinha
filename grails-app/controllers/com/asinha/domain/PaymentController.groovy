@@ -20,12 +20,16 @@ class PaymentController extends BaseController{
     }
 
     def save() {
-        try {
-            Payment payment = paymentService.save(params)
-            if(payment) render([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Payment payment = paymentService.save(params)
+        if (payment.hasErrors()) {
+            List<String> errorMessages = []
+            payment.errors.allErrors.each {
+                errorMessages.add(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render([success: true] as JSON)
     }
 
     def list() {
