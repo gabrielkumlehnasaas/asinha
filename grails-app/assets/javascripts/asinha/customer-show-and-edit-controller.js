@@ -36,13 +36,17 @@ function CustomerShowAndEditController() {
             infosCustomer[key] = value;
         });
         
-        disableInputs();
         var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Dados")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
+            disableInputs();
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
@@ -52,7 +56,6 @@ function CustomerShowAndEditController() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            customerIdInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -68,7 +71,6 @@ function CustomerShowAndEditController() {
     }
     
     var disableInputs = function () {
-        customerIdInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;

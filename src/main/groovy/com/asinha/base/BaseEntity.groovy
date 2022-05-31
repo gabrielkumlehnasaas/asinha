@@ -15,7 +15,6 @@ abstract class BaseEntity {
     }
 
     static constraints = {
-        deleted nullable: false
         dateDeleted nullable: true
     }
 }
