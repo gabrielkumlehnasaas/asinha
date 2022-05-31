@@ -37,4 +37,16 @@ class PaymentController extends BaseController{
     def show() {
         return [payment: Payment.get(params.long("paymentId"))]
     }
+
+    def confirm() {
+        Long paymentId = params.long("paymentId")
+        try {
+            Payment payment = paymentService.confirmPayment(paymentId)
+            if (payment) {
+                render([success: true] as JSON) 
+            }
+        } catch (Exception exception) {
+            render([success: false, message: "Erro, tente novamente"] as JSON)
+        }
+    }
 }

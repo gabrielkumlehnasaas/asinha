@@ -20,7 +20,6 @@ class CustomerService {
         customer.postalCode = params.postalCode
         customer.province = params.province
         customer.state = params.state
-        customer.lastUpdate = new Date()
         customer.save(flush: true, failOnError:true)
         return customer
     } 

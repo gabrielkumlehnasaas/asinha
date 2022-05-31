@@ -52,8 +52,10 @@
                     <form class="form" id="confirm-form" data-redirect="${ g.createLink([controller:'payment', action:'show', params:[paymentId: payment.id]]) }"  action="${ g.createLink([controller:'payment', action:'confirm']) }">
                         <input type="hidden" name="paymentId" id="paymentId" value="${ payment.id }">
                     </form>
+                    <button type="sumbit" id="confirmbtn" class="btn btn-success btn-padding-y">Confirmar pagamento</button>
                 </div>
             </form>
         </div>
+    <asset:javascript src="asinha/payment-confirm-controller.js"/>
     </body>
 </html>
