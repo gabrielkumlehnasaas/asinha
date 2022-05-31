@@ -7,7 +7,6 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class TaskDueDateJob {
 
-
     static triggers = {
         cron name: 'dueDate', cronExpression: "0 1 0 1/1 * ? *"
     }
