@@ -19,12 +19,8 @@ class CustomDateUtils {
         Calendar calendar = Calendar.getInstance()
         calendar.add(Calendar.MINUTE, minutes)
         return calendar.getTime()
-        Calendar now = Calendar.getInstance()
-        now.add(Calendar.MINUTE, -minutes)
-        return now.getTime()
     }
 
-    
     public static Date sumDays(Date date, Integer numberDays) {
         Calendar calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_MONTH, numberDays)
