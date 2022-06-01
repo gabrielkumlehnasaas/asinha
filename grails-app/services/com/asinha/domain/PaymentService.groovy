@@ -20,10 +20,6 @@ class PaymentService {
     PageRenderer groovyPageRenderer
     def emailService
 
-    public String getString() {
-        return "importei o service de payment"
-    }
-
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
         if (max == null || offset == null) {
             List<Payment> paymentList = Payment.createCriteria().list() {
