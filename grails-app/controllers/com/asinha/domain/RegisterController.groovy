@@ -25,7 +25,7 @@ class RegisterController {
         }
         try {
             Customer customer = new Customer()
-            customer.email = params.username
+            customer.email = params.email
             customer.save()
             println "customer ${customer}"
 
@@ -34,7 +34,6 @@ class RegisterController {
             user.password = params.password
             user.fullname = params.fullname
             user.customer = customer
-            user.email = params.email
             user.save()
 
             def role = Role.get(2)

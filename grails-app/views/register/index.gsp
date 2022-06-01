@@ -16,6 +16,11 @@
               <form class="form-signin" action="register" method="POST" id="loginForm" autocomplete="off">
                         </div>
             <div class="form-group">
+                    <label for="email">Email</label>
+              <input type="text" class="form-control" name="email" id="email" autocapitalize="none"/>
+            </div>
+
+            <div class="form-group">
                     <label for="username">Usuário</label>
               <input type="text" class="form-control" name="username" id="username" autocapitalize="none"/>
             </div>
