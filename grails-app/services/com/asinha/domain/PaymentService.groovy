@@ -74,7 +74,7 @@ class PaymentService {
     }
 
     public void updateOverduePayments() {
-        Date yesterday = CustomDateUtils.sumDays(new Date, -1)
+        Date yesterday = CustomDateUtils.sumDays(new Date (-1))
         List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
