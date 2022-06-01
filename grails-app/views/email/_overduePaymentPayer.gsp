@@ -9,6 +9,6 @@
     <p>Descrição: ${ payment.description }</p>
     <p>Valor: R$ ${ payment.value }</p>
     <br>
-    <p>Esta é uma mensagem automatizada de Asinha Cobranças</p>
+    <p>Cobrança intermediada por asinha.com - gerar boletos nunca foi tão fácil.</p>
 </body>
 </html>

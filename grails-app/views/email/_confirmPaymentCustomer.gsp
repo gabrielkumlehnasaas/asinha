@@ -29,6 +29,6 @@
     <br>
     <h4>Este documento e cobrança não possuem valor fiscal e são de responsabilidade única e exclusiva de ${ payment.customer.name }.</h4>
 
-    <p>Cobrança intermediada por asaas.com - gerar boletos nunca foi tão fácil.</p>
+    <p>Cobrança intermediada por asinha.com - gerar boletos nunca foi tão fácil.</p>
 </body>
 </html>
