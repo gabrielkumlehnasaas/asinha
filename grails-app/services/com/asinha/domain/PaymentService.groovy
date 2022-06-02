@@ -22,10 +22,6 @@ class PaymentService {
     PageRenderer groovyPageRenderer
     def emailService
 
-    public String getString() {
-        return "importei o service de payment"
-    }
-
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
         if (max == null || offset == null) {
             List<Payment> paymentList = Payment.createCriteria().list() {
@@ -106,8 +102,7 @@ class PaymentService {
     }
 
     public void updateOverduePayments() {
-        Date today = new Date()
-        Date yesterday = CustomDateUtils.sumDays(today, (-1))
+        Date yesterday = CustomDateUtils.sumDays(new Date (-1))
         List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
@@ -129,14 +124,6 @@ class PaymentService {
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
     }
 
-    public BigDecimal sumOfValuesInList(List<Payment> paymentList) {
-        BigDecimal totalValue = 0.00
-        paymentList.forEach() {
-            totalValue += it.value
-        }
-        return totalValue
-    }
-
     public Map getDashboardInfo(Long customerId) {
         if (!getPaymentsByCustomer(customerId)) return null
         
@@ -152,10 +139,10 @@ class PaymentService {
         Integer defaulters = defaultersList.size()
         Integer nonDefaulters = totalPayers - defaulters
 
-        BigDecimal recieved = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID))
-        BigDecimal foreseen = sumOfValuesInList(listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING))
-        BigDecimal overdue = sumOfValuesInList(overduePaymentList)
+        BigDecimal received = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
+        BigDecimal foreseen = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
+        BigDecimal overdue = overduePaymentList
 
-        return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, recieved: recieved, foreseen: foreseen, overdue: overdue]
+        return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, received: received, foreseen: foreseen, overdue: overdue]
     }
 }

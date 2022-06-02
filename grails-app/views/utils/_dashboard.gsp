@@ -8,7 +8,7 @@
                     Recebidos
                 </div>
                 <div class="card-body">
-                    R$ ${ dashboard.recieved }
+                    R$ ${ dashboard.received }
                 </div>
             </div>
             <div class="card text-center yellow-text">
