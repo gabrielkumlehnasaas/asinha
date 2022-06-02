@@ -2,6 +2,7 @@ package com.asinha.utils
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CustomDateUtils {
 
@@ -14,27 +15,12 @@ class CustomDateUtils {
         String[] reverseDate = date.toString().split(" ")[0].split("-") 
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
-
-    public static Date getMinutesBefore(minutes) {
-        Calendar now = Calendar.getInstance()
-        now.add(Calendar.MINUTE, -minutes)
-        return now.getTime()
-    }
-
-    public static Date clearTime(Date date) {
-        Calendar calendar = Calendar.getInstance()
-        calendar.setTime(date)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar.getTime()
-    }
     
     public static Date sumDays(Date date, Integer numberDays) {
         Calendar calendar = Calendar.getInstance()
+        calendar.setTime(date)
         calendar.add(Calendar.DAY_OF_MONTH, numberDays)
-        return clearTime(calendar.getTime())
+        return calendar.getTime()
     }
 
     public static Date getEndOfDay(Date date) {

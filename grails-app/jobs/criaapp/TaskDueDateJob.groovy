@@ -9,7 +9,7 @@ class TaskDueDateJob {
 
 
     static triggers = {
-        cron name: 'dueDate', cronExpression: "0 1 0 1/1 * ? *"
+        cron name: 'dueDate', cronExpression: "0 0 0 ? * * *"
     }
   
     static concurrent = false
