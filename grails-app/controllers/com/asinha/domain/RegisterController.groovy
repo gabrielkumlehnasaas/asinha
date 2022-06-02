@@ -25,7 +25,7 @@ class RegisterController {
         }
         try {
             Customer customer = new Customer()
-            customer.email = params.email
+            customer.email = params.username
             customer.save()
             println "customer ${customer}"
 
