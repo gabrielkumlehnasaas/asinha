@@ -8,7 +8,7 @@ import grails.gorm.transactions.Transactional
 class TaskDueDateJob {
   
     static triggers = {
-        cron name: 'dueDate', cronExpression: "0/20 * * ? * * *"
+        cron name: 'dueDate', cronExpression: "0 0 0 ? * * *"
     }
   
     static concurrent = false
