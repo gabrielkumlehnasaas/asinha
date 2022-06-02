@@ -74,13 +74,13 @@ class PaymentService {
     }
     
     public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
-        Date beginningOfDay = date.clearTime()
+        Date beginningOfDay = CustomDateUtils.clearTime(date)
         Date endOfDay = CustomDateUtils.getEndOfDay(date) 
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
                 ge("dueDate", beginningOfDay)
-                le("dueDate", endOfday)
+                le("dueDate", endOfDay)
             }
         }
         return paymentList

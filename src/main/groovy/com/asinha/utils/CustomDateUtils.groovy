@@ -2,6 +2,7 @@ package com.asinha.utils
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CustomDateUtils {
 
@@ -17,8 +18,19 @@ class CustomDateUtils {
     
     public static Date sumDays(Date date, Integer numberDays) {
         Calendar calendar = Calendar.getInstance()
+        calendar.setTime(date)
         calendar.add(Calendar.DAY_OF_MONTH, numberDays)
-        return calendar.getTime().clearTime()
+        return calendar.getTime()
+    }
+
+    public static Date cleartTime(Date date) {
+        Calendar calendar = Calendar.getInstance()
+        calendar.setTime(date)
+        calendar.set(Calendar.HOUR_OF_DAY, 0)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        calendar.set(Calendar.MILLISECOND, 0)\
+        return calendar.getTime()
     }
 
     public static Date getEndOfDay(Date date) {
