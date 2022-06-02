@@ -82,7 +82,11 @@ function CustomerCreateController() {
 
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                alert("Erro ao Criar Conta")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Criar Conta:\n" + errorMessages)
                 return
             }
             

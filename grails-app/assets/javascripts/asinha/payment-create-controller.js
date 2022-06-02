@@ -12,7 +12,7 @@ function PaymentCreateController() {
 
     var bindValue = function() {
         valueInputReference.addEventListener("focusout", function() {
-            var value = parseFloat(valueInputReference.value);
+            var value = parseFloat(valueInputReference.value.replaceAll(",", ""));
             if (value < 5) {
                 errorMessageReference.innerHTML = "O valor mínimo de cobrança é de R$5,00";
                 return
@@ -41,7 +41,11 @@ function PaymentCreateController() {
 
         $.post(url, infosPayment, function(response) {
             if (!response.success) {
-                alert("Erro ao criar Cobrança")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Criar Cobrança:\n" + errorMessages)
                 return
             }
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");

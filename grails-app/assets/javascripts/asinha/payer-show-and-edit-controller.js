@@ -41,7 +41,11 @@ function PayerShowAndEditController() {
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Pagador")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Editar Pagador:\n" + errorMessages)
                 return
             }
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
@@ -53,7 +57,6 @@ function PayerShowAndEditController() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            idInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -69,7 +72,6 @@ function PayerShowAndEditController() {
     }
 
     var disableInputs = function () {
-        idInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;

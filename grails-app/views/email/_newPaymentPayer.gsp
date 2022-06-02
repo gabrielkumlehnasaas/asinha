@@ -9,8 +9,8 @@
     <p>Uma nova cobrança foi criada em seu nome por ${ payment.customer.name }</p>
     <p>Descrição: ${ payment.description }</p>
     <p>Valor: R$ ${ payment.value }</p>
-    <p>Data de vencimento: ${ CustomeDateUtils.formatDate(payment.dueDate, "dd/MM/yyyy") }</p>
+    <p>Data de vencimento: ${ CustomDateUtils.formatDate(payment.dueDate, "dd/MM/yyyy") }</p>
     <br>
-    <p>Esta é uma mensagem automatizada de Asinha Cobranças</p>
+    <p>Cobrança intermediada por asinha.com - gerar boletos nunca foi tão fácil.</p>
 </body>
 </html>

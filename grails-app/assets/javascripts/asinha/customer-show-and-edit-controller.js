@@ -40,7 +40,11 @@ function CustomerShowAndEditController() {
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                alert("Erro ao Editar Dados")
+                errorMessages = ""
+                response.messages.forEach(function (value) {
+                    errorMessages += value + "\n"
+                });
+                alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
@@ -52,7 +56,6 @@ function CustomerShowAndEditController() {
             e.preventDefault();
             editButton.attr("hidden", true);
             updateButton.attr("hidden", false);
-            customerIdInputReference.disabled = false;
             nameInputReference.disabled = false;
             addressInputReference.disabled = false;
             addressNumberInputReference.disabled = false;
@@ -68,7 +71,6 @@ function CustomerShowAndEditController() {
     }
     
     var disableInputs = function () {
-        customerIdInputReference.disabled = true;
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
         addressNumberInputReference.disabled = true;

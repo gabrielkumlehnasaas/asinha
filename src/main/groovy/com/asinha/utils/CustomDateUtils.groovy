@@ -2,6 +2,7 @@ package com.asinha.utils
 
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.util.Calendar
 
 class CustomDateUtils {
 
@@ -15,25 +16,27 @@ class CustomDateUtils {
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
 
-    public static Date getMinutesBefore(minutes) {
-        Calendar now = Calendar.getInstance()
-        now.add(Calendar.MINUTE, -minutes)
-        return now.getTime()
+    public static Date sumMinutes(minutes) {
+        Calendar calendar = Calendar.getInstance()
+        calendar.add(Calendar.MINUTE, minutes)
+        return calendar.getTime()
     }
 
-    public static Calendar clearTime(Calendar calendar) {
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        calendar.set(Calendar.MINUTE, 0)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.MILLISECOND, 0)
-        return calendar
+    public static Date sumDays(Date date, Integer numberDays) {
+        Calendar calendar = Calendar.getInstance()
+        calendar.setTime(date)
+        calendar.add(Calendar.DAY_OF_MONTH, numberDays)
+        return calendar.getTime()
     }
 
-    public static Date getYesterday() {
-        Calendar yesterday = Calendar.getInstance()
-        yesterday.add(Calendar.DAY_OF_MONTH, -1)
-        yesterday = clearTime(yesterday)
-        return yesterday.getTime()
+    public static Date getEndOfDay(Date date) {
+        Calendar calendar = Calendar.getInstance()
+        calendar.setTime(date)
+        calendar.set(Calendar.HOUR_OF_DAY, 23)
+        calendar.set(Calendar.MINUTE, 59)
+        calendar.set(Calendar.SECOND, 59)
+        calendar.set(Calendar.MILLISECOND, 999)
+        return calendar.getTime()
     }
 
     public static String formatDate(Date date, String pattern) {

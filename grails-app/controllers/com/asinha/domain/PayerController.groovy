@@ -19,19 +19,23 @@ class PayerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
-        try {
-            Payer payer = payerService.save(params)
-            if (payer) render ([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Payer payer = payerService.save(params)
+        if (payer.hasErrors()) {
+            List<String> errorMessages = []
+            payer.errors.allErrors.each {
+                errorMessages.add(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render ([success: true] as JSON)
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
         Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, payerList: payerList, totalCount: payerList.size()]
+        return [customerId: customerId, payerList: payerList, totalCount: payerList.totalCount]
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])   
@@ -41,11 +45,15 @@ class PayerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
-        try {
-            Payer payer = payerService.update(params)
-            if (payer) render ([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Payer payer = payerService.update(params)
+        if (payer.hasErrors()) {
+            List errorMessages = []
+            payer.errors.allErrors.each {
+                errorMessages.push(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render ([success: true] as JSON)
     }
 }

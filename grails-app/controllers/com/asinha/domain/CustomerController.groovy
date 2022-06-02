@@ -21,12 +21,16 @@ class CustomerController extends BaseController {
     
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
-        try {
-            Customer customer = customerService.save(params)
-            if (customer) render ([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Customer customer = customerService.save(params)
+        if(customer.hasErrors()) {
+            List<String> errorMessages = []
+            customer.errors.allErrors.each {
+                errorMessages.add(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render ([success: true] as JSON)
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
@@ -41,11 +45,15 @@ class CustomerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
-        try {
-            Customer customer = customerService.update(params)
-            if (customer) render ([success: true] as JSON)
-        } catch (Exception exception) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+        Customer customer = customerService.update(params)
+        if(customer.hasErrors()) {
+            List<String> errorMessages = []
+            customer.errors.allErrors.each {
+                errorMessages.add(it.defaultMessage)
+            }
+            render([success: false, messages: errorMessages] as JSON)
+            return
         }
+        render ([success: true] as JSON)
     }
 }
