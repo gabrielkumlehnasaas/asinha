@@ -21,9 +21,9 @@
                     <tr data-url="${ g.createLink([controller:'customer', action:'show', params:[customerId: customer.id]])}">
                         <th>${ customer.id }</th>
                         <td>${ customer.name }</td>
-                        <td>${ customer.cpfCnpj }</td>
+                        <td id="cpfCnpj">${ customer.cpfCnpj }</td>
                         <td>${ customer.email }</td>
-                        <td>${ customer.phone }</td>
+                        <td id="phone">${ customer.phone }</td>
                         <td><a href="${ g.createLink([controller:'customer', action:'show', params:[customerId: customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Editar</button></a></td>
                     </tr>
                 </g:each>
@@ -34,5 +34,6 @@
         </div>
         <a href="${ g.createLink([controller:'customer', action:'index']) }"><button class="btn btn-primary btn-padding-y">Home</button></a>
         <asset:javascript src="utils/click-list.js"/>
+        <asset:javascript src="utils/client-form-utils.js"/>
     </body>
 </html>

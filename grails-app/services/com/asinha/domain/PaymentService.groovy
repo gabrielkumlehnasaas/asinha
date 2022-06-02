@@ -7,14 +7,17 @@ import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
+import com.asinha.utils.DomainUtils
+import com.asinha.utils.ValidationUtils
 
+import grails.gsp.PageRenderer
 import grails.gorm.transactions.Transactional
 import java.math.BigDecimal
 
 @Transactional
 class PaymentService {
 
-    grails.gsp.PageRenderer groovyPageRenderer
+    PageRenderer groovyPageRenderer
     def emailService
 
     public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
@@ -26,7 +29,10 @@ class PaymentService {
 
     public Payment save(Map params) {
         Payment payment = new Payment()
-        payment.value = new BigDecimal(params.value)
+        payment = validate(payment, params)
+        if (payment.hasErrors()) return payment
+        
+        payment.value = new BigDecimal(params.value.replaceAll(",", ""))
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
         payment.status = PaymentStatus.PENDING
@@ -34,46 +40,80 @@ class PaymentService {
         payment.payer = Payer.get(params.long("payerId"))
         payment.customer = Customer.get(params.long("customerId"))
         payment.save(failOnError: true)
-        String subject = "Notificação de nova cobrança"
-        try {
-            emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
-            emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
-        } catch (Exception e) {
-            e.printStackTrace()
-        }
+        notifyNewPayment(payment.id)
         return payment
     }
 
-    public Payment confirmPayment(paymentId) {
+    public Payment confirmPayment(Long paymentId) {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
-        payment.lastUpdate = new Date()
         payment.save(flush: true, failOnError:true)
-        String mailSubject = "Notificação de pagamento"
-        emailService.sendEmail(payment.customer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
-        emailService.sendEmail(payment.payer.email, mailSubject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
+        notifyConfirmedPayment(paymentId)
         return payment
     }
+
+    public Payment validate(Payment payment, Map params) {
+        if (!validateValue(params.value)) DomainUtils.addError(payment, 'Cobrança mínima de R$5.00')
+        if (!ValidationUtils.validateNotNull(params.description)) DomainUtils.addError(payment, "Campo Cidade é obrigatório")
+        if (!validateMethod(params.method)) DomainUtils.addError(payment, "Método de pagamento inválido")
+        if (!validateDueDate(params.dueDate)) DomainUtils.addError(payment, "Data de vencimento inválida")
+        return payment
+    }
+
+    private static Boolean validateValue(String value) {
+        BigDecimal parsedValue = new BigDecimal(value.replaceAll(",", ""))
+        if (parsedValue < 5.00) {
+            return false
+            }
+        return true
+    }
+
+    private static Boolean validateMethod(String method) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
+    }
+
+    private static Boolean validateDueDate(String dueDate) {
+        if (CustomDateUtils.toDate(dueDate, "yyyy-MM-dd") < new Date()) {
+            return false
+        }
+        return true
+    }
     
-    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date yesterday) {
+    public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
+        Date beginningOfDay = date.clearTime()
+        Date endOfDay = CustomDateUtils.getEndOfDay(date) 
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
-                like("dueDate", yesterday) 
+                ge("dueDate", beginningOfDay)
+                le("dueDate", endOfDay)
             }
         }
         return paymentList
     }
 
-    public List<Payment> listLastNewPaymentsByMin(PaymentStatus paymentStatus,Integer minutes) {
-        Date minutesBefore = CustomDateUtils.getMinutesBefore(minutes)
-        List<Payment> paymentList= Payment.createCriteria().list() {
-            eq("status", paymentStatus)
-            and {
-                gt("dateCreated", minutesBefore) 
-            }
+    public void updateOverduePayments() {
+        Date today = new Date()
+        Date yesterday = CustomDateUtils.sumDays(today, (-1))
+        List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
+        for(Payment payment : paymentList) {
+            payment.status = PaymentStatus.OVERDUE
+            payment.save(flush: true)
         }
-        return paymentList
+    }
+
+    private void notifyNewPayment(Long paymentId) {
+        Payment payment = Payment.get(paymentId)
+        String subject = "Notificação de nova cobrança"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentCustomer", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/newPaymentPayer", model: [payment: payment]))
+    }
+
+    private void notifyConfirmedPayment(Long paymentId) {
+        Payment payment = Payment.get(paymentId)
+        String subject = "Notificação de pagamento"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
     }
 }
