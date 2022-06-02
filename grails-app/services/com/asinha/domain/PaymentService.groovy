@@ -8,6 +8,8 @@ import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
 import com.asinha.utils.CustomDateUtils
+import com.asinha.utils.DomainUtils
+import com.asinha.utils.ValidationUtils
 
 import grails.gsp.PageRenderer
 import grails.gorm.transactions.Transactional
@@ -39,7 +41,10 @@ class PaymentService {
 
     public Payment save(Map params) {
         Payment payment = new Payment()
-        payment.value = new BigDecimal(params.value)
+        payment = validate(payment, params)
+        if (payment.hasErrors()) return payment
+        
+        payment.value = new BigDecimal(params.value.replaceAll(",", ""))
         payment.description = params.description
         payment.method = PaymentMethod.valueOf(params.method) 
         payment.status = PaymentStatus.PENDING
@@ -59,22 +64,50 @@ class PaymentService {
         notifyConfirmedPayment(paymentId)
         return payment
     }
+
+    public Payment validate(Payment payment, Map params) {
+        if (!validateValue(params.value)) DomainUtils.addError(payment, 'Cobrança mínima de R$5.00')
+        if (!ValidationUtils.validateNotNull(params.description)) DomainUtils.addError(payment, "Campo Cidade é obrigatório")
+        if (!validateMethod(params.method)) DomainUtils.addError(payment, "Método de pagamento inválido")
+        if (!validateDueDate(params.dueDate)) DomainUtils.addError(payment, "Data de vencimento inválida")
+        return payment
+    }
+
+    private static Boolean validateValue(String value) {
+        BigDecimal parsedValue = new BigDecimal(value.replaceAll(",", ""))
+        if (parsedValue < 5.00) {
+            return false
+            }
+        return true
+    }
+
+    private static Boolean validateMethod(String method) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
+    }
+
+    private static Boolean validateDueDate(String dueDate) {
+        if (CustomDateUtils.toDate(dueDate, "yyyy-MM-dd") < new Date()) {
+            return false
+        }
+        return true
+    }
     
     public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
-        Date beginningOfDay = CustomDateUtils.clearTime(date)
-        Date endOfday = CustomDateUtils.getEndOfDay(date) 
+        Date beginningOfDay = date.clearTime()
+        Date endOfDay = CustomDateUtils.getEndOfDay(date) 
         List<Payment> paymentList= Payment.createCriteria().list() {
             eq("status", paymentStatus)
             and {
                 ge("dueDate", beginningOfDay)
-                le("dueDate", endOfday)
+                le("dueDate", endOfDay)
             }
         }
         return paymentList
     }
 
     public void updateOverduePayments() {
-        Date yesterday = CustomDateUtils.sumDays(new Date, -1)
+        Date today = new Date()
+        Date yesterday = CustomDateUtils.sumDays(today, (-1))
         List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
