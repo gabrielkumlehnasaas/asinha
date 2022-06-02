@@ -19,5 +19,22 @@ class RegisterController {
 
     def index() {}
 
-    def register() {} 
+    def register() {
+        try {
+            if(!params.password.equals(params.repassword)) {
+                flash.message = "Senha e confirmação de senha não coincidem"
+                redirect action: "index"
+                return
+            }
+            registerService.register(params)
+            flash.message = "Você se registrou com sucesso. Por favor entre."
+            redirect controller: "login", action: "auth"
+
+        } catch (Exception e) {
+            e.printStackTrace()
+            flash.message = "Falha no registro"
+            redirect action: "index"
+            return
+        }
+    } 
 }
