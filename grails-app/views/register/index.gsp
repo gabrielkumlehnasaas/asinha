@@ -3,7 +3,6 @@
     <meta name="layout" content="${gspLayout ?: 'main'}"/>
     <title>Register</title>
   </head>
-
   <body>
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">

@@ -110,7 +110,7 @@ environments:
             dbCreate: "update"
             #logSql: true
             url: "jdbc:mysql://localhost/asinha"
-            driverClassName: "com.mysql.jdbc.Driver"
+            driverClassName: "com.mysql.cj.jdbc.Driver"
             dialect: "org.hibernate.dialect.MySQL5InnoDBDialect"
             username: "root"
             password: "basedeelite"
