@@ -37,7 +37,7 @@ class RegisterService {
             it.flush()
             it.clear()
         }
-        return User,
+        return User
     }
 
 
