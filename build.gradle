@@ -35,6 +35,7 @@ configurations {
 
 dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    compile "io.github.gpc:asynchronous-mail:3.0.0"
     compile "org.springframework.boot:spring-boot-starter-logging"
     compile "org.springframework.boot:spring-boot-autoconfigure"
     compile "org.grails:grails-core"
@@ -56,6 +57,7 @@ dependencies {
     compile "org.hibernate:hibernate-core:5.4.18.Final"
     compile "org.grails.plugins:gsp"
     compile 'org.grails.plugins:quartz:2.0.13'
+    compile 'org.grails.plugins:mail:3.0.0'
     compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.2.3'
     compileOnly "io.micronaut:micronaut-inject-groovy"
     console "org.grails:grails-console"

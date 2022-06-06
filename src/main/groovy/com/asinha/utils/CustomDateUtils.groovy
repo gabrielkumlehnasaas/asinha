@@ -15,7 +15,13 @@ class CustomDateUtils {
         String[] reverseDate = date.toString().split(" ")[0].split("-") 
         return reverseDate[2] + "/" + reverseDate[1] + "/" + reverseDate[0] 
     }
-    
+
+    public static Date sumMinutes(minutes) {
+        Calendar calendar = Calendar.getInstance()
+        calendar.add(Calendar.MINUTE, minutes)
+        return calendar.getTime()
+    }
+
     public static Date sumDays(Date date, Integer numberDays) {
         Calendar calendar = Calendar.getInstance()
         calendar.setTime(date)
@@ -31,5 +37,10 @@ class CustomDateUtils {
         calendar.set(Calendar.SECOND, 59)
         calendar.set(Calendar.MILLISECOND, 999)
         return calendar.getTime()
+    }
+    
+    public static String formatDate(Date date, String pattern) {
+        SimpleDateFormat format = new SimpleDateFormat(pattern)
+        return format.format(date).toString()
     }
 }
