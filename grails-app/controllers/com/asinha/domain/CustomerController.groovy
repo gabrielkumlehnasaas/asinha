@@ -18,20 +18,6 @@ class CustomerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def create() {}
-    
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
-    def save() {
-        Customer customer = customerService.save(params)
-        if(customer.hasErrors()) {
-            List<String> errorMessages = []
-            customer.errors.allErrors.each {
-                errorMessages.add(it.defaultMessage)
-            }
-            render([success: false, messages: errorMessages] as JSON)
-            return
-        }
-        render ([success: true] as JSON)
-    }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {

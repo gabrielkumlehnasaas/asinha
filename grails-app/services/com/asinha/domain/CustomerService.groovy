@@ -9,25 +9,6 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class CustomerService {
 
-    public Customer save(Map params) {
-        Customer customer = new Customer()
-        customer = validate(customer, params)
-        if (customer.hasErrors()) return customer
-        customer.address = params.address
-        customer.addressNumber = params.addressNumber
-        customer.city = params.city
-        customer.complement = params.complement
-        customer.cpfCnpj = params.cpfCnpj
-        customer.email = params.email
-        customer.phone = ValidationUtils.digitsOnlyCleaner(params.phone)
-        customer.name = params.name
-        customer.postalCode = ValidationUtils.digitsOnlyCleaner(params.postalCode)
-        customer.province = params.province
-        customer.state = params.state
-        customer.save(failOnError: true)
-        return customer
-    }
-
     public Customer update(Map params) {
         Customer customer = Customer.get(params.long("customerId"))
         customer = validate(customer, params)
@@ -45,6 +26,7 @@ class CustomerService {
         customer.state = params.state
         customer.save(flush: true, failOnError:true)
         return customer
+        println "customer ${customer}"
     } 
 
     public Customer validate(Customer customer, Map params) {

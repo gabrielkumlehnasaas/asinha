@@ -18,20 +18,18 @@ class RegisterService {
     public register(Map params) {
         Customer customer = new Customer()
         customer.email = params.username
-        customer.save(failOnError: true)
-        println "customer ${customer}"
+        customer.save(flush: true, failOnError: true)
 
         User user = new User()
         user.username = params.username
         user.password = params.password
         user.fullname = params.fullname
-        user.customer = customer
+        user.customer = customer 
         user.save(flush: true)
 
         def role = Role.get(2)
 
         UserRole.create(user, role)
-        println "user ${user}"
 
         UserRole.withSession {
             it.flush()
@@ -42,7 +40,5 @@ class RegisterService {
 
     def index() {}
 
-    def save(Map params) {
-        println(params)
-    }
+    def save(Map params) {}
 }

@@ -13,8 +13,11 @@
                     <div class="card-header row">
                         <h5 class="card-text col-md">Nome: <input type="text" class="border border-1 border-dark" id="name" name="name" value="${ customer.name }" required disabled></h5>
                         <h5 class="card-text col-md">
-                            <g:if test="${ customer.cpfCnpj.length() == 11 }">CPF: </g:if>
-                            <g:if test="${ customer.cpfCnpj.length() == 14 }">CNPJ: </g:if>
+                            <g:if test="${ !customer.cpfCnpj }">CPF/CNPJ: </g:if>
+                            <g:else>
+                                <g:if test="${ customer.cpfCnpj.length() == 11 }">CPF: </g:if>
+                                <g:if test="${ customer.cpfCnpj.length() == 14 }">CNPJ: </g:if>
+                            </g:else>
                             <input type="text" class="border border-1 border-dark" id="cpfCnpj" name="cpfCnpj" value="${ customer.cpfCnpj }" required disabled></h5>
                     </div>
                 </div>

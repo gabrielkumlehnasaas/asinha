@@ -36,7 +36,6 @@ function CustomerShowAndEditController() {
             infosCustomer[key] = value;
         });
         
-        disableInputs();
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
@@ -48,9 +47,10 @@ function CustomerShowAndEditController() {
                 return
             }
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            disableInputs();
         });
     };
-
+    
     var bindEditCustomer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -83,7 +83,7 @@ function CustomerShowAndEditController() {
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
     }
-
+    
 };
 
 var customerShowAndEditController;
