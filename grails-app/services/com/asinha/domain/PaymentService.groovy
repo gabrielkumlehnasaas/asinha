@@ -141,7 +141,7 @@ class PaymentService {
 
         BigDecimal received = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
         BigDecimal foreseen = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
-        BigDecimal overdue = overduePaymentList
+        BigDecimal overdue = overduePaymentList.value.sum()
 
         return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, received: received, foreseen: foreseen, overdue: overdue]
     }
