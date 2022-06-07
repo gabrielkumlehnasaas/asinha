@@ -38,7 +38,7 @@ class CustomDateUtils {
         calendar.set(Calendar.MILLISECOND, 999)
         return calendar.getTime()
     }
-    
+
     public static String formatDate(Date date, String pattern) {
         SimpleDateFormat format = new SimpleDateFormat(pattern)
         return format.format(date).toString()
