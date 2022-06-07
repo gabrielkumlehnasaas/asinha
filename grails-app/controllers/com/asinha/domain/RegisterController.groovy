@@ -24,7 +24,7 @@ class RegisterController {
     ) {
         try {
             if(!params.password.equals(params.repassword)) {
-                flash.message = "Senha e confirmação de senha não coincidem"
+                flash.warning = "Senha e confirmação de senha não coincidem"
                 redirect action: "index"
                 return
             }else{
@@ -35,7 +35,7 @@ class RegisterController {
 
         } catch (Exception e) {
             println(e)
-            flash.message = "Falha no registro"
+            flash.warning = "Falha no registro"
             redirect action: "index"
             return
         }

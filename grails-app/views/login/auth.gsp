@@ -10,8 +10,11 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Login</h5>
-            <g:if test='${flash.message}'>
-            <div class="alert alert-danger" role="alert">${flash.message}</div>
+            <g:if test="${flash.warning}">
+              <div class="alert alert-danger" style="font-size: medium;color: red;">${flash.warning}</div>
+            </g:if>
+            <g:if test="${flash.message}">
+              <div class="alert alert-success" role="status" style="font-size: medium;color: green;">${flash.message}</div>
             </g:if>
             <form class="form-signin" action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" autocomplete="off">
               <div class="form-group">

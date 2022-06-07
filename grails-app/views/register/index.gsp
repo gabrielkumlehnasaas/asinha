@@ -9,8 +9,8 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Registre-se aqui</h5>
-            <g:if test='${flash.message}'>
-              <div class="alert alert-danger" role="alert">${flash.message}</div>
+            <g:if test="${flash.warning}">
+              <div class="alert alert-danger" style="font-size: medium;color: red;">${flash.warning}</div>
             </g:if>
             <form class="form-signin" action="register" method="POST" id="loginForm" autocomplete="off">
               <div class="form-group">
@@ -24,10 +24,6 @@
               <div class="form-group">
                 <label for="password">Confirmar Senha</label>
                 <input type="password" class="form-control" name="repassword" id="repassword"/>
-              </div>
-              <div class="form-group">
-                <label for="username">Nome Completo</label>
-                <input type="text" class="form-control" name="fullname" id="fullname" autocapitalize="none"/>
               </div>
               <button id="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrar</button>
               <hr class="my-4">

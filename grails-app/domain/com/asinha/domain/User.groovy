@@ -17,7 +17,6 @@ class User implements Serializable {
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
-    String fullname
     Customer customer
     
     Set<Role> getAuthorities() {
@@ -27,7 +26,6 @@ class User implements Serializable {
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
-        fullname nullable: false, blank: false
         customer nullable: false
     }
 

@@ -23,7 +23,6 @@ class RegisterService {
         User user = new User()
         user.username = params.username
         user.password = params.password
-        user.fullname = params.fullname
         user.customer = customer 
         user.save(flush: true)
 

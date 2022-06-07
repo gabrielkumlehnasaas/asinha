@@ -9,8 +9,8 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class CustomerService {
 
-    public Customer update(Map params) {
-        Customer customer = Customer.get(params.long("customerId"))
+    public Customer update(Long customerId, Map params) {
+        Customer customer = Customer.get(customerId)
         customer = validate(customer, params)
         if (customer.hasErrors()) return customer
         customer.address = params.address
@@ -42,4 +42,6 @@ class CustomerService {
         if (!ValidationUtils.validateNotNull(params.state)) DomainUtils.addError(customer, "Campo Estado é obrigatório")
         return customer
     }
+
+
 }
