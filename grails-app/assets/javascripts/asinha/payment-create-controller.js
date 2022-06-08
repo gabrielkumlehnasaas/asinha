@@ -47,7 +47,7 @@ function PaymentCreateController() {
                 alert("Erro ao Criar Cobrança:\n" + errorMessages)
                 return
             }
-            
+
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
