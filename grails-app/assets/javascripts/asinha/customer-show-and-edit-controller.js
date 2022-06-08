@@ -46,11 +46,11 @@ function CustomerShowAndEditController() {
                 alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
-            window.location.href = document.querySelector("form").getAttribute("data-redirect");
             disableInputs();
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
-    
+
     var bindEditCustomer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -83,7 +83,6 @@ function CustomerShowAndEditController() {
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
     }
-    
 };
 
 var customerShowAndEditController;
