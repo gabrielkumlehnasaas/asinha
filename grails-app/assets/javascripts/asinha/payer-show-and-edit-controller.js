@@ -31,14 +31,14 @@ function PayerShowAndEditController() {
 
     var submitForm = function() {
         let infosPayer = {};
-        let data = new FormData(document.querySelector("#create-form"));
+        let data = new FormData(document.querySelector("form"));
 
         data.forEach(function (value,key) {
             infosPayer[key] = value;
         });
 
         disableInputs();
-        var url = document.querySelector("#create-form").getAttribute("action");
+        var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
                 errorMessages = ""
@@ -48,7 +48,7 @@ function PayerShowAndEditController() {
                 alert("Erro ao Editar Pagador:\n" + errorMessages)
                 return
             }
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     };
 

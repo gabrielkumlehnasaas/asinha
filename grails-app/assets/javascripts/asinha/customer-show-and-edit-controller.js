@@ -30,13 +30,13 @@ function CustomerShowAndEditController() {
 
     var submitForm = function() {
         let infosCustomer = {};
-        let data = new FormData(document.querySelector("#create-form"));
+        let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
             infosCustomer[key] = value;
         });
         
-        var url = document.querySelector("#create-form").getAttribute("action");
+        var url = document.querySelector("form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
                 errorMessages = ""
@@ -46,7 +46,7 @@ function CustomerShowAndEditController() {
                 alert("Erro ao Editar Conta:\n" + errorMessages)
                 return
             }
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
             disableInputs();
         });
     };

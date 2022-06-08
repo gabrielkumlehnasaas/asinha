@@ -23,7 +23,7 @@ function PaymentCreateController() {
     };
 
     var bindForm = function() {
-        _this.reference.find("#create-form").on("submit", function(event) {
+        _this.reference.find("form").on("submit", function(event) {
             event.preventDefault();
             submitForm();
         });
@@ -31,13 +31,13 @@ function PaymentCreateController() {
 
     var submitForm = function() {
         let infosPayment = {};
-        let data = new FormData(document.querySelector("#create-form"));
+        let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
         console.log(infosPayment)
-        var url = document.querySelector("#create-form").getAttribute("action");
+        var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
             if (!response.success) {
@@ -48,7 +48,7 @@ function PaymentCreateController() {
                 alert("Erro ao Criar Cobrança:\n" + errorMessages)
                 return
             }
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
 };
