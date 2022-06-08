@@ -1,6 +1,5 @@
 package com.asinha.domain
 
-import com.asinha.domain.User
 import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 
@@ -9,11 +8,11 @@ import grails.converters.JSON
 class CustomerController extends BaseController {
 
     def customerService
- 
+
     def index() {}
 
     def create() {}
-
+    
     def save() {
         Customer customer = customerService.save(params)
         if(customer.hasErrors()) {
