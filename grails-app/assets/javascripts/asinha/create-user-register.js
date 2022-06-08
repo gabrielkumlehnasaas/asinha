@@ -1,3 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+$(document).ready(function () {
     document.forms['loginForm'].elements['username'].focus();
 });
