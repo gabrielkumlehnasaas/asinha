@@ -83,6 +83,7 @@ function CustomerShowAndEditController() {
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
     }
+
 };
 
 var customerShowAndEditController;
