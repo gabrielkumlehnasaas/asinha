@@ -28,17 +28,5 @@ class Customer extends BaseEntity{
 
     static constraints = {
         email email: true
-        address nullable: true
-        addressNumber nullable: true
-        city nullable: true
-        complement nullable: true
-        cpfCnpj nullable: true
-        phone nullable: true
-        name nullable: true
-        postalCode nullable: true
-        province nullable: true
-        state nullable: true
     }
-    
-    String toString() {}  
 }
