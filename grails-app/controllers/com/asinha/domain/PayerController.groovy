@@ -5,6 +5,7 @@ import com.asinha.domain.Payer
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import grails.util.Holders
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
@@ -17,7 +18,8 @@ class PayerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
-        Payer payer = payerService.save(params)
+        Long customerId = User.get(Holders.applicationContext.springSecurityService.currentUserId).customer.id
+        Payer payer = payerService.save(customerId, params)
         if (payer.hasErrors()) {
             List<String> errorMessages = []
             payer.errors.allErrors.each {
@@ -31,9 +33,9 @@ class PayerController extends BaseController {
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
-
+        Long customerId = User.get(Holders.applicationContext.springSecurityService.currentUserId).customer.id
         List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, payerList: payerList, totalCount: payerList.totalCount]
+        return [payerList: payerList, totalCount: payerList.totalCount]
     }
 
     @Secured(['ROLE_ADMIN', 'ROLE_USER']) 

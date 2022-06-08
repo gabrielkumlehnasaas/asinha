@@ -14,13 +14,13 @@ class PaymentController extends BaseController{
     def paymentService
 
     def create() {
-        Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.getPayersByCustomer(customerId)
-        return [customerId: customerId, payerList: payerList]
+        return [payerList: payerList]
     }
 
     def save() {
-        Payment payment = paymentService.save(params)
+        Long customerId = User.get(Holders.applicationContext.springSecurityService.currentUserId).customer.id
+        Payment payment = paymentService.save(customerId, params)
         if (payment.hasErrors()) {
             List<String> errorMessages = []
             payment.errors.allErrors.each {
@@ -33,9 +33,9 @@ class PaymentController extends BaseController{
     }
 
     def list() {
-        Long customerId = params.long("customerId")
+        Long customerId = User.get(Holders.applicationContext.springSecurityService.currentUserId).customer.id
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+        return [paymentList: paymentList, totalCount: paymentList.size()]
     }
 
     def show() {

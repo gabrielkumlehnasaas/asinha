@@ -10,10 +10,11 @@ import grails.util.Holders
 @Transactional
 class CustomerService {
 
-    public Customer update(Map params) {
-        Customer customer = User.get(Holders.applicationContext.springSecurityService.currentUserId).customer
+    public Customer update(Long customerId, Map params) {
+        Customer customer = Customer.get(customerId)
         customer = validate(customer, params)
         if (customer.hasErrors()) return customer
+
         customer.address = params.address
         customer.addressNumber = params.addressNumber
         customer.city = params.city

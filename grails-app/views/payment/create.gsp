@@ -34,7 +34,6 @@
                     <label for="dueDate">Vencimento</label>
                     <input class=" form-control border border-1 border-dark" type="date" name="dueDate" id="dueDate" required>
                 </div>
-                <input hidden value="${ customerId }" name="customerId" id="customerId">
                 <input class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">
             </form>      
         </div>

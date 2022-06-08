@@ -32,7 +32,7 @@
         <div class="pagination">
             <g:paginate total="${ totalCount }" controller="payer" action="list" params="${ params }" next="Próxima" prev="Anterior" max="10" />
         </div>
-        <a href="${ g.createLink([controller:'customer', action:'show', params:[customerId: customerId]]) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
+        <a href="${ g.createLink([controller:'customer', action:'show']) }"><button class="btn btn-primary btn-padding-y">Voltar</button></a>
         <asset:javascript src="utils/click-list.js"/>
         <asset:javascript src="utils/client-form-utils.js"/>
     </body>
