@@ -8,8 +8,8 @@
         <div class="container-fluid mt-3 ml-4" id="customer-show-container">
             <h4>Detalhes do Cliente</h4>
             <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'customer', action:'show', params:[customerId: customer.id]]) }" action="${ g.createLink([controller:'customer', action:'update']) }">
-                <input type="hidden" name="customerId" id="customerId" value="${ customer.id }">                <div class="card w-100 mb-2">
-                    <div class="card-header row">
+                <input type="hidden" name="customerId" id="customerId" value="${ customer.id }">
+                <div class="card w-100 mb-2">                    <div class="card-header row">
                         <h5 class="card-text col-md">Nome: <input type="text" class="border border-1 border-dark" id="name" name="name" value="${ customer.name }" required disabled></h5>
                         <h5 class="card-text col-md">
                             <g:if test="${ customer.cpfCnpj.length() == 11 }">CPF: </g:if>
