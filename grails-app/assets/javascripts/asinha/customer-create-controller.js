@@ -89,7 +89,7 @@ function CustomerCreateController() {
                 alert("Erro ao Criar Conta:\n" + errorMessages)
                 return
             }
-            
+
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
