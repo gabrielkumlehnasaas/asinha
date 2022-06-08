@@ -45,7 +45,7 @@ function PayerShowAndEditController() {
                 alert("Erro ao Editar Pagador:\n" + errorMessages)
                 return
             }
-
+            
             disableInputs();
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
