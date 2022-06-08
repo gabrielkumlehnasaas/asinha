@@ -18,7 +18,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="cpfCnpjRadio" id="cnpjRadio">
                         <label class="form-check-label" for="cpfCnpjRadio">Pessoa Jurídica</label>
-                    </div>$(document).ready(
+                    </div>
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="Name">Nome</label>
@@ -70,7 +70,6 @@
                         <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asaas</a>.
                     </label>
                 </div>
-                <input hidden value="${ customerId }" name="customerId" id="customerId">
                 <button type="submit" class="btn btn-primary btn-padding-y" id="create" name="create">Criar conta</button>
             </form>
         </div> 
