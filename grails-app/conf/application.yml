@@ -108,7 +108,6 @@ environments:
     development:
         dataSource:
             dbCreate: "update"
-            #logSql: true
             url: "jdbc:mysql://localhost/asinha"
             driverClassName: "com.mysql.cj.jdbc.Driver"
             username: "root"
