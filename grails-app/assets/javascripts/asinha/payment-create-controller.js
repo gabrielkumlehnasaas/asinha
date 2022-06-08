@@ -36,7 +36,6 @@ function PaymentCreateController() {
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
-        console.log(infosPayment)
         var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
@@ -48,6 +47,7 @@ function PaymentCreateController() {
                 alert("Erro ao Criar Cobrança:\n" + errorMessages)
                 return
             }
+            
             window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
