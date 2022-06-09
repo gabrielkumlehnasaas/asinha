@@ -39,7 +39,4 @@ class Customer extends BaseEntity{
         province nullable: true
         state nullable: true
     }
-
-    String toString() {} 
-
 }
