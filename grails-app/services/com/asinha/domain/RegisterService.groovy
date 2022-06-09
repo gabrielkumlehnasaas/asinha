@@ -28,8 +28,8 @@ class RegisterService {
         customer.save(flush: true, failOnError: true)
     }
 
-    public User createUser() {
-        User user = new User(String username, String password, Customer customer)
+    public User createUser(String username, String password, Customer customer) {
+        User user = new User()
         user.username = username
         user.password = password
         user.customer = customer 
