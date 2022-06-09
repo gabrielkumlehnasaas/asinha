@@ -131,11 +131,8 @@ class PaymentService {
         Integer totalPayers = payerList.size()
         
         List<Payment> overduePaymentList = listPaymentByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
-        List<Payer> defaultersList = new ArrayList<Payer>()
-        overduePaymentList.forEach() {
-            if (!defaultersList.includes(it.payer))
-            defaultersList.push(it.payer)
-        }
+        List<Payer> defaultersList = overduePaymentList.unique { Payment payment -> payment.payer }
+
         Integer defaulters = defaultersList.size()
         Integer nonDefaulters = totalPayers - defaulters
 
