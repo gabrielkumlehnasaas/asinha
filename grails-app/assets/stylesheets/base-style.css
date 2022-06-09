@@ -23,3 +23,72 @@
     border-radius: 5px;
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+#dropdownMenuLink {
+    background-color: var(--azul);
+    color: var(--branco);
+    border-radius: 5px;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+.teste {
+    padding-left: 10px;
+}
+
+#create {
+    position: absolute;
+    top:95.4%;
+    left: 32.5%;
+    width: 150px;
+}
+
+#logoasinha {
+    position: absolute;
+    top: 18%;
+    left: 59%;
+    width: 600px;
+}
+#logouser {
+    position: absolute;
+    top: 23%;
+    left: 61.6%;
+    width: 500px;
+}
+
+#logocobranca {
+    position: absolute;
+    top: 22.5%;
+    left: 73.5%;
+    width: 400px;
+}
+
+#createPayment {
+    position: absolute;
+    top:103.5%;
+    left:48%;
+    width: 150px;
+}
+
+#backPayment {
+    position: absolute;
+    top:103.5%;
+    left:1%;
+    width: 150px;
+}
+
+#createFormCustomer {
+    position: absolute;
+    left:7%;
+}
+
+#createCobranca {
+    position: absolute;
+    top:15%;
+    left:7%;
+}
+
+#card-header-title-payment {
+    height: 25px;
+    width: 500px;
+    top:.5%;
+}

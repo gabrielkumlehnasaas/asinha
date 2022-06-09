@@ -15,7 +15,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured('permitAll')
 class RegisterService {
 
-    public register(Map params) {
+    public User register(Map params) {
         Customer customer = new Customer()
         customer.email = params.username
         customer.save(flush: true, failOnError: true)
@@ -26,7 +26,7 @@ class RegisterService {
         user.customer = customer 
         user.save(flush: true)
 
-        def role = Role.get(2)
+        Role role = Role.get(2)
 
         UserRole.create(user, role)
 
@@ -36,8 +36,4 @@ class RegisterService {
         }
         return user
     }
-
-    def index() {}
-
-    def save(Map params) {}
 }

@@ -25,6 +25,12 @@
                 <label for="password">Confirmar Senha</label>
                 <input type="password" class="form-control" name="repassword" id="repassword"/>
               </div>
+              <div class="checkbox">
+                <input type="checkbox" id="termos" required>
+                <label for="termos">Li e concordo com os
+                  <a href="https://ajuda.asaas.com/pt-BR/articles/102021-termos-e-condicoes-de-uso">Termos de Uso do Asinha</a>.
+                </label>
+              </div>
               <button id="submit" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrar</button>
               <hr class="my-4">
               <p>Ja tem uma conta? <g:link controller="login" action="auth">Conecte-se</g:link></p>
