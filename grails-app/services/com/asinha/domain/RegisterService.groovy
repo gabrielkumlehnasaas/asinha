@@ -18,17 +18,17 @@ class RegisterService {
     public register(Map params) {
         Customer customer = createCustomer(params.username)
         User user = createUser(params.username, params.password, customer)
-        assingRoleUser(user)
+        assignRoleUser(user)
         return user
     }
 
-    public Customer createCustomer(String email) {
+    private Customer createCustomer(String email) {
         Customer customer = new Customer()
         customer.email = email
         customer.save(flush: true, failOnError: true)
     }
 
-    public User createUser(String username, String password, Customer customer) {
+    private User createUser(String username, String password, Customer customer) {
         User user = new User()
         user.username = username
         user.password = password
@@ -37,7 +37,7 @@ class RegisterService {
         return user
     }
 
-    public assingRoleUser(User user) {
+    private assignRoleUser(User user) {
         def role = Role.get(2)
         UserRole.create(user, role)
         UserRole.withSession {
