@@ -1,7 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    document.forms['loginForm'].elements['username'].focus();
-});
-
 function passwordDisplayToggle() {
     var toggleEl = document.getElementById("passwordToggler");
     var eyeIcon = '\u{1F441}';
@@ -15,3 +11,7 @@ function passwordDisplayToggle() {
         passEl.type = "password";
     }
 }
+
+$(document).ready(function ()  {
+    document.forms['loginForm'].elements['username'].focus();
+});

@@ -5,6 +5,7 @@ import com.asinha.utils.DomainUtils
 import com.asinha.utils.ValidationUtils
 
 import grails.gorm.transactions.Transactional
+import grails.util.Holders
 
 @Transactional
 class CustomerService {
@@ -13,6 +14,7 @@ class CustomerService {
         Customer customer = Customer.get(customerId)
         customer = validate(customer, params)
         if (customer.hasErrors()) return customer
+
         customer.address = params.address
         customer.addressNumber = params.addressNumber
         customer.city = params.city
@@ -26,7 +28,6 @@ class CustomerService {
         customer.state = params.state
         customer.save(flush: true, failOnError:true)
         return customer
-        println "customer ${customer}"
     } 
 
     public Customer validate(Customer customer, Map params) {
@@ -42,6 +43,4 @@ class CustomerService {
         if (!ValidationUtils.validateNotNull(params.state)) DomainUtils.addError(customer, "Campo Estado é obrigatório")
         return customer
     }
-
-
 }

@@ -36,18 +36,18 @@ function PaymentCreateController() {
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
-        console.log(infosPayment)
         var url = document.querySelector("#create-form").getAttribute("action");
 
         $.post(url, infosPayment, function(response) {
             if (!response.success) {
-                errorMessages = ""
+                errorMessages = "";
                 response.messages.forEach(function (value) {
-                    errorMessages += value + "\n"
+                    errorMessages += value + "\n";
                 });
-                alert("Erro ao Criar Cobrança:\n" + errorMessages)
+                alert("Erro ao Criar Cobrança:\n" + errorMessages);
                 return
             }
+
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
     }

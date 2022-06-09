@@ -2,24 +2,23 @@ package com.asinha.domain
 
 import com.asinha.base.BaseController
 import com.asinha.domain.Payer
+import com.asinha.utils.UserUtils
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
-import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PayerController extends BaseController {
 
     def payerService
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
-    def create() {
-        return [customerId: params.long("customerId")]
-    }
+    def create() {}
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
-        Payer payer = payerService.save(params)
+        Long customerId = UserUtils.getUsersCustomerId
+        Payer payer = payerService.save(customerId, params)
         if (payer.hasErrors()) {
             List<String> errorMessages = []
             payer.errors.allErrors.each {
@@ -31,19 +30,16 @@ class PayerController extends BaseController {
         render ([success: true] as JSON)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getUsersCustomerId
         List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, payerList: payerList, totalCount: payerList.totalCount]
+        return [payerList: payerList, totalCount: payerList.totalCount]
     }
-
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])   
+ 
     def show() {
         return [payer: Payer.get(params.long("payerId"))]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
         Payer payer = payerService.update(params)
         if (payer.hasErrors()) {

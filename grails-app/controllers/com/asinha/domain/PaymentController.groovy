@@ -5,27 +5,25 @@ import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
+import com.asinha.utils.UserUtils
 
 import grails.converters.JSON
-import grails.validation.ValidationException
-import static org.springframework.http.HttpStatus.*
-import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController{
 
     def payerService
     def paymentService
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def create() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getUsersCustomerId
         List<Payer> payerList = payerService.getPayersByCustomer(customerId)
-        return [customerId: customerId, payerList: payerList]
+        return [payerList: payerList]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
-        Payment payment = paymentService.save(params)
+        Long customerId = UserUtils.getUsersCustomerId
+        Payment payment = paymentService.save(customerId, params)
         if (payment.hasErrors()) {
             List<String> errorMessages = []
             payment.errors.allErrors.each {
@@ -37,19 +35,16 @@ class PaymentController extends BaseController{
         render([success: true] as JSON)
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getUsersCustomerId
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+        return [paymentList: paymentList, totalCount: paymentList.size()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show() {
         return [payment: Payment.get(params.long("paymentId"))]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def confirm() {
         Long paymentId = params.long("paymentId")
         try {

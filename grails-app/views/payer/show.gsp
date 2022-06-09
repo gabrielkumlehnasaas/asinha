@@ -53,7 +53,7 @@
                     <input type="hidden" name="payerId" id="payerId" value="${ payer.id }">
                     <button class="btn btn-primary btn-padding-y" type="button" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" type="submit" hidden name="updatebtn" id="updatebtn">Salvar</button>
-                    <a href="${ g.createLink([controller:'payer', action:'list', params:[customerId: payer.customer.id]]) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
+                    <a href="${ g.createLink([controller:'payer', action:'list']) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
                 </div>
             </form>
         </div>

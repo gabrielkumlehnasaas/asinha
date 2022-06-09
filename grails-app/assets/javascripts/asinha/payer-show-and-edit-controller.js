@@ -32,22 +32,21 @@ function PayerShowAndEditController() {
     var submitForm = function() {
         let infosPayer = {};
         let data = new FormData(document.querySelector("#create-form"));
-
         data.forEach(function (value,key) {
             infosPayer[key] = value;
         });
-
-        disableInputs();
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
-                errorMessages = ""
+                errorMessages = "";
                 response.messages.forEach(function (value) {
-                    errorMessages += value + "\n"
+                    errorMessages += value + "\n";
                 });
-                alert("Erro ao Editar Pagador:\n" + errorMessages)
+                alert("Erro ao Editar Pagador:\n" + errorMessages);
                 return
-            }
+            };
+            
+            disableInputs();
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
     };
@@ -69,7 +68,7 @@ function PayerShowAndEditController() {
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
         });
-    }
+    };
 
     var disableInputs = function () {
         nameInputReference.disabled = true;

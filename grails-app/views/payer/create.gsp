@@ -73,6 +73,7 @@
                         <input type="text" class="form-control" id="city" name="city" required>
                     </div>
                 </div>
+<<<<<<< HEAD
                     <div class="col-md-5 p-3 bg-light">
                         <label for="complement">Complemento</label>
                         <input type="text" class="form-control" id="complement" name="complement">
@@ -82,6 +83,9 @@
                 <div>
                     <a href="${ g.createLink([controller:'customer', action:'show']) }"><button type="button" class="btn btn-primary btn-padding-y">Voltar</button></a>
                 </div>
+=======
+                <button type="submit" class="btn btn-primary btn-padding-y" id="create" name="create">Criar pagador</button>
+>>>>>>> springSecurity-controller-view-refactor
             </form>
             </div>
         </div> 

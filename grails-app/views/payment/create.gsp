@@ -42,7 +42,6 @@
                     <label for="description">Descrição</label>
                     <input class="form-control" type="text" name="description" id="description" required>
                  </div>
-                <input hidden value="${ customerId }" name="customerId" id="customerId">
                 <input class="btn btn-primary btn-padding-y" type="submit" name="create" id="createPayment">
                 <div>
                     <a href="${ g.createLink([controller:'customer', action:'show']) }"><button type="button" id="backPayment" class="btn btn-primary btn-padding-y">Voltar</button></a>

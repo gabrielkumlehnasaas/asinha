@@ -39,18 +39,18 @@ function CustomerShowAndEditController() {
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                errorMessages = ""
+                errorMessages = "";
                 response.messages.forEach(function (value) {
-                    errorMessages += value + "\n"
+                    errorMessages += value + "\n";
                 });
-                alert("Erro ao Editar Conta:\n" + errorMessages)
+                alert("Erro ao Editar Conta:\n" + errorMessages);
                 return
-            }
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            };
             disableInputs();
+            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
     };
-    
+
     var bindEditCustomer = function() {
         editButton.on("click", function(e) {
             e.preventDefault();
@@ -67,9 +67,9 @@ function CustomerShowAndEditController() {
             phoneInputReference.disabled = false;
             cepInputReference.disabled = false;
             complementInputReference.disabled = false;
-        })
-    }
-    
+        });
+    };
+
     var disableInputs = function () {
         nameInputReference.disabled = true;
         addressInputReference.disabled = true;
@@ -82,8 +82,7 @@ function CustomerShowAndEditController() {
         phoneInputReference.disabled = true;
         cepInputReference.disabled = true;
         complementInputReference.disabled = true;
-    }
-    
+    };
 };
 
 var customerShowAndEditController;

@@ -48,7 +48,7 @@ function CustomerCreateController() {
 
     var bindCep = function() {
         cepInputReference.addEventListener("input", function() {
-            searchCep.getPostalCode(this.value, validateCep)
+            searchCep.getPostalCode(this.value, validateCep);
         });
     };
 
@@ -82,17 +82,17 @@ function CustomerCreateController() {
 
         $.post(url, infosCustomer, function(response) {
             if (!response.success) {
-                errorMessages = ""
+                errorMessages = "";
                 response.messages.forEach(function (value) {
-                    errorMessages += value + "\n"
+                    errorMessages += value + "\n";
                 });
-                alert("Erro ao Criar Conta:\n" + errorMessages)
+                alert("Erro ao Criar Conta:\n" + errorMessages);
                 return
-            }
-            
+            };
+
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
         });
-    }
+    };
 };
 
 var customerCreateController;

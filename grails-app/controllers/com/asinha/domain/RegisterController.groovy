@@ -1,13 +1,14 @@
 package com.asinha.domain
 
-import grails.validation.ValidationException
+import com.asinha.customUserDetails.CustomUserDetails
+import com.asinha.domain.Customer
+import com.asinha.domain.Role
+import com.asinha.domain.User
+import com.asinha.domain.UserRole
+
 import grails.gorm.transactions.Transactional
 import grails.plugin.springsecurity.annotation.Secured
-import com.asinha.domain.User
-import com.asinha.domain.Role
-import com.asinha.domain.Customer
-import com.asinha.domain.UserRole
-import com.asinha.customUserDetails.CustomUserDetails
+import grails.validation.ValidationException
 
 @Transactional
 @Secured('permitAll')
@@ -21,7 +22,7 @@ class RegisterController {
 
     def register() {
         try {
-            if(!params.password.equals(params.repassword)) {
+            if (!params.password.equals(params.repassword)) {
                 flash.warning = "Senha e confirmação de senha não coincidem"
                 redirect action: "index"
                 return

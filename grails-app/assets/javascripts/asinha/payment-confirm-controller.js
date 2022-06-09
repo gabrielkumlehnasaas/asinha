@@ -34,7 +34,7 @@ function PaymentConfirmController() {
         var url = document.querySelector("#create-form").getAttribute("action");
         $.post(url, infosPayment, function(response) {
             if (!response.success) {
-                alert("Erro ao Confirmar Pagamento")
+                alert("Erro ao Confirmar Pagamento");
                 return
             }
             window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
