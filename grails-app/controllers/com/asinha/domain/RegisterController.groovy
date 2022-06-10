@@ -33,7 +33,6 @@ class RegisterController {
             }
 
         } catch (Exception e) {
-            println(e)
             flash.warning = "Falha no registro"
             redirect action: "index"
             return
