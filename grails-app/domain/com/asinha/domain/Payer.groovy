@@ -31,5 +31,6 @@ class Payer extends BaseEntity {
 
     static constraints = {
         email email: true
+        complement nullable: true
     }
 }

@@ -26,18 +26,18 @@ function PaymentConfirmController() {
 
     var submitConfirm = function() {
         let infosPayment = {};
-        let data = new FormData(document.querySelector("#create-form"));
+        let data = new FormData(document.querySelector("#confirm-form"));
         
         data.forEach(function (value,key) {
             infosPayment[key] = value;
         });
-        var url = document.querySelector("#create-form").getAttribute("action");
+        var url = document.querySelector("#confirm-form").getAttribute("action");
         $.post(url, infosPayment, function(response) {
             if (!response.success) {
                 alert("Erro ao Confirmar Pagamento");
                 return
             }
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("#confirm-form").getAttribute("data-redirect");
         });
     };
                                                                                                                                                                      
