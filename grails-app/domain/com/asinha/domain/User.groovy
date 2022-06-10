@@ -9,7 +9,7 @@ import groovy.transform.ToString
 @ToString(includes='username', includeNames=true, includePackage=false)
 class User implements Serializable {
 
-    private static final long serialVersionUID = 1
+    private static final Long serialVersionUID = 1
 
     String username
 
@@ -30,9 +30,9 @@ class User implements Serializable {
     }
 
     static constraints = {
-        password nullable: false, blank: false, password: true
-        username nullable: false, blank: false, unique: true
-        customer nullable: false
+        password blank: false, password: true
+        username blank: false, unique: true
+        customer
     }
 
     static mapping = {
