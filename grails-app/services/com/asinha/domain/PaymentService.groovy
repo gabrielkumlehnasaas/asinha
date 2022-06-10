@@ -3,6 +3,7 @@ package com.asinha.domain
 import com.asinha.domain.Customer
 import com.asinha.domain.EmailService
 import com.asinha.domain.Payer
+import com.asinha.domain.PayerService
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
 import com.asinha.enums.PaymentStatus
@@ -17,10 +18,17 @@ import java.math.BigDecimal
 @Transactional
 class PaymentService {
 
+    def payerService
     PageRenderer groovyPageRenderer
     def emailService
 
-    public List<Payment> getPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
+    public List<Payment> getPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+        if (max == null || offset == null) {
+            List<Payment> paymentList = Payment.createCriteria().list() {
+                eq("customer", Customer.get(customerId))
+            }
+            return paymentList
+        }
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset) {
             eq("customer", Customer.get(customerId))
         }
@@ -94,8 +102,7 @@ class PaymentService {
     }
 
     public void updateOverduePayments() {
-        Date today = new Date()
-        Date yesterday = CustomDateUtils.sumDays(today, (-1))
+        Date yesterday = CustomDateUtils.sumDays(new Date (-1))
         List<Payment> paymentList = listPaymentByStatusAndDate(PaymentStatus.PENDING, yesterday)
         for(Payment payment : paymentList) {
             payment.status = PaymentStatus.OVERDUE
@@ -115,5 +122,24 @@ class PaymentService {
         String subject = "Notificação de pagamento"
         emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentCustomer", model: [payment: payment]))
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/confirmPaymentPayer", model: [payment: payment]))
+    }
+
+    public Map getDashboardInfo(Long customerId) {
+        if (!getPaymentsByCustomer(customerId)) return null
+        
+        List<Payer> payerList = payerService.getPayersByCustomer(customerId)
+        Integer totalPayers = payerList.size()
+        
+        List<Payment> overduePaymentList = listPaymentByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
+        List<Payer> defaultersList = overduePaymentList.unique { Payment payment -> payment.payer }
+
+        Integer defaulters = defaultersList.size()
+        Integer nonDefaulters = totalPayers - defaulters
+
+        BigDecimal received = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
+        BigDecimal foreseen = listPaymentByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
+        BigDecimal overdue = overduePaymentList.value.sum()
+
+        return [totalPayers: totalPayers, defaulters: defaulters, nonDefaulters: nonDefaulters, received: received, foreseen: foreseen, overdue: overdue]
     }
 }
