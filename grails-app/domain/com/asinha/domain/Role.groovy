@@ -26,6 +26,6 @@ class Role implements Serializable {
 	}
 
 	public Boolean isAdmin() {
-		return this.authority == 'ROLE_ADMIN'
+	return this.authority == 'ROLE_ADMIN'
 	}
 }
