@@ -20,14 +20,16 @@ class CustomerController extends BaseController {
 
     @Secured(['ROLE_USER'])
     def show() {
-        if(params.customerId) return [customer: Customer.get(params.long("customerId"))]
-        Customer customer = UserUtils.getUsersCustomer
+        User user = UserUtils.getCurrentUser()
+        if ( user.isAdmin() && params.customerId) return [customer: Customer.get(params.long("customerId"))]
+        
+        Customer customer = UserUtils.getCurrentCustomer()
         return [customer: customer]
     }
 
     @Secured(['ROLE_USER'])
     def update() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId()
         Customer customer = customerService.update(customerId, params)
         if(customer.hasErrors()) {
             List<String> errorMessages = []

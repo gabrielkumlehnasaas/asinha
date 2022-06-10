@@ -1,7 +1,7 @@
 package com.asinha.domain
 
-import com.asinha.domain.Customer
 import com.asinha.customUserDetails.CustomUserDetails
+import com.asinha.domain.Customer
 import com.asinha.domain.Role
 import com.asinha.domain.User
 import com.asinha.domain.UserRole
@@ -26,6 +26,7 @@ class RegisterService {
         Customer customer = new Customer()
         customer.email = email
         customer.save(flush: true, failOnError: true)
+        return customer
     }
 
     private User createUser(String username, String password, Customer customer) {
@@ -37,8 +38,8 @@ class RegisterService {
         return user
     }
 
-    private assignRoleUser(User user) {
-        def role = Role.get(2)
+    private void assignRoleUser(User user) {
+        Role role = Role.get(2)
         UserRole.create(user, role)
         UserRole.withSession {
             it.flush()

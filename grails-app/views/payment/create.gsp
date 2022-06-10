@@ -48,7 +48,6 @@
                 </div>
             </form>
         </div>
-
         <asset:javascript src="payment-create-import.js"/>
         <asset:image src="logocobranca.png" id="logocobranca"/>
     </body>

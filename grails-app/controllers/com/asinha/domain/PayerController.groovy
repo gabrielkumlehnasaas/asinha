@@ -17,7 +17,7 @@ class PayerController extends BaseController {
     def create() {}
 
     def save() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId()
         Payer payer = payerService.save(customerId, params)
         if (payer.hasErrors()) {
             List<String> errorMessages = []
@@ -31,7 +31,7 @@ class PayerController extends BaseController {
     }
 
     def list() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId()
         List<Payer> payerList = payerService.getPayersByCustomer(customerId, getLimitPerPage(), getCurrentPage())
         return [payerList: payerList, totalCount: payerList.totalCount]
     }
