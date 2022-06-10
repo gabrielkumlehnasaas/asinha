@@ -37,7 +37,7 @@
 
 #create {
     position: absolute;
-    top:95.4%;
+    top:98.4%;
     left: 32.5%;
     width: 150px;
 }
@@ -57,8 +57,8 @@
 
 #logocobranca {
     position: absolute;
-    top: 22.5%;
-    left: 73.5%;
+    top: 17.5%;
+    left: 70.5%;
     width: 400px;
 }
 
@@ -76,6 +76,13 @@
     width: 150px;
 }
 
+#backPayer {
+    position: absolute;
+    top: 98.5%;
+    left:0%;
+    width: 150px;
+}
+
 #createFormCustomer {
     position: absolute;
     left:7%;
@@ -89,6 +96,10 @@
 
 #card-header-title-payment {
     height: 25px;
-    width: 500px;
+    width: 400px;
     top:.5%;
+}
+
+#card-header-payment {
+    width: 1030px;
 }
