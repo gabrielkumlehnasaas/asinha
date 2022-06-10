@@ -22,13 +22,13 @@ class RegisterService {
         return user
     }
 
-    public Customer createCustomer(String email) {
+    private Customer createCustomer(String email) {
         Customer customer = new Customer()
         customer.email = email
         customer.save(flush: true, failOnError: true)
     }
 
-    public User createUser(String username, String password, Customer customer) {
+    private User createUser(String username, String password, Customer customer) {
         User user = new User()
         user.username = username
         user.password = password
@@ -37,8 +37,8 @@ class RegisterService {
         return user
     }
 
-    public assignRoleUser(User user) {
-        Role role = Role.get(2)
+    private assignRoleUser(User user) {
+        def role = Role.get(2)
         UserRole.create(user, role)
         UserRole.withSession {
             it.flush()
