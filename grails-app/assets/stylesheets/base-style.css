@@ -54,15 +54,15 @@
 
 #logocobranca {
     position: absolute;
-    top: 17.5%;
-    left: 70.5%;
+    top: 25%;
+    left: 65%;
     width: 400px;
 }
 
 #createPayment {
     position: absolute;
-    top:103.5%;
-    left:48%;
+    top:100%;
+    left:40%;
     width: 150px;
 }
 
@@ -75,8 +75,8 @@
 
 #backPayer {
     position: absolute;
-    top: 98.5%;
-    left:0%;
+    top: 100%;
+    left: 1%;
     width: 150px;
 }
 

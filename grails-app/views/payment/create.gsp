@@ -35,7 +35,7 @@
                         <label for="method">Forma de pagamento</label>
                         <g:select class="form-control" name="method" id="method" valueMessagePrefix="PaymentMethod" from="${ PaymentMethod.values() }" value="${method}" noSelection="['':'Selecione um método de pagamento']"/></div>
                     </div>
-                    <div class="col-md-7 p-5">
+                    <div class="col-md-7 p-4">
                         <label for="description">Descrição</label>
                         <input class="form-control" type="text" name="description" id="description" required>
                     </div>
