@@ -74,6 +74,9 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-padding-y" id="create" name="create">Criar pagador</button>
+                <div>
+                    <a href="${ g.createLink([controller:'customer', action:'show']) }"><button type="button" id="backPayer" class="btn btn-primary btn-padding-y">Voltar</button></a>
+                </div>
             </form>
             </div>
         </div> 
