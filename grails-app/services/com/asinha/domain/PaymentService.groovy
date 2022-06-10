@@ -35,7 +35,7 @@ class PaymentService {
         return paymentList
     }
 
-    public Payment save(Map params) {
+    public Payment save(Long customerId, Map params) {
         Payment payment = new Payment()
         payment = validate(payment, params)
         if (payment.hasErrors()) return payment
@@ -46,18 +46,9 @@ class PaymentService {
         payment.status = PaymentStatus.PENDING
         payment.dueDate = CustomDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
         payment.payer = Payer.get(params.long("payerId"))
-        payment.customer = Customer.get(params.long("customerId"))
+        payment.customer = Customer.get(customerId)
         payment.save(failOnError: true)
         notifyNewPayment(payment.id)
-        return payment
-    }
-
-    public Payment confirmPayment(Long paymentId) {
-        Payment payment = Payment.get(paymentId)
-        payment.status = PaymentStatus.PAID
-        payment.paymentDate = new Date()
-        payment.save(flush: true, failOnError:true)
-        notifyConfirmedPayment(paymentId)
         return payment
     }
 
@@ -88,6 +79,15 @@ class PaymentService {
         return true
     }
     
+    public Payment confirmPayment(Long paymentId) {
+        Payment payment = Payment.get(paymentId)
+        payment.status = PaymentStatus.PAID
+        payment.paymentDate = new Date()
+        payment.save(flush: true, failOnError:true)
+        notifyConfirmedPayment(paymentId)
+        return payment
+    }
+
     public List<Payment> listPaymentByStatusAndDate(PaymentStatus paymentStatus, Date date) {
         Date beginningOfDay = date.clearTime()
         Date endOfDay = CustomDateUtils.getEndOfDay(date) 

@@ -5,22 +5,26 @@ import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
 import com.asinha.enums.PaymentMethod
+import com.asinha.utils.UserUtils
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController{
 
     def payerService
     def paymentService
 
     def create() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getCurrentCustomerId()
         List<Payer> payerList = payerService.getPayersByCustomer(customerId)
-        return [customerId: customerId, payerList: payerList]
+        return [payerList: payerList]
     }
 
     def save() {
-        Payment payment = paymentService.save(params)
+        Long customerId = UserUtils.getCurrentCustomerId()
+        Payment payment = paymentService.save(customerId, params)
         if (payment.hasErrors()) {
             List<String> errorMessages = []
             payment.errors.allErrors.each {
@@ -33,9 +37,9 @@ class PaymentController extends BaseController{
     }
 
     def list() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getCurrentCustomerId
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
-        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+        return [paymentList: paymentList, totalCount: paymentList.size()]
     }
 
     def show() {
