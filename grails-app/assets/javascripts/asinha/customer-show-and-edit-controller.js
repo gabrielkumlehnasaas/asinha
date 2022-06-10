@@ -11,7 +11,6 @@ function CustomerShowAndEditController() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var customerIdInputReference = this.reference.find("#customerId").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
     var _this = this;

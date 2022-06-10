@@ -12,11 +12,17 @@ class User implements Serializable {
     private static final long serialVersionUID = 1
 
     String username
+
     String password
+
     boolean enabled = true
+
     boolean accountExpired
+
     boolean accountLocked
+
     boolean passwordExpired
+    
     Customer customer
     
     Set<Role> getAuthorities() {
