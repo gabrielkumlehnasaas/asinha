@@ -38,8 +38,4 @@ class User implements Serializable {
     static mapping = {
 	    password column: '`password`'
     }
-
-    public Boolean isAdmin() {
-        return this.getAuthorities().any { it.isAdmin() }
-    } 
 }
