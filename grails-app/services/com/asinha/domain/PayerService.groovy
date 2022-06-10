@@ -28,6 +28,7 @@ class PayerService {
         Payer payer = new Payer()
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
+
         payer.address = params.address
         payer.addressNumber = params.addressNumber
         payer.city = params.city

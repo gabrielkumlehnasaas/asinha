@@ -4,6 +4,7 @@ import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
+import com.asinha.domain.User
 import com.asinha.enums.PaymentMethod
 
 import grails.converters.JSON
@@ -33,7 +34,7 @@ class PaymentController extends BaseController{
     }
 
     def list() {
-        Long customerId = params.long("customerId")
+        Long customerId = UserUtils.getCurrentCustomerId()
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
     }

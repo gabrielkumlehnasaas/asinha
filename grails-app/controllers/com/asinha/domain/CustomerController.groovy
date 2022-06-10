@@ -2,6 +2,8 @@ package com.asinha.domain
 
 import com.asinha.base.BaseController
 import com.asinha.domain.Customer
+import com.asinha.domain.User
+import com.asinha.utils.UserUtils
 import com.asinha.domain.PaymentService
 
 import grails.converters.JSON

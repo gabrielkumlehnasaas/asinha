@@ -11,14 +11,16 @@ function CustomerShowAndEditController() {
     var phoneInputReference = this.reference.find("#phone").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
     var complementInputReference = this.reference.find("#complement").get(0);
-    var customerIdInputReference = this.reference.find("#customerId").get(0);
     var editButton = this.reference.find("#editbtn");
     var updateButton = this.reference.find("#updatebtn");
+    var searchCep;
     var _this = this;
     
     this.init = function() {
         bindForm();
         bindEditCustomer();
+        bindCep();
+        searchCep = new SearchCep();
     };
 
     var bindForm = function() {
@@ -26,6 +28,37 @@ function CustomerShowAndEditController() {
             e.preventDefault();
             submitForm(); 
         });
+    };
+
+    var bindCep = function() {
+        cepInputReference.addEventListener("input", function() {
+            searchCep.getPostalCode(this.value, validateCep)
+        });
+    };
+
+    var fillForm = (address) => {
+        addressInputReference.value = address .logradouro;
+        provinceInputReference.value = address .bairro;
+        cityInputReference.value = address .localidade;
+        stateInputReference.value = address .uf;
+        addressNumberInputReference.focus();
+    };
+
+    var cleanForm = () => {
+        addressInputReference.value = "";
+        provinceInputReference.value = "";
+        cityInputReference.value = "";
+        stateInputReference.value = "";
+    };
+    
+    var validateCep = function(data) {
+        let error = ("erro" in data);
+        if (error) {
+            cleanForm();
+            return
+        };
+
+        fillForm(data);
     };
 
     var submitForm = function() {

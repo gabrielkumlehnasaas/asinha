@@ -42,7 +42,7 @@
                             <h5 class="card-text col-md">
                                 <g:if test="${ payment.payer.cpfCnpj.length() == 11 }">CPF: </g:if>
                                 <g:if test="${ payment.payer.cpfCnpj.length() == 14 }">CNPJ: </g:if>
-                                ${ payment.payer.cpfCnpj }
+                                <span id="cpfCnpj">${ payment.payer.cpfCnpj }</span>
                             </h5>
                             <h5 class="card-text col-md">Email: ${ payment.payer.email }</h5>
                         </div>
@@ -57,5 +57,6 @@
             </form>
         </div>
     <asset:javascript src="asinha/payment-confirm-controller.js"/>
+    <asset:javascript src="utils/client-form-utils.js"/>
     </body>
 </html>
