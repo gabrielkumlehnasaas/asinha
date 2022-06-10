@@ -3,7 +3,6 @@ function PayerCreateController() {
     this.reference = $("#payer-create-container");
     var addressInputReference = this.reference.find("#address").get(0);
     var addressNumberInputReference = this.reference.find("#addressNumber").get(0);
-    var emailInputReference = this.reference.find("#email").get(0);
     var provinceInputReference = this.reference.find("#province").get(0);
     var cityInputReference = this.reference.find("#city").get(0);
     var stateInputReference = this.reference.find("#state").get(0);
