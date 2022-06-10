@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-md-6 p-3 bg-light">
                     <label for="dueDate">Vencimento</label>
-                    <input class=" form-control border border-1 border-dark" type="date" name="dueDate" id="dueDate" required>
+                    <input class="form-control border border-1 border-dark" type="date" name="dueDate" id="dueDate" required>
                 </div>
                 <input class="btn btn-primary btn-padding-y" type="submit" name="create" id="create">
             </form>      

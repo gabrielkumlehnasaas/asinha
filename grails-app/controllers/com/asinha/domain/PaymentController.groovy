@@ -8,6 +8,7 @@ import com.asinha.enums.PaymentMethod
 import com.asinha.utils.UserUtils
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController{
@@ -16,13 +17,13 @@ class PaymentController extends BaseController{
     def paymentService
 
     def create() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId()
         List<Payer> payerList = payerService.getPayersByCustomer(customerId)
         return [payerList: payerList]
     }
 
     def save() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId()
         Payment payment = paymentService.save(customerId, params)
         if (payment.hasErrors()) {
             List<String> errorMessages = []
@@ -36,7 +37,7 @@ class PaymentController extends BaseController{
     }
 
     def list() {
-        Long customerId = UserUtils.getUsersCustomerId
+        Long customerId = UserUtils.getCurrentCustomerId
         List<Payment> paymentList = paymentService.getPaymentsByCustomer(customerId, getLimitPerPage(), getCurrentPage())
         return [paymentList: paymentList, totalCount: paymentList.size()]
     }

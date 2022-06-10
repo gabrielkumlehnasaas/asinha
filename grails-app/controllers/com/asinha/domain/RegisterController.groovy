@@ -39,7 +39,4 @@ class RegisterController {
             return
         }
     }
-    def save() {
-        registerService.save(params)
-    }
 }
