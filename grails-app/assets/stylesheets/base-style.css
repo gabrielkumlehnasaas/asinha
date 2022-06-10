@@ -83,12 +83,12 @@
     width: 150px;
 }
 
-#createFormCustomer {
+#payer-create-container {
     position: absolute;
     left:7%;
 }
 
-#createCobranca {
+#payment-create-container {
     position: absolute;
     top:15%;
     left:7%;

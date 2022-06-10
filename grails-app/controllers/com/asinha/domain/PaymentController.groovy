@@ -4,6 +4,7 @@ import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 import com.asinha.domain.Payer
 import com.asinha.domain.Payment
+import com.asinha.domain.User
 import com.asinha.enums.PaymentMethod
 import com.asinha.utils.UserUtils
 

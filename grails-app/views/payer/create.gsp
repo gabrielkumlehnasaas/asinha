@@ -6,8 +6,6 @@
     </head>
     <body>
         <div class="container-fluid" id="payer-create-container">
-            <p id="error"></p>
-            <div class="formulario" id="createFormCustomer">
             <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payer', action:'list', params:[customerId: customerId]]) }" action="${ g.createLink([controller:'payer', action:'save']) }">
                 <div class="row">
                     <div class="col-md-3 p-3 bg-light shadow-lg">
@@ -78,7 +76,6 @@
                     <a href="${ g.createLink([controller:'customer', action:'show']) }"><button type="button" id="backPayer" class="btn btn-primary btn-padding-y">Voltar</button></a>
                 </div>
             </form>
-            </div>
         </div> 
         <asset:javascript src="payer-create-import.js"/>
         <asset:image src="logoasinhaclean.png" id="logoasinha"/>
