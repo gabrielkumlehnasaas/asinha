@@ -8,7 +8,7 @@
     <body>
         <div class="container-fluid" id="payment-create-container">
             <p id="error"></p>
-            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payment', action:'list']])}" action="${ g.createLink([controller:'payment', action:'save']) }">
+            <form class="form row" id="create-form" data-redirect="${ g.createLink([controller:'payment', action:'list'])}" action="${ g.createLink([controller:'payment', action:'save']) }">
                 <div class="card-header">
                     <h4 class="card-title" id="card-header-title-payment">Nova cobrança</h4>
                 </div>
