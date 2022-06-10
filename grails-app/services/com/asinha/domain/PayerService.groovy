@@ -6,7 +6,6 @@ import com.asinha.utils.DomainUtils
 import com.asinha.utils.ValidationUtils
 
 import grails.gorm.transactions.Transactional
-import grails.util.Holders
 
 @Transactional
 class PayerService {
@@ -25,11 +24,10 @@ class PayerService {
         return payerList
     }
 
-    public Payer save(Long customerId, Map params) {
+    public Payer save(Map params) {
         Payer payer = new Payer()
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
-        
         payer.address = params.address
         payer.addressNumber = params.addressNumber
         payer.city = params.city
@@ -41,7 +39,7 @@ class PayerService {
         payer.postalCode = ValidationUtils.digitsOnlyCleaner(params.postalCode)
         payer.province = params.province
         payer.state = params.state
-        payer.customer = Customer.get(customerId)
+        payer.customer = Customer.get(params.long("customerId"))
         payer.save(failOnError: true)
         return payer
     }   
@@ -50,7 +48,6 @@ class PayerService {
         Payer payer = Payer.get(params.long("payerId"))
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
-
         payer.address = params.address
         payer.addressNumber = params.addressNumber
         payer.city = params.city

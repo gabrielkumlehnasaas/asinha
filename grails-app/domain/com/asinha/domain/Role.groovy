@@ -24,8 +24,4 @@ class Role implements Serializable {
 	String toString() {
   		authority
 	}
-
-	public Boolean isAdmin() {
-	return this.authority == 'ROLE_ADMIN'
-	}
 }

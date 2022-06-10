@@ -64,7 +64,7 @@ function PayerCreateController() {
     };
 
     var bindForm = function() {
-        _this.reference.find("#create-form").on("submit", function(event) {
+        _this.reference.find("form").on("submit", function(event) {
             event.preventDefault();
             submitForm();
         });
@@ -72,13 +72,13 @@ function PayerCreateController() {
 
     var submitForm = function() {
         let infosPayer = {};
-        let data = new FormData(document.querySelector("#create-form"));
+        let data = new FormData(document.querySelector("form"));
         
         data.forEach(function (value,key) {
             if (key != "cpfCnpjRadio") infosPayer[key] = value;
         });
         
-        var url = document.querySelector("#create-form").getAttribute("action");
+        var url = document.querySelector("form").getAttribute("action");
 
         $.post(url, infosPayer, function(response) {
             if (!response.success) {
@@ -90,7 +90,7 @@ function PayerCreateController() {
                 return
             }
             
-            window.location.href = document.querySelector("#create-form").getAttribute("data-redirect");
+            window.location.href = document.querySelector("form").getAttribute("data-redirect");
         });
     }
 };
