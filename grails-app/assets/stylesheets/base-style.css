@@ -31,10 +31,6 @@
     font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 
-.teste {
-    padding-left: 10px;
-}
-
 #create {
     position: absolute;
     top:98.4%;
@@ -48,6 +44,7 @@
     left: 59%;
     width: 600px;
 }
+
 #logouser {
     position: absolute;
     top: 23%;
@@ -84,22 +81,23 @@
 }
 
 #payer-create-container {
+    padding-top: 40px;
+    width: auto;
     position: absolute;
     left:7%;
 }
 
 #payment-create-container {
+    padding-top: 40px;
     position: absolute;
+    width: auto;
     top:15%;
     left:7%;
 }
 
 #card-header-title-payment {
     height: 25px;
-    width: 400px;
+    width: 60%;
     top:.5%;
 }
 
-#card-header-payment {
-    width: 1030px;
-}
