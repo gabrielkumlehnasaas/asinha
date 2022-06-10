@@ -1,4 +1,5 @@
 header{
+    overflow: hidden;
     width: 100%;
     background-color: var(--azul);
     color: var(--branco);
@@ -34,8 +35,4 @@ footer {
     width: 100%;
     background-color: var(--azul);
     color: var(--branco);
-}
-
-.red-color{
-    color: firebrick
 }
