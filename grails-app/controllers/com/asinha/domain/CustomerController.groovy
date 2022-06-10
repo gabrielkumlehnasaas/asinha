@@ -2,12 +2,14 @@ package com.asinha.domain
 
 import com.asinha.base.BaseController
 import com.asinha.domain.Customer
+import com.asinha.domain.PaymentService
 
 import grails.converters.JSON
 
 class CustomerController extends BaseController {
 
     def customerService
+    def paymentService
 
     def index() {}
 
@@ -31,7 +33,9 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("customerId"))]
+        Long customerId = params.long("customerId")
+        Map dashboard = paymentService.getDashboardInfo(customerId) 
+        return [customer: Customer.get(customerId), dashboard: dashboard]
     }
 
     def update() {
