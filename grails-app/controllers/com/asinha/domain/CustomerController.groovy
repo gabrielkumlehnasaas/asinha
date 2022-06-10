@@ -3,6 +3,7 @@ package com.asinha.domain
 import com.asinha.base.BaseController
 import com.asinha.domain.Customer
 import com.asinha.utils.UserUtils
+import com.asinha.domain.PaymentService
 
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
@@ -13,6 +14,7 @@ import static org.springframework.http.HttpStatus.*
 class CustomerController extends BaseController {
 
     def customerService
+    def paymentService
 
     def list() {
         return [customerList: Customer.list(max: getLimitPerPage(), offset: getCurrentPage()), totalCount: Customer.count()]
@@ -22,9 +24,8 @@ class CustomerController extends BaseController {
     def show() {
         User user = UserUtils.getCurrentUser()
         if ( user.isAdmin() && params.customerId) return [customer: Customer.get(params.long("customerId"))]
-        
-        Customer customer = UserUtils.getCurrentCustomer()
-        return [customer: customer]
+    
+        return [customer: user.customer]
     }
 
     @Secured(['ROLE_USER'])
