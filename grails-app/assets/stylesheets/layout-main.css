@@ -20,6 +20,10 @@ header{
     vertical-align: center;
 }
 
+body {
+    padding-bottom: 50px;
+}
+
 footer {
     position: fixed;
     bottom: 0;

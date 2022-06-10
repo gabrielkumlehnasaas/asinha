@@ -50,6 +50,7 @@
                             <h5 class="card-text col-md-4">Complemento: <input type="text" class="form-control" id="complement" name="complement" value="${ customer.complement }" disabled></h5>
                         </div>
                     </div>
+                    <g:render template="/utils/dashboard"/>
                     <button class="btn btn-primary btn-padding-y" type="button" name="editbtn" id="editbtn">Editar</button>
                     <button class="btn btn-primary btn-padding-y" hidden type="submit" name="updatebtn" id="updatebtn">Salvar</button>
                     <a href="${ g.createLink([controller:'payer', action:'create']) }"><button type="button" class="btn btn-primary btn-padding-y">Criar cliente</button></a>

@@ -1,8 +1,8 @@
 package com.asinha.domain
 
+import grails.compiler.GrailsCompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import grails.compiler.GrailsCompileStatic
 
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='authority')
@@ -26,6 +26,6 @@ class Role implements Serializable {
 	}
 
 	public Boolean isAdmin() {
-		return this.authority == 'ROLE_ADMIN'
+	return this.authority == 'ROLE_ADMIN'
 	}
 }
