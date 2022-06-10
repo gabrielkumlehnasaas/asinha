@@ -8,14 +8,12 @@ function PayerCreateController() {
     var cityInputReference = this.reference.find("#city").get(0);
     var stateInputReference = this.reference.find("#state").get(0);
     var cepInputReference = this.reference.find("#cep").get(0);
-    var errorMessageReference = this.reference.find("#error").get(0);
     var searchCep;
     var _this = this;
     
     this.init = function() {
         bindForm();
         bindCep();
-        bindEmail();
         searchCep = new SearchCep();
     };
 
@@ -38,28 +36,15 @@ function PayerCreateController() {
         let error = ("erro" in data);
         if (error) {
             cleanForm();
-            errorMessageReference.innerHTML = "CEP inválido";
             return
         };
 
-        errorMessageReference.innerHTML = "";
         fillForm(data);
     };
 
     var bindCep = function() {
         cepInputReference.addEventListener("input", function() {
             searchCep.getPostalCode(this.value, validateCep)
-        });
-    };
-
-    var bindEmail = function() {
-        emailInputReference.addEventListener("focusout", function() {
-            var email = emailInputReference.value;
-            if (email.indexOf(".com") == -1) {
-                errorMessageReferenceinnerHTML = "E-mail Inválido";
-            } else {
-                errorMessageReference.innerHTML = "";
-            };
         });
     };
 
