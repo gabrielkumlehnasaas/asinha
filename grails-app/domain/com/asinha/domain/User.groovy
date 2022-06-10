@@ -1,27 +1,27 @@
 package com.asinha.domain
 
+import grails.compiler.GrailsCompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
-import grails.compiler.GrailsCompileStatic
 
 @GrailsCompileStatic
 @EqualsAndHashCode(includes='username')
 @ToString(includes='username', includeNames=true, includePackage=false)
 class User implements Serializable {
 
-    private static final long serialVersionUID = 1
+    private static final Long serialVersionUID = 1
 
     String username
 
     String password
 
-    boolean enabled = true
+    Boolean enabled = true
 
-    boolean accountExpired
+    Boolean accountExpired
 
-    boolean accountLocked
+    Boolean accountLocked
 
-    boolean passwordExpired
+    Boolean passwordExpired
     
     Customer customer
     
